@@ -35,6 +35,7 @@ public class AddForm extends JFrame {
 
         frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 
 }
