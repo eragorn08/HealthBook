@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 
 import GUI.AddForm.*;
 
-public class MainMenu extends JFrame implements ActionListener{
+public class MainMenu extends JFrame{
 
     public MainMenu() {
 
         super("Health Book");
 
-        setNavPanel();
+        NavBarForm navbar = new NavBarForm();
         setDisplayPanel();
 
         setVisible(true);
@@ -22,31 +22,6 @@ public class MainMenu extends JFrame implements ActionListener{
         setLocationRelativeTo(null);
 //        setLayout(null);
         setResizable(false);
-
-    }
-
-    public void setNavPanel(){
-        NavPanel = new JPanel();
-        NavPanel.setLayout(null);
-        NavPanel.setBackground(Color.DARK_GRAY);
-
-        NavPanel.add(addButton = new JButton("Add"));
-        NavPanel.add(searchButton = new JButton("Search"));
-
-        addButton.setContentAreaFilled(false);
-        addButton.setForeground(Color.white);
-        searchButton.setContentAreaFilled(false);
-        searchButton.setForeground(Color.white);
-
-        addButton.addActionListener(this);
-        searchButton.addActionListener(this);
-
-        addButton.setBounds(19, 56, 114, 44);
-        searchButton.setBounds(19, 120, 114, 44);
-
-        NavPanel.setBounds(0, 0, 160, 480);
-        NavPanel.setVisible(true);
-        getContentPane().add(NavPanel);
     }
 
     public void setDisplayPanel(){
@@ -67,16 +42,7 @@ public class MainMenu extends JFrame implements ActionListener{
         getContentPane().add(DisplayPanel);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == addButton){
-            setVisible(false);
-            AddForm addForm = new AddForm();
-        }
-    }
-
-    public JPanel NavPanel, DisplayPanel;
-    public JButton addButton, searchButton;
+    public JPanel DisplayPanel;
     public JLabel greetingL, summaryL;
 
 }
