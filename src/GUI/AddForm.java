@@ -27,3 +27,4 @@ public class AddForm{
     public JPanel AddPanel;
     public JLabel greetingL, summaryL;
 }
+
