@@ -50,10 +50,12 @@ public class MainMenu extends JFrame implements ActionListener{
         //icon.setIcon(logo_icon);
         //icon.setText("Bro, do you even code?");
         try {
-            BufferedImage logo_icon = ImageIO.read(new File("C:\\Users\\Macapuno\\Desktop\\JAVA PROJECT\\HealthBook\\src\\GUI\\images\\logo_icon.png"));
-            BufferedImage logo_text = ImageIO.read(new File("C:\\Users\\Macapuno\\Desktop\\JAVA PROJECT\\HealthBook\\src\\GUI\\images\\logo_name.png"));
-            BufferedImage power_button = ImageIO.read(new File("C:\\Users\\Macapuno\\Desktop\\JAVA PROJECT\\HealthBook\\src\\GUI\\images\\power_button.png"));
-            BufferedImage logout = ImageIO.read(new File("C:\\Users\\Macapuno\\Desktop\\JAVA PROJECT\\HealthBook\\src\\GUI\\images\\log_out.png"));
+            String path = System.getProperty("user.dir");
+
+            BufferedImage logo_icon = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\logo_icon.png",path)));
+            BufferedImage logo_text = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\logo_name.png",path)));
+            BufferedImage power_button = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\power_button.png",path)));
+            BufferedImage logout = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\log_out.png",path)));
 
             icon = new JLabel(new ImageIcon(logo_icon));
             icon.setBounds(16,13,61,39);
