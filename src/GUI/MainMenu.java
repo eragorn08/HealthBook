@@ -10,7 +10,7 @@ import java.awt.image.ImagingOpException;
 import java.io.File;
 import java.io.IOException;
 
-public class MainMenu extends JFrame implements ActionListener{
+public class MainMenu extends JFrame{
 
     public MainMenu() {
 
@@ -92,9 +92,6 @@ public class MainMenu extends JFrame implements ActionListener{
         searchButton.setContentAreaFilled(false);
         searchButton.setForeground(Color.white);
 
-        addButton.addActionListener(this);
-        searchButton.addActionListener(this);
-
         addButton.setBounds(19, 56, 114, 44);
         searchButton.setBounds(19, 120, 114, 44);
 
@@ -108,34 +105,17 @@ public class MainMenu extends JFrame implements ActionListener{
 
 
     public void setDisplayPanel(){
-        DisplayPanel = new JPanel();
-        //DisplayPanel.setLayout(null);
-        DisplayPanel.setBackground(new Color(0x212C58));
-
-        DisplayPanel.add(greetingL = new JLabel("Welcome back, Good Afternoon!"));
-        DisplayPanel.add(summaryL = new JLabel("Summary of Records"));
-        greetingL.setFont(new Font("Sans Serif", Font.PLAIN, 21));
-        summaryL.setFont(new Font("Sans Serif", Font.PLAIN, 18));
-
-        greetingL.setBounds(180, 10, 1100, 50);
-        summaryL.setBounds(310, 120, 200, 50);
-
-        DisplayPanel.setBounds(286, 60, 1100, 720);
-        DisplayPanel.setVisible(true);
-        add(DisplayPanel);
+        AddForm add_menu = new AddForm();
+        HomePage home = new HomePage();
+        SearchForm search = new SearchForm();
+        tabbedPane.add("Home",home.DisplayPanel);
+        tabbedPane.add("add",add_menu.AddPanel);
+        tabbedPane.add("search",search.SearchPanel);
+        tabbedPane.setBounds(286,60,1100,660);
+        add(tabbedPane);
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == addButton){
-            remove(DisplayPanel);
-            System.out.println("Hello");
-            AddForm addPage = new AddForm();
-            //add(addPage.AddPanel);
 
-        }
-    }
-    public JPanel DisplayPanel;
-    public JLabel greetingL, summaryL;
     public JButton addButton, searchButton;
+    public JTabbedPane tabbedPane = new JTabbedPane();
 
 }

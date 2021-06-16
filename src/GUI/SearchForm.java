@@ -2,21 +2,18 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-//import javax.swing.JFrame;
 
-public class AddForm{
-    public AddForm(){
-        addForm();
+public class SearchForm {
+    public SearchForm(){
+        searchform();
     }
-    public void addForm(){
-        AddPanel = new JPanel();
+    public void searchform(){
+        SearchPanel = new JPanel();
         //DisplayPanel.setLayout(null);
-        AddPanel.setBackground(new Color(0x214E58));
+        SearchPanel.setBackground(new Color(0x1FFFFF));
 
-        AddPanel.add(greetingL = new JLabel("Welcome back, Good Afternoon!"));
-        AddPanel.add(summaryL = new JLabel("Summary of Records"));
+        SearchPanel.add(greetingL = new JLabel("Welcome back, Good Afternoon!"));
+        SearchPanel.add(summaryL = new JLabel("Summary of Records"));
         greetingL.setFont(new Font("Sans Serif", Font.PLAIN, 21));
         summaryL.setFont(new Font("Sans Serif", Font.PLAIN, 18));
 
@@ -27,7 +24,6 @@ public class AddForm{
         //AddPanel.setVisible(true);
         //add(AddPanel);
     }
-    public JPanel AddPanel;
+    public JPanel SearchPanel;
     public JLabel greetingL, summaryL;
 }
-
