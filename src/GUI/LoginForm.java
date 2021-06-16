@@ -1,14 +1,25 @@
 package GUI;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class LoginForm extends JFrame implements ActionListener{
 
     public LoginForm() {
         super("Health Book");
+        try {
+            GraphicsEnvironment ge =
+                    GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("BebasNeue-Regular.otf")));
+        } catch (IOException |FontFormatException e) {
+            return;
+        }
 
         SetDisplayPanel();
         SetDisplayContainer();
@@ -23,14 +34,26 @@ public class LoginForm extends JFrame implements ActionListener{
     public void SetDisplayPanel(){
         DisplayPanel = new JPanel();
         DisplayPanel.setLayout(null);
-        DisplayPanel.setBackground(Color.getHSBColor(238, 130, 238));
+        DisplayPanel.setBackground(new Color(0xF1F1F1));
+
+        //logo
+        try {
+            String path = System.getProperty("user.dir");
+            BufferedImage logo_icon = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\SIGNIN_LOGO.png",path)));
+            JLabel icon = new JLabel(new ImageIcon(logo_icon));
+            icon.setBounds(179,22,90,59);
+            DisplayPanel.add(icon);
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
 
         //Login
-        DisplayPanel.add(DisplayTitle = new JLabel("LOG IN"));
+        DisplayPanel.add(DisplayTitle = new JLabel("SIGN IN"));
 
-        DisplayTitle.setBounds(200,80,480,50);
+        DisplayTitle.setBounds(174,81,480,50);
 
-        DisplayTitle.setFont(new Font("Arial",Font.PLAIN,48));
+        DisplayTitle.setFont(new Font("Bebas Neue",Font.PLAIN,45));
 
         //Text Fields
         DisplayPanel.add(DeptCode = new JTextField("Dept Code"));
@@ -50,7 +73,7 @@ public class LoginForm extends JFrame implements ActionListener{
 
         Login.addActionListener(this);
 
-        DisplayPanel.setBounds(380,50,560,580);
+        DisplayPanel.setBounds(416,54,448,510);
         DisplayPanel.setVisible(true);
         getContentPane().add(DisplayPanel);
     }
@@ -58,7 +81,7 @@ public class LoginForm extends JFrame implements ActionListener{
     public void SetDisplayContainer(){
         DisplayContainer = new JPanel();
         DisplayContainer.setLayout(null);
-        DisplayContainer.setBackground(Color.gray);
+        DisplayContainer.setBackground(new Color(0x283469));
 
         DisplayContainer.setBounds(0,0,320, 180);
         getContentPane().add(DisplayContainer);

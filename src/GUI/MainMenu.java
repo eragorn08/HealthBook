@@ -2,6 +2,8 @@ package GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +12,7 @@ import java.awt.image.ImagingOpException;
 import java.io.File;
 import java.io.IOException;
 
-public class MainMenu extends JFrame{
+public class MainMenu extends JFrame implements ActionListener{
 
     public MainMenu() {
 
@@ -21,13 +23,8 @@ public class MainMenu extends JFrame{
         setVisible(true);
         setSize(1280, 720);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //setLocationRelativeTo(null);
         setLayout(null);
 
-        //NavBarForm navbar = new NavBarForm();
-
-        //navbar.addButton.addActionListener(this);
-        //navbar.searchButton.addActionListener(this);
         setResizable(false);
         setNavPanel();
         setDisplayPanel();
@@ -47,8 +44,6 @@ public class MainMenu extends JFrame{
         Head.setVisible(true);
 
 
-        //icon.setIcon(logo_icon);
-        //icon.setText("Bro, do you even code?");
         try {
             String path = System.getProperty("user.dir");
 
@@ -81,19 +76,39 @@ public class MainMenu extends JFrame{
         var NavPanel = new JPanel();
         var Spacer = new JPanel();
         Spacer.setBackground(new Color(0x212C58));
-        //NavPanel.setLayout(null);
+        NavPanel.setLayout(null);
         NavPanel.setBackground(new Color(0x283469));
 
         NavPanel.add(addButton = new JButton("Add"));
         NavPanel.add(searchButton = new JButton("Search"));
+        NavPanel.add(homeButton = new JButton(("Home")));
 
+
+        addButton.addActionListener(this);
+        searchButton.addActionListener(this);
+        homeButton.addActionListener(this);
+
+        Border emptyBorder = BorderFactory.createEmptyBorder();
+        homeButton.setBackground(new Color(0x525c86));
+        homeButton.setForeground(Color.WHITE);
+        homeButton.setFont(new Font("Helvetica",Font.PLAIN,20));
+        homeButton.setBorder(emptyBorder);
+        homeButton.setFocusPainted(false);
         addButton.setContentAreaFilled(false);
         addButton.setForeground(Color.white);
+        addButton.setFont(new Font("Helvetica",Font.PLAIN,20));
+        addButton.setBorder(emptyBorder);
+        addButton.setFocusPainted(false);
         searchButton.setContentAreaFilled(false);
         searchButton.setForeground(Color.white);
+        searchButton.setFont(new Font("Helvetica",Font.PLAIN,20));
+        searchButton.setBorder(emptyBorder);
+        searchButton.setFocusPainted(false);
 
-        addButton.setBounds(19, 56, 114, 44);
-        searchButton.setBounds(19, 120, 114, 44);
+        homeButton.setBounds(0,0, 286,56);
+        addButton.setBounds(0, 57, 286, 56);
+        searchButton.setBounds(0, 114, 286, 56);
+
 
         Spacer.setBounds(0, 60, 286, 24);
         Spacer.setVisible(true);
@@ -105,17 +120,52 @@ public class MainMenu extends JFrame{
 
 
     public void setDisplayPanel(){
+
         AddForm add_menu = new AddForm();
         HomePage home = new HomePage();
         SearchForm search = new SearchForm();
-        tabbedPane.add("Home",home.DisplayPanel);
-        tabbedPane.add("add",add_menu.AddPanel);
-        tabbedPane.add("search",search.SearchPanel);
-        tabbedPane.setBounds(286,60,1100,660);
-        add(tabbedPane);
+        cardPanel.setLayout(cl);
+        cardPanel.add("Home",home.DisplayPanel);
+        cardPanel.add("add",add_menu.AddPanel);
+        cardPanel.add("search",search.SearchPanel);
+        cardPanel.setBounds(286,60,1100,660);
+        cl.show(cardPanel,"Home");
+        add(cardPanel);
     }
 
-    public JButton addButton, searchButton;
-    public JTabbedPane tabbedPane = new JTabbedPane();
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == homeButton){
+            homeButton.setContentAreaFilled(true);
+            homeButton.setBackground(new Color(0x525c86));
+            cl.show(cardPanel, "Home");
+
+            addButton.setContentAreaFilled(false);
+            searchButton.setContentAreaFilled(false);
+        }
+
+        if(e.getSource() == addButton){
+            addButton.setContentAreaFilled(true);
+            addButton.setBackground(new Color(0x525c86));
+            cl.show(cardPanel, "add");
+            homeButton.setContentAreaFilled(false);
+
+            searchButton.setContentAreaFilled(false);
+        }
+
+        if(e.getSource() == searchButton){
+            searchButton.setContentAreaFilled(true);
+            searchButton.setBackground(new Color(0x525c86));
+            cl.show(cardPanel, "search");
+            homeButton.setBackground(null);
+            addButton.setBackground(null);
+
+        }
+    }
+
+
+    private CardLayout cl = new CardLayout();
+    private JButton addButton, searchButton, homeButton;
+    public JPanel cardPanel = new JPanel();
 
 }
