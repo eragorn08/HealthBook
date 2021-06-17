@@ -4,21 +4,23 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class HomePage {
+public class HomePage extends JPanel{
     public HomePage(){
+        setLayout(null);
         home();
     }
 
     public void home(){
-        DisplayPanel = new JPanel();
-        DisplayPanel.setBackground(new Color(0x212C58));
-        DisplayPanel.add(greetingL = new JLabel("Welcome back, Good Afternoon!"));
-        DisplayPanel.add(summaryL = new JLabel("Summary of Records"));
-        greetingL.setFont(new Font("Sans Serif", Font.PLAIN, 21));
-        summaryL.setFont(new Font("Sans Serif", Font.PLAIN, 18));
+        setBackground(new Color(0x212C58));
+        add(greetingL = new JLabel("Welcome to HealthBook!"));
+        add(summaryL = new JLabel("Summary of Records"));
+        greetingL.setFont(new Font("Helvetica", Font.PLAIN, 40));
+        greetingL.setForeground(Color.white);
+        summaryL.setFont(new Font("Sans Serif", Font.PLAIN, 30));
+        summaryL.setForeground(Color.white);
 
-        greetingL.setBounds(180, 10, 1100, 50);
-        summaryL.setBounds(310, 120, 200, 50);
+        greetingL.setBounds(17, 20, 894, 68);
+        summaryL.setBounds(347, 136, 286, 32);
         //DisplayPanel.setVisible(true);
     }
     public JPanel DisplayPanel;
