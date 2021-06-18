@@ -17,7 +17,8 @@ public class MainMenu extends JFrame implements ActionListener{
 
         super("Health Book");
 
-        getImage(); //scans all image files
+        //getImage(); //scans all image files
+        setHeader();
 
         setVisible(true);
         setSize(1280, 720);
@@ -27,7 +28,7 @@ public class MainMenu extends JFrame implements ActionListener{
         setResizable(false);
         setNavPanel();
         setDisplayPanel();
-        setHeader();
+
     }
 
     public void getImage(){
@@ -46,9 +47,8 @@ public class MainMenu extends JFrame implements ActionListener{
     }
 
     public void setHeader(){
+        getImage();
         JLabel icon, text, power, log_out;
-
-
         JPanel Head = new JPanel();
         Head.setBackground(new Color(0x283469));
         Head.setBounds(0,0,1280,60);
@@ -104,21 +104,21 @@ public class MainMenu extends JFrame implements ActionListener{
         searchButton.addActionListener(this);
         homeButton.addActionListener(this);
 
-        //Border emptyBorder = BorderFactory.createEmptyBorder();
+
         homeButton.setBackground(new Color(0x525c86));
         homeButton.setForeground(Color.WHITE);
         homeButton.setFont(new Font("Helvetica",Font.PLAIN,20));
-        //homeButton.setBorder(emptyBorder);
+
         homeButton.setFocusPainted(false);
         addButton.setContentAreaFilled(false);
         addButton.setForeground(Color.white);
         addButton.setFont(new Font("Helvetica",Font.PLAIN,20));
-        //addButton.setBorder(emptyBorder);
+
         addButton.setFocusPainted(false);
         searchButton.setContentAreaFilled(false);
         searchButton.setForeground(Color.white);
         searchButton.setFont(new Font("Helvetica",Font.PLAIN,20));
-       // searchButton.setBorder(emptyBorder);
+
         searchButton.setFocusPainted(false);
 
         homeButton.setBounds(0,0, 286,56);
