@@ -28,7 +28,6 @@ public class MainMenu extends JFrame implements ActionListener{
         setResizable(false);
         setNavPanel();
         setDisplayPanel();
-
     }
 
     public void getImage(){
@@ -98,12 +97,9 @@ public class MainMenu extends JFrame implements ActionListener{
         searchButton.setIconTextGap(23);
         searchButton.setHorizontalAlignment(SwingConstants.LEFT);
 
-
-
         addButton.addActionListener(this);
         searchButton.addActionListener(this);
         homeButton.addActionListener(this);
-
 
         homeButton.setBackground(new Color(0x525c86));
         homeButton.setForeground(Color.WHITE);
@@ -124,7 +120,6 @@ public class MainMenu extends JFrame implements ActionListener{
         homeButton.setBounds(0,0, 286,56);
         addButton.setBounds(0, 57, 286, 56);
         searchButton.setBounds(0, 114, 286, 56);
-
 
         Spacer.setBounds(0, 60, 286, 24);
         Spacer.setVisible(true);
@@ -182,6 +177,4 @@ public class MainMenu extends JFrame implements ActionListener{
     private JButton addButton, searchButton, homeButton;
     private JPanel cardPanel = new JPanel();
     private BufferedImage home_button, logo_icon, logo_text, power_button, logout, add_button, search_button;
-
-
 }

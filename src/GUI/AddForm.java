@@ -57,7 +57,7 @@ public class AddForm extends JPanel{
 
         //NAME FORM
         JLabel nameLabel = new JLabel("Name:");
-        nameLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        nameLabel.setFont(new Font("Helvetica", Font.PLAIN, 24));
         nameLabel.setForeground(Color.white);
         nameLabel.setBounds(32,26, 74,25);
         addFormPanel.add(nameLabel);
@@ -123,8 +123,18 @@ public class AddForm extends JPanel{
 
         JRadioButton maleRadioButton = new JRadioButton();
         maleRadioButton.setBounds(143,111,25,25);
+        maleRadioButton.setBackground(new Color(0x212C58));
         addFormPanel.add(maleRadioButton);
 
+        JRadioButton femaleRadioButton = new JRadioButton();
+        femaleRadioButton.setBounds(290,111,25,25);
+        femaleRadioButton.setBackground(new Color(0x212C58));
+        addFormPanel.add(femaleRadioButton);
+
+        //RADIO BUTTON GROUP
+        ButtonGroup Gender = new ButtonGroup();
+        Gender.add(maleRadioButton);
+        Gender.add(femaleRadioButton);
 
         //ADDRESS FORM
         JLabel addressLabel = new JLabel("Address:");
@@ -362,11 +372,6 @@ public class AddForm extends JPanel{
             }
         });
         addFormPanel.add(bloodPressureField2);
-
-
-
-
-
 
         add(addFormPanel);
     }
