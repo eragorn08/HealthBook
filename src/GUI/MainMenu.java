@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -45,29 +46,29 @@ public class MainMenu extends JFrame implements ActionListener{
         }
     }
 
-    public void setHeader(){
+    public void setHeader() {
         getImage();
         JLabel icon, text, power, log_out;
         JPanel Head = new JPanel();
         Head.setBackground(new Color(0x283469));
-        Head.setBounds(0,0,1280,60);
+        Head.setBounds(0, 0, 1280, 60);
         Head.setLayout(null);
         Head.setVisible(true);
 
         icon = new JLabel(new ImageIcon(logo_icon));
-        icon.setBounds(16,13,61,39);
+        icon.setBounds(16, 13, 61, 39);
         text = new JLabel(new ImageIcon(logo_text));
-        text.setBounds(87,23,175,20);
+        text.setBounds(87, 23, 175, 20);
         power = new JLabel(new ImageIcon(power_button));
-        power.setBounds(1087,19,25,27);
+        power.setBounds(1087, 19, 25, 27);
         log_out = new JLabel(new ImageIcon(logout));
-        log_out.setBounds(1127,12,123,41);
+        log_out.setBounds(1127, 12, 123, 41);
 
         Head.add(icon);
         Head.add(text);
         Head.add(power);
         Head.add(log_out);
-    add(Head);
+        add(Head);
     }
 
     public void setNavPanel (){
@@ -162,13 +163,12 @@ public class MainMenu extends JFrame implements ActionListener{
             searchButton.setContentAreaFilled(false);
         }
 
-        if(e.getSource() == searchButton){
+        if(e.getSource() == searchButton) {
             searchButton.setContentAreaFilled(true);
             searchButton.setBackground(new Color(0x525c86));
             cl.show(cardPanel, "search");
             homeButton.setBackground(null);
             addButton.setBackground(null);
-
         }
     }
 
