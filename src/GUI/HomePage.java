@@ -23,6 +23,5 @@ public class HomePage extends JPanel{
         summaryL.setBounds(347, 136, 286, 32);
         //DisplayPanel.setVisible(true);
     }
-    public JPanel DisplayPanel;
     public JLabel greetingL, summaryL;
 }

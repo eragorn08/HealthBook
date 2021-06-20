@@ -1,16 +1,12 @@
 package GUI;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
-import java.awt.Insets;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
+
 
 public class MainMenu extends JFrame implements ActionListener{
 
@@ -18,9 +14,7 @@ public class MainMenu extends JFrame implements ActionListener{
 
         super("Health Book");
 
-        //getImage(); //scans all image files
-        setHeader();
-
+        getImage();
         setVisible(true);
         setSize(1280, 720);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -29,39 +23,44 @@ public class MainMenu extends JFrame implements ActionListener{
         setResizable(false);
         setNavPanel();
         setDisplayPanel();
+        setHeader();
     }
 
     public void getImage(){
-        try{
-            String path = System.getProperty("user.dir");
-            logo_icon = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\logo_icon.png",path)));
-            logo_text = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\logo_name.png",path)));
-            power_button = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\power_button.png",path)));
-            logout = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\log_out.png",path)));
-            home_button = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\home.png",path)));
-            add_button = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\add.png",path)));
-            search_button = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\search.png",path)));
-        }catch(IOException ex){
-            System.out.println(ex.getMessage());
-        }
+        logo_icon = new ImageIcon("logo_icon.png");
+        logo_text = new ImageIcon("logo_name.png");
+        power_button = new ImageIcon("power_button.png");
+        logout = new ImageIcon("log_out.png");
+        home_button = new ImageIcon("home.png");
+        add_button = new ImageIcon("add.png");
+        search_button = new ImageIcon("search.png");
     }
 
+
     public void setHeader() {
-        getImage();
-        JLabel icon, text, power, log_out;
+
+        Border noborder = BorderFactory.createEmptyBorder();
+        JLabel icon, text;
+        JButton power, log_out;
         JPanel Head = new JPanel();
         Head.setBackground(new Color(0x283469));
         Head.setBounds(0, 0, 1280, 60);
         Head.setLayout(null);
         Head.setVisible(true);
 
-        icon = new JLabel(new ImageIcon(logo_icon));
+        icon = new JLabel(logo_icon);
         icon.setBounds(16, 13, 61, 39);
-        text = new JLabel(new ImageIcon(logo_text));
+        text = new JLabel(logo_text);
         text.setBounds(87, 23, 175, 20);
-        power = new JLabel(new ImageIcon(power_button));
+        power = new JButton(power_button);
+        power.setContentAreaFilled(false);
+        power.setFocusPainted(false);
+        power.setBorder(noborder);
         power.setBounds(1087, 19, 25, 27);
-        log_out = new JLabel(new ImageIcon(logout));
+        log_out = new JButton(logout);
+        log_out.setContentAreaFilled(false);
+        log_out.setFocusPainted(false);
+        log_out.setBorder(noborder);
         log_out.setBounds(1127, 12, 123, 41);
 
         Head.add(icon);
@@ -77,10 +76,10 @@ public class MainMenu extends JFrame implements ActionListener{
         Spacer.setBackground(new Color(0x212C58));
         NavPanel.setLayout(null);
         NavPanel.setBackground(new Color(0x283469));
-        homeButton = new JButton(new ImageIcon(home_button));
-        NavPanel.add(homeButton = new JButton(new ImageIcon(home_button)));
-        NavPanel.add(addButton = new JButton(new ImageIcon(add_button)));
-        NavPanel.add(searchButton = new JButton(new ImageIcon(search_button)));
+        homeButton = new JButton(home_button);
+        NavPanel.add(homeButton = new JButton(home_button));
+        NavPanel.add(addButton = new JButton(add_button));
+        NavPanel.add(searchButton = new JButton(search_button));
 
         homeButton.setText("Home");
         homeButton.setIconTextGap(25);
@@ -159,7 +158,6 @@ public class MainMenu extends JFrame implements ActionListener{
             addButton.setBackground(new Color(0x525c86));
             cl.show(cardPanel, "add");
             homeButton.setContentAreaFilled(false);
-
             searchButton.setContentAreaFilled(false);
         }
 
@@ -173,8 +171,8 @@ public class MainMenu extends JFrame implements ActionListener{
     }
 
 
-    private CardLayout cl = new CardLayout();
+    private final CardLayout cl = new CardLayout();
     private JButton addButton, searchButton, homeButton;
-    private JPanel cardPanel = new JPanel();
-    private BufferedImage home_button, logo_icon, logo_text, power_button, logout, add_button, search_button;
+    private final JPanel cardPanel = new JPanel();
+    public ImageIcon logo_icon, logout, power_button, logo_text, home_button ,add_button, search_button;
 }

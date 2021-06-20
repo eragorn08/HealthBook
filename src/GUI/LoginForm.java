@@ -21,6 +21,7 @@ public class LoginForm extends JFrame implements ActionListener{
             return;
         }
 
+
         SetDisplayPanel();
         SetDisplayContainer();
 
@@ -105,4 +106,5 @@ public class LoginForm extends JFrame implements ActionListener{
     public JTextField DeptCode, EmpID;
     public JLabel DisplayTitle;
     public JButton Login;
+    public BufferedImage home_button, logo_icon, logo_text, power_button, logout, add_button, search_button;
 }

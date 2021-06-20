@@ -31,12 +31,16 @@ public class AddForm extends JPanel{
     public void addForm(){
 
         String[] bloodTypes = {"--", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
-        Border border = new LineBorder(new Color(0x374169),1,false);
+       //Border border = new LineBorder(new Color(0x374169),1,false);
         JPanel addFormPanel = new JPanel();
         addFormPanel.setLayout(null);
-        addFormPanel.setBorder(border);
+        //addFormPanel.setBorder(border);
         addFormPanel.setBackground(new Color(0x212C58));
         addFormPanel.setBounds(0,75,976,545);
+        JScrollPane scroll = new JScrollPane(addFormPanel);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scroll.setBounds(968,0,26,158);
+
 
 
         //Create a form
