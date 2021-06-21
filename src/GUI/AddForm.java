@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Calendar;
 
 //import javax.swing.JFrame;
 
@@ -36,10 +37,15 @@ public class AddForm extends JPanel{
         addFormPanel.setLayout(null);
         //addFormPanel.setBorder(border);
         addFormPanel.setBackground(new Color(0x212C58));
-        addFormPanel.setBounds(0,75,976,545);
-        JScrollPane scroll = new JScrollPane(addFormPanel);
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scroll.setBounds(968,0,26,158);
+        addFormPanel.setBounds(0,75,976,638);
+
+
+        JScrollPane scroll = new JScrollPane(addFormPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setEnabled(true);
+        scroll.setPreferredSize(new Dimension(26,157));
+
+        scroll.setVisible(true);
+        //addFormPanel.add(scroll);
 
 
 
@@ -63,7 +69,7 @@ public class AddForm extends JPanel{
         JLabel nameLabel = new JLabel("Name:");
         nameLabel.setFont(new Font("Helvetica", Font.PLAIN, 24));
         nameLabel.setForeground(Color.white);
-        nameLabel.setBounds(32,26, 74,25);
+        nameLabel.setBounds(25,22, 74,25);
         addFormPanel.add(nameLabel);
 
         JLabel surnameLabel = new JLabel("Surname");
@@ -110,7 +116,7 @@ public class AddForm extends JPanel{
         JLabel sexLabel = new JLabel("Sex:");
         sexLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
         sexLabel.setForeground(Color.WHITE);
-        sexLabel.setBounds(32,114, 52,25);
+        sexLabel.setBounds(25,109, 52,25);
         addFormPanel.add(sexLabel);
 
         JLabel maleLabel = new JLabel("Male");
@@ -144,7 +150,7 @@ public class AddForm extends JPanel{
         JLabel addressLabel = new JLabel("Address:");
         addressLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
         addressLabel.setForeground(Color.WHITE);
-        addressLabel.setBounds(32,164, 100,25);
+        addressLabel.setBounds(25,159, 100,25);
         addFormPanel.add(addressLabel);
 
         JTextArea addressField = new JTextArea();
@@ -159,11 +165,11 @@ public class AddForm extends JPanel{
         JLabel ageLabel = new JLabel("Age:");
         ageLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
         ageLabel.setForeground(Color.WHITE);
-        ageLabel.setBounds(32,285, 59,25);
+        ageLabel.setBounds(25,285, 59,25);
         addFormPanel.add(ageLabel);
 
         JTextField ageField = new JTextField();
-        ageField.setBounds(143, 278, 100, 34);
+        ageField.setBounds(143, 254, 100, 34);
         ageField.setBorder(BorderFactory.createEmptyBorder());
         ageField.setFont(new Font("Helvetica", Font.PLAIN, 25));
         ageField.setHorizontalAlignment(JTextField.CENTER);
@@ -278,7 +284,7 @@ public class AddForm extends JPanel{
         JLabel weightLabel = new JLabel("Weight:");
         weightLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
         weightLabel.setForeground(Color.WHITE);
-        weightLabel.setBounds(32,376, 88,25);
+        weightLabel.setBounds(25,344, 88,25);
         addFormPanel.add(weightLabel);
 
         JLabel heightLabel = new JLabel("Height:");
@@ -332,7 +338,7 @@ public class AddForm extends JPanel{
         JLabel bloodtypeLabel = new JLabel("<html>Blood<br>Type:</html>");
         bloodtypeLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
         bloodtypeLabel.setForeground(Color.WHITE);
-        bloodtypeLabel.setBounds(32,431, 69,62);
+        bloodtypeLabel.setBounds(25,395, 69,62);
         addFormPanel.add(bloodtypeLabel);
 
         JLabel bloodpressureLabel = new JLabel("<html>Blood<br>Pressure:</html>");
@@ -376,6 +382,22 @@ public class AddForm extends JPanel{
             }
         });
         addFormPanel.add(bloodPressureField2);
+
+
+        //BODY TEMPERATURE
+        JLabel bodyTempLabel = new JLabel("<html>Body<br>Temp:</html>");
+        bodyTempLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        bodyTempLabel.setForeground(Color.WHITE);
+        bodyTempLabel.setBounds(25,479, 109,58);
+        addFormPanel.add(bodyTempLabel);
+
+        //LEVEL OF PAIN
+        JLabel levelofpainLabel = new JLabel("<html>Level of<br>Pain:</html>");
+        levelofpainLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        levelofpainLabel.setForeground(Color.WHITE);
+        levelofpainLabel.setBounds(25,559, 109,58);
+        addFormPanel.add(levelofpainLabel);
+
 
         add(addFormPanel);
     }

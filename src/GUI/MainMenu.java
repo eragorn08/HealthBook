@@ -137,7 +137,7 @@ public class MainMenu extends JFrame implements ActionListener{
         cardPanel.add("Home",new HomePage());
         cardPanel.add("add",new AddForm());
         cardPanel.add("search",search.SearchPanel);
-        cardPanel.setBounds(286,60,1100,660);
+        cardPanel.setBounds(286,60,1100,714);
         cl.show(cardPanel,"Home");
         add(cardPanel);
     }
