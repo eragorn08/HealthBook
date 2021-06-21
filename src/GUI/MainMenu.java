@@ -5,6 +5,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 
@@ -62,6 +63,9 @@ public class MainMenu extends JFrame implements ActionListener{
         log_out.setFocusPainted(false);
         log_out.setBorder(noborder);
         log_out.setBounds(1127, 12, 123, 41);
+
+        power.addActionListener(this);
+        log_out.addActionListener(this);
 
         Head.add(icon);
         Head.add(text);
@@ -168,11 +172,19 @@ public class MainMenu extends JFrame implements ActionListener{
             homeButton.setBackground(null);
             addButton.setBackground(null);
         }
+
+        if(e.getSource() == log_out) {
+            new LoginForm();
+        }
+
+        if(e.getSource() == power){
+            dispose();
+        }
     }
 
 
     private final CardLayout cl = new CardLayout();
-    private JButton addButton, searchButton, homeButton;
+    public JButton addButton, searchButton, homeButton, log_out, power;
     private final JPanel cardPanel = new JPanel();
     public ImageIcon logo_icon, logout, power_button, logo_text, home_button ,add_button, search_button;
 }
