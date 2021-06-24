@@ -42,7 +42,6 @@ public class MainMenu extends JFrame implements ActionListener{
 
         Border noborder = BorderFactory.createEmptyBorder();
         JLabel icon, text;
-        JButton power, log_out;
         JPanel Head = new JPanel();
         Head.setBackground(new Color(0x283469));
         Head.setBounds(0, 0, 1280, 60);
