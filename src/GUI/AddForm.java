@@ -47,15 +47,15 @@ public class AddForm extends JPanel{
 
         //Create a form
         JLabel slashLabel1 = new JLabel("/");
-        slashLabel1.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        slashLabel1.setFont(new Font("Helvetica", Font.PLAIN, 20));
         slashLabel1.setHorizontalTextPosition(JLabel.CENTER);
         slashLabel1.setForeground(Color.white);
         JLabel slashLabel0 = new JLabel("/");
-        slashLabel0.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        slashLabel0.setFont(new Font("Helvetica", Font.PLAIN, 20));
         slashLabel0.setForeground(Color.white);
         slashLabel0.setHorizontalTextPosition(JLabel.CENTER);
         JLabel slashLabel2 = new JLabel("/");
-        slashLabel2.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        slashLabel2.setFont(new Font("Helvetica", Font.PLAIN, 20));
         slashLabel2.setForeground(Color.white);
         slashLabel2.setHorizontalTextPosition(JLabel.CENTER);
 
@@ -63,77 +63,77 @@ public class AddForm extends JPanel{
 
         //NAME FORM
         JLabel nameLabel = new JLabel("Name:");
-        nameLabel.setFont(new Font("Helvetica", Font.PLAIN, 24));
+        nameLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         nameLabel.setForeground(Color.white);
         nameLabel.setBounds(25,22, 74,25);
         addFormPanel.add(nameLabel);
 
         JLabel surnameLabel = new JLabel("Surname");
-        surnameLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        surnameLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         surnameLabel.setForeground(Color.white);
-        surnameLabel.setBounds(189,69, 107,25);
+        surnameLabel.setBounds(183,57, 107,25);
         addFormPanel.add(surnameLabel);
 
         JLabel firstLabel = new JLabel("Given Name");
-        firstLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        firstLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         firstLabel.setForeground(Color.WHITE);
-        firstLabel.setBounds(397,69, 142,25);
+        firstLabel.setBounds(390,57, 142,25);
         addFormPanel.add(firstLabel);
 
         JLabel middleLabel = new JLabel("Middle Name");
-        middleLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        middleLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         middleLabel.setForeground(Color.WHITE);
-        middleLabel.setBounds(619,69, 150,25);
+        middleLabel.setBounds(613,57, 150,25);
         addFormPanel.add(middleLabel);
 
         JTextField surnameField = new JTextField();
-        surnameField.setBounds(143, 26, 200, 34);
+        surnameField.setBounds(136, 22, 200, 28);
         surnameField.setBorder(BorderFactory.createEmptyBorder());
-        surnameField.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        surnameField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         surnameField.setHorizontalAlignment(JTextField.CENTER);
         addFormPanel.add(surnameField);
 
         JTextField firstnameField = new JTextField();
-        firstnameField.setBounds(368, 26, 200, 34);
+        firstnameField.setBounds(368, 22, 200, 28);
         firstnameField.setBorder(BorderFactory.createEmptyBorder());
-        firstnameField.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        firstnameField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         firstnameField.setHorizontalAlignment(JTextField.CENTER);
         addFormPanel.add(firstnameField);
 
         JTextField middlenameField = new JTextField();
-        middlenameField.setBounds(593, 26, 200, 34);
+        middlenameField.setBounds(593, 22, 200, 28);
         middlenameField.setBorder(BorderFactory.createEmptyBorder());
-        middlenameField.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        middlenameField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         middlenameField.setHorizontalAlignment(JTextField.CENTER);
         addFormPanel.add(middlenameField);
 
 
         //SEX FORM
         JLabel sexLabel = new JLabel("Sex:");
-        sexLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        sexLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         sexLabel.setForeground(Color.WHITE);
-        sexLabel.setBounds(25,109, 52,25);
+        sexLabel.setBounds(25,92, 52,25);
         addFormPanel.add(sexLabel);
 
         JLabel maleLabel = new JLabel("Male");
-        maleLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        maleLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         maleLabel.setForeground(Color.WHITE);
-        maleLabel.setBounds(176,114, 57,25);
+        maleLabel.setBounds(176,92, 57,25);
         addFormPanel.add(maleLabel);
 
         JLabel femaleLabel = new JLabel("Female");
-        femaleLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        femaleLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         femaleLabel.setForeground(Color.WHITE);
-        femaleLabel.setBounds(321,114, 85,25);
+        femaleLabel.setBounds(321,92, 85,25);
         addFormPanel.add(femaleLabel);
 
         JRadioButton maleRadioButton = new JRadioButton();
-        maleRadioButton.setBounds(143,111,25,25);
+        maleRadioButton.setBounds(143,92,25,25);
         maleRadioButton.setBackground(new Color(0x212C58));
         addFormPanel.add(maleRadioButton);
 
         JRadioButton femaleRadioButton = new JRadioButton();
-        femaleRadioButton.setBounds(290,111,25,25);
+        femaleRadioButton.setBounds(290,92,25,25);
         femaleRadioButton.setBackground(new Color(0x212C58));
         addFormPanel.add(femaleRadioButton);
 
@@ -144,30 +144,30 @@ public class AddForm extends JPanel{
 
         //ADDRESS FORM
         JLabel addressLabel = new JLabel("Address:");
-        addressLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        addressLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         addressLabel.setForeground(Color.WHITE);
-        addressLabel.setBounds(25,159, 100,25);
+        addressLabel.setBounds(25,135, 100,25);
         addFormPanel.add(addressLabel);
 
         JTextArea addressField = new JTextArea();
         addressField.setEditable(true);
         JScrollPane AddressScroll = new JScrollPane(addressField);
-        addressField.setFont(new Font("Helvetica", Font.PLAIN, 25));
-        addressField.setBounds(143,163, 772,85);
+        addressField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        addressField.setBounds(136,135, 772,59);
         addFormPanel.add(addressField);
 
 
         //AGE FORM
         JLabel ageLabel = new JLabel("Age:");
-        ageLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        ageLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         ageLabel.setForeground(Color.WHITE);
-        ageLabel.setBounds(25,285, 59,25);
+        ageLabel.setBounds(25,213, 59,25);
         addFormPanel.add(ageLabel);
 
         JTextField ageField = new JTextField();
-        ageField.setBounds(143, 254, 100, 34);
+        ageField.setBounds(136, 213, 100, 28);
         ageField.setBorder(BorderFactory.createEmptyBorder());
-        ageField.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        ageField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         ageField.setHorizontalAlignment(JTextField.CENTER);
         ageField.addKeyListener(new KeyAdapter() {
             @Override
@@ -181,39 +181,39 @@ public class AddForm extends JPanel{
 
         //BIRTHDAY FORM
         JLabel birthLabel = new JLabel("Date of Birth:");
-        birthLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        birthLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         birthLabel.setForeground(Color.WHITE);
-        birthLabel.setBounds(349,285, 151,25);
+        birthLabel.setBounds(349,215, 151,25);
         addFormPanel.add(birthLabel);
 
         JLabel mmLabel = new JLabel("MM");
-        mmLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        mmLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         mmLabel.setForeground(Color.WHITE);
-        mmLabel.setBounds(550,318, 88,25);
+        mmLabel.setBounds(550,244, 88,25);
         addFormPanel.add(mmLabel);
 
         JLabel ddLabel = new JLabel("DD");
-        ddLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        ddLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         ddLabel.setForeground(Color.WHITE);
-        ddLabel.setBounds(690,318, 88,25);
+        ddLabel.setBounds(690,244, 88,25);
         addFormPanel.add(ddLabel);
 
         JLabel yyLabel = new JLabel("YYYY");
-        yyLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        yyLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         yyLabel.setForeground(Color.WHITE);
-        yyLabel.setBounds(814,318, 88,25);
+        yyLabel.setBounds(814,244, 88,25);
         addFormPanel.add(yyLabel);
 
-        slashLabel0.setBounds(640, 286, 13, 20);
+        slashLabel0.setBounds(640, 215, 13, 20);
         addFormPanel.add(slashLabel0);
-        slashLabel1.setBounds(779, 286, 13, 20);
+        slashLabel1.setBounds(779, 215, 13, 20);
         addFormPanel.add(slashLabel1);
 
 
         JTextField monthField = new JTextField();
-        monthField.setBounds(513, 278, 120, 34);
+        monthField.setBounds(513, 215, 120, 28);
         monthField.setBorder(BorderFactory.createEmptyBorder());
-        monthField.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        monthField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         monthField.setHorizontalAlignment(JTextField.CENTER);
         monthField.addKeyListener(new KeyAdapter() {
             @Override
@@ -234,9 +234,9 @@ public class AddForm extends JPanel{
         addFormPanel.add(monthField);
 
         JTextField dayField = new JTextField();
-        dayField.setBounds(652, 278, 120, 34);
+        dayField.setBounds(652, 215, 120, 28);
         dayField.setBorder(BorderFactory.createEmptyBorder());
-        dayField.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        dayField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         dayField.setHorizontalAlignment(JTextField.CENTER);
         dayField.addKeyListener(new KeyAdapter() {
             @Override
@@ -255,9 +255,9 @@ public class AddForm extends JPanel{
         addFormPanel.add(dayField);
 
         JTextField yearField = new JTextField();
-        yearField.setBounds(791, 278, 120, 34);
+        yearField.setBounds(791, 215, 120, 28);
         yearField.setBorder(BorderFactory.createEmptyBorder());
-        yearField.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        yearField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         yearField.setHorizontalAlignment(JTextField.CENTER);
         yearField.addKeyListener(new KeyAdapter() {
             @Override
@@ -278,33 +278,33 @@ public class AddForm extends JPanel{
 
         //WEIGHT AND HEIGHT LABEL
         JLabel weightLabel = new JLabel("Weight:");
-        weightLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        weightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         weightLabel.setForeground(Color.WHITE);
-        weightLabel.setBounds(25,344, 88,25);
+        weightLabel.setBounds(25,281, 88,25);
         addFormPanel.add(weightLabel);
 
         JLabel heightLabel = new JLabel("Height:");
-        heightLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        heightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         heightLabel.setForeground(Color.WHITE);
-        heightLabel.setBounds(348,376, 85,25);
+        heightLabel.setBounds(348,281, 85,25);
         addFormPanel.add(heightLabel);
 
         JLabel kgLabel = new JLabel("kg");
-        kgLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        kgLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         kgLabel.setForeground(Color.WHITE);
-        kgLabel.setBounds(258,376, 30,25);
+        kgLabel.setBounds(258,281, 30,25);
         addFormPanel.add(kgLabel);
 
         JLabel cmLabel = new JLabel("cm");
-        cmLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        cmLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         cmLabel.setForeground(Color.WHITE);
-        cmLabel.setBounds(628,376, 48,25);
+        cmLabel.setBounds(628,281, 48,25);
         addFormPanel.add(cmLabel);
 
         JTextField weightField = new JTextField();
-        weightField.setBounds(143, 367, 100, 34);
+        weightField.setBounds(136, 281, 100, 28);
         weightField.setBorder(BorderFactory.createEmptyBorder());
-        weightField.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        weightField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         weightField.setHorizontalAlignment(JTextField.CENTER);
         weightField.addKeyListener(new KeyAdapter() {
             @Override
@@ -316,9 +316,9 @@ public class AddForm extends JPanel{
         addFormPanel.add(weightField);
 
         JTextField heightField = new JTextField();
-        heightField.setBounds(513, 367, 100, 34);
+        heightField.setBounds(513, 280, 100, 28);
         heightField.setBorder(BorderFactory.createEmptyBorder());
-        heightField.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        heightField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         heightField.setHorizontalAlignment(JTextField.CENTER);
         heightField.addKeyListener(new KeyAdapter() {
             @Override
@@ -332,28 +332,28 @@ public class AddForm extends JPanel{
 
         //BLOOD FORM
         JLabel bloodtypeLabel = new JLabel("<html>Blood<br>Type:</html>");
-        bloodtypeLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        bloodtypeLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         bloodtypeLabel.setForeground(Color.WHITE);
-        bloodtypeLabel.setBounds(25,395, 69,62);
+        bloodtypeLabel.setBounds(25,329, 69,62);
         addFormPanel.add(bloodtypeLabel);
 
         JLabel bloodpressureLabel = new JLabel("<html>Blood<br>Pressure:</html>");
-        bloodpressureLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        bloodpressureLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         bloodpressureLabel.setForeground(Color.WHITE);
-        bloodpressureLabel.setBounds(349,433, 109,62);
+        bloodpressureLabel.setBounds(348,337, 109,62);
         addFormPanel.add(bloodpressureLabel);
 
-        slashLabel2.setBounds(620, 451, 14, 20);
+        slashLabel2.setBounds(620, 349, 14, 20);
         addFormPanel.add(slashLabel2);
 
         JComboBox<String> bloodtypeField = new JComboBox<>(bloodTypes);
-        bloodtypeField.setBounds(143,442,100,38);
-        bloodtypeField.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        bloodtypeField.setBounds(136,349,100,28);
+        bloodtypeField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         addFormPanel.add(bloodtypeField);
 
         JTextField bloodPressureField1 = new JTextField();
-        bloodPressureField1.setBounds(632,444,100,34);
-        bloodPressureField1.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        bloodPressureField1.setBounds(513,349,100,28);
+        bloodPressureField1.setFont(new Font("Helvetica", Font.PLAIN, 20));
         bloodPressureField1.setHorizontalAlignment(JTextField.CENTER);
         bloodPressureField1.setBorder(BorderFactory.createEmptyBorder());
         bloodPressureField1.addKeyListener(new KeyAdapter() {
@@ -366,8 +366,8 @@ public class AddForm extends JPanel{
         addFormPanel.add(bloodPressureField1);
 
         JTextField bloodPressureField2 = new JTextField();
-        bloodPressureField2.setBounds(513,444,100,34);
-        bloodPressureField2.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        bloodPressureField2.setBounds(647,349,100,28);
+        bloodPressureField2.setFont(new Font("Helvetica", Font.PLAIN, 20));
         bloodPressureField2.setHorizontalAlignment(JTextField.CENTER);
         bloodPressureField2.setBorder(BorderFactory.createEmptyBorder());
         bloodPressureField2.addKeyListener(new KeyAdapter() {
@@ -382,17 +382,62 @@ public class AddForm extends JPanel{
 
         //BODY TEMPERATURE
         JLabel bodyTempLabel = new JLabel("<html>Body<br>Temp:</html>");
-        bodyTempLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        bodyTempLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         bodyTempLabel.setForeground(Color.WHITE);
-        bodyTempLabel.setBounds(25,479, 109,58);
+        bodyTempLabel.setBounds(22,398, 109,58);
         addFormPanel.add(bodyTempLabel);
+
+        JTextField bodyTempField = new JTextField();
+        bodyTempField.setBounds(136,417,100,28);
+        bodyTempField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bodyTempField.setHorizontalAlignment(JTextField.CENTER);
+        bodyTempField.setBorder(BorderFactory.createEmptyBorder());
+        bodyTempField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                bodyTempField.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
+            }
+        });
+        addFormPanel.add(bodyTempField);
+
+        JLabel celsiusLabel = new JLabel("°C");
+        celsiusLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        celsiusLabel.setForeground(Color.WHITE);
+        celsiusLabel.setBounds(251,423, 30,25);
+        addFormPanel.add(celsiusLabel);
+
+
 
         //LEVEL OF PAIN
         JLabel levelofpainLabel = new JLabel("<html>Level of<br>Pain:</html>");
-        levelofpainLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
+        levelofpainLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         levelofpainLabel.setForeground(Color.WHITE);
-        levelofpainLabel.setBounds(25,559, 109,58);
+        levelofpainLabel.setBounds(22,463, 109,58);
         addFormPanel.add(levelofpainLabel);
+
+        JTextField levelofpainField = new JTextField();
+        levelofpainField.setBounds(136,478,100,28);
+        levelofpainField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        levelofpainField.setHorizontalAlignment(JTextField.CENTER);
+        levelofpainField.setBorder(BorderFactory.createEmptyBorder());
+        levelofpainField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                levelofpainField.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
+            }
+        });
+        addFormPanel.add(levelofpainField);
+
+
+
+        JButton confirm = new JButton(new ImageIcon("confirm_logo.png"));
+        confirm.setFocusPainted(false);
+        confirm.setBorder(BorderFactory.createEmptyBorder());
+        confirm.setContentAreaFilled(false);
+        confirm.setBounds(768,521,161,41);
+        addFormPanel.add(confirm);
 
 
 

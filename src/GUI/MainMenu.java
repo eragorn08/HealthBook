@@ -5,66 +5,67 @@ package GUI;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.io.File;
+import java.awt.event.*;
 
 
-public class MainMenu  implements ActionListener{
+
+public class MainMenu extends JFrame implements ActionListener{
+
+    public int posX = 0;
+    public int posY = 0;
+
 
 
     public MainMenu() {
-        frame = new JFrame("Health Book");
-
-        //super("Health Book");
-
-        getImage();
-        frame.setVisible(true);
-        frame.setSize(1280, 720);
-        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        frame.setLayout(null);
-        frame.setResizable(true);
+        super("HealthBook");
         setNavPanel();
         setDisplayPanel();
         setHeader();
+        setSize(1280, 720);
+        setLayout(null);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setVisible(true);
     }
 
-    public void getImage(){
-        logo_icon = new ImageIcon("logo_icon.png");
-        logo_text = new ImageIcon("logo_name.png");
-        power_button = new ImageIcon("power_button.png");
-        logout = new ImageIcon("log_out.png");
-        home_button = new ImageIcon("home.png");
-        add_button = new ImageIcon("add.png");
-        search_button = new ImageIcon("search.png");
-    }
 
 
     public void setHeader() {
-
         Border noborder = BorderFactory.createEmptyBorder();
         JLabel icon, text;
         JPanel Head = new JPanel();
+        Head.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent ev) {
+                posX = ev.getX();
+                posY = ev.getY();
+            }
+        });
+        Head.addMouseMotionListener(new MouseAdapter() {
+
+            @Override
+            public void mouseDragged(MouseEvent evt) {
+                setLocation(evt.getXOnScreen()-posX,evt.getYOnScreen()-posY);
+            }
+        });
         Head.setBackground(new Color(0x283469));
         Head.setBounds(0, 0, 1280, 65);
-        Head.setLayout(null);
+        Head.setLayout(new GridLayout(1,5));
         Head.setVisible(true);
 
-        icon = new JLabel(logo_icon);
-        icon.setBounds(16, 13, 61, 39);
-        text = new JLabel(logo_text);
-        text.setBounds(87, 23, 175, 20);
-        power = new JButton(power_button);
+        icon = new JLabel(new ImageIcon("logo_icon.png"));
+        text = new JLabel(new ImageIcon("logo_name.png"));
+        power = new JButton(new ImageIcon("power_button.png"));
+        log_out = new JButton(new ImageIcon("log_out.png"));
+
         power.setContentAreaFilled(false);
         power.setFocusPainted(false);
         power.setBorder(noborder);
-        power.setBounds(1087, 19, 25, 27);
-        log_out = new JButton(logout);
+
         log_out.setContentAreaFilled(false);
         log_out.setFocusPainted(false);
         log_out.setBorder(noborder);
-        log_out.setBounds(1127, 12, 123, 41);
 
         power.addActionListener(this);
         log_out.addActionListener(this);
@@ -73,7 +74,7 @@ public class MainMenu  implements ActionListener{
         Head.add(text);
         Head.add(power);
         Head.add(log_out);
-        frame.add(Head);
+        add(Head);
     }
 
     public void setNavPanel (){
@@ -82,10 +83,9 @@ public class MainMenu  implements ActionListener{
         Spacer.setBackground(new Color(0x212C58));
         NavPanel.setLayout(null);
         NavPanel.setBackground(new Color(0x283469));
-        homeButton = new JButton(home_button);
-        NavPanel.add(homeButton = new JButton(home_button));
-        NavPanel.add(addButton = new JButton(add_button));
-        NavPanel.add(searchButton = new JButton(search_button));
+        NavPanel.add(homeButton = new JButton(new ImageIcon("home.png")));
+        NavPanel.add(addButton = new JButton(new ImageIcon("add.png")));
+        NavPanel.add(searchButton = new JButton(new ImageIcon("search.png")));
 
         homeButton.setText("Home");
         homeButton.setIconTextGap(25);
@@ -131,27 +131,20 @@ public class MainMenu  implements ActionListener{
         Spacer.setVisible(true);
         NavPanel.setBounds(0, 84, 286, 636);
         NavPanel.setVisible(true);
-        frame.add(Spacer);
-        frame.add(NavPanel);
+        add(Spacer);
+        add(NavPanel);
     }
 
 
     public void setDisplayPanel(){
-        JPanel addPanel = new AddForm();
-
-
         SearchForm search = new SearchForm();
-        JScrollPane scroll = new JScrollPane(addPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        addPanel.setAutoscrolls(true);
         cardPanel.setLayout(cl);
         cardPanel.add("Home",new HomePage());
-        cardPanel.add("add",addPanel);
+        cardPanel.add("add",new AddForm());
         cardPanel.add("search",search.SearchPanel);
-        frame.add(scroll,"add");
-        cardPanel.setBounds(286,65,984,655);
+        cardPanel.setBounds(286,65,994,655);
         cl.show(cardPanel,"Home");
-        frame.add(cardPanel);
+        add(cardPanel);
     }
 
     @Override
@@ -182,12 +175,12 @@ public class MainMenu  implements ActionListener{
         }
 
         if(e.getSource() == log_out) {
-            frame.dispose();
+            dispose();
             new LoginForm();
         }
 
         if(e.getSource() == power){
-            frame.dispose();
+            dispose();
         }
     }
 
@@ -195,6 +188,5 @@ public class MainMenu  implements ActionListener{
     private final CardLayout cl = new CardLayout();
     public JButton addButton, searchButton, homeButton, log_out, power;
     private final JPanel cardPanel = new JPanel();
-    public ImageIcon logo_icon, logout, power_button, logo_text, home_button ,add_button, search_button;
-    public JFrame frame;
+    //public JFrame frame;
 }
