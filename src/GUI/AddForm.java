@@ -37,15 +37,11 @@ public class AddForm extends JPanel{
         addFormPanel.setLayout(null);
         //addFormPanel.setBorder(border);
         addFormPanel.setBackground(new Color(0x212C58));
-        addFormPanel.setBounds(0,75,976,638);
+        addFormPanel.setBounds(0,75,994,579);
+
+        //JScrollPane scroll = new JScrollPane(addFormPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 
-        JScrollPane scroll = new JScrollPane(addFormPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll.setEnabled(true);
-        scroll.setPreferredSize(new Dimension(26,157));
-
-        scroll.setVisible(true);
-        //addFormPanel.add(scroll);
 
 
 
@@ -397,6 +393,7 @@ public class AddForm extends JPanel{
         levelofpainLabel.setForeground(Color.WHITE);
         levelofpainLabel.setBounds(25,559, 109,58);
         addFormPanel.add(levelofpainLabel);
+
 
 
         add(addFormPanel);

@@ -40,7 +40,7 @@ public class LoginForm extends JFrame implements ActionListener{
         //logo
         try {
             String path = System.getProperty("user.dir");
-            BufferedImage logo_icon = ImageIO.read(new File(String.format("%s\\src\\GUI\\images\\SIGNIN_LOGO.png",path)));
+            BufferedImage logo_icon = ImageIO.read(new File(String.format("%s\\SIGNIN_LOGO.png",path)));
             JLabel icon = new JLabel(new ImageIcon(logo_icon));
             icon.setBounds(179,22,90,59);
             DisplayPanel.add(icon);

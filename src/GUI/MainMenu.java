@@ -1,5 +1,7 @@
 package GUI;
 
+
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -9,19 +11,20 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 
 
-public class MainMenu extends JFrame implements ActionListener{
+public class MainMenu  implements ActionListener{
+
 
     public MainMenu() {
+        frame = new JFrame("Health Book");
 
-        super("Health Book");
+        //super("Health Book");
 
         getImage();
-        setVisible(true);
-        setSize(1280, 720);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(null);
-
-        setResizable(false);
+        frame.setVisible(true);
+        frame.setSize(1280, 720);
+        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        frame.setLayout(null);
+        frame.setResizable(true);
         setNavPanel();
         setDisplayPanel();
         setHeader();
@@ -44,7 +47,7 @@ public class MainMenu extends JFrame implements ActionListener{
         JLabel icon, text;
         JPanel Head = new JPanel();
         Head.setBackground(new Color(0x283469));
-        Head.setBounds(0, 0, 1280, 60);
+        Head.setBounds(0, 0, 1280, 65);
         Head.setLayout(null);
         Head.setVisible(true);
 
@@ -70,7 +73,7 @@ public class MainMenu extends JFrame implements ActionListener{
         Head.add(text);
         Head.add(power);
         Head.add(log_out);
-        add(Head);
+        frame.add(Head);
     }
 
     public void setNavPanel (){
@@ -124,25 +127,31 @@ public class MainMenu extends JFrame implements ActionListener{
         addButton.setBounds(0, 57, 286, 56);
         searchButton.setBounds(0, 114, 286, 56);
 
-        Spacer.setBounds(0, 60, 286, 24);
+        Spacer.setBounds(0, 65, 286, 24);
         Spacer.setVisible(true);
-        NavPanel.setBounds(0, 84, 286, 720);
+        NavPanel.setBounds(0, 84, 286, 636);
         NavPanel.setVisible(true);
-        add(Spacer);
-        add(NavPanel);
+        frame.add(Spacer);
+        frame.add(NavPanel);
     }
 
 
     public void setDisplayPanel(){
+        JPanel addPanel = new AddForm();
+
 
         SearchForm search = new SearchForm();
+        JScrollPane scroll = new JScrollPane(addPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        addPanel.setAutoscrolls(true);
         cardPanel.setLayout(cl);
         cardPanel.add("Home",new HomePage());
-        cardPanel.add("add",new AddForm());
+        cardPanel.add("add",addPanel);
         cardPanel.add("search",search.SearchPanel);
-        cardPanel.setBounds(286,60,1100,714);
+        frame.add(scroll,"add");
+        cardPanel.setBounds(286,65,984,655);
         cl.show(cardPanel,"Home");
-        add(cardPanel);
+        frame.add(cardPanel);
     }
 
     @Override
@@ -173,11 +182,12 @@ public class MainMenu extends JFrame implements ActionListener{
         }
 
         if(e.getSource() == log_out) {
+            frame.dispose();
             new LoginForm();
         }
 
         if(e.getSource() == power){
-            dispose();
+            frame.dispose();
         }
     }
 
@@ -186,4 +196,5 @@ public class MainMenu extends JFrame implements ActionListener{
     public JButton addButton, searchButton, homeButton, log_out, power;
     private final JPanel cardPanel = new JPanel();
     public ImageIcon logo_icon, logout, power_button, logo_text, home_button ,add_button, search_button;
+    public JFrame frame;
 }
