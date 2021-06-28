@@ -2,12 +2,21 @@ package GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.xml.transform.Result;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import java.io.File;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ResourceBundle;
+
+import java.net.URL;
 
 public class LoginForm extends JFrame implements ActionListener{
 
@@ -90,15 +99,33 @@ public class LoginForm extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String Code = DeptCode.getText();
-        String CorrectCode = "Cardiology12345";
         if (e.getSource() == Login) {
-            if (Code.equals(CorrectCode)) {
-                setVisible(false);
-                MainMenu mainMenu = new MainMenu();
-            } else {
-                JOptionPane.showMessageDialog(null, "Wrong Department Code");
+            validateLogin();
+        }
+    }
+
+    public void validateLogin(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String verifyLogin = "SELECT count(1) FROM accounts WHERE Department = '" +DeptCode.getText()+ "' AND username = '" +EmpID.getText()+ "'";
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+
+            while(queryResult.next()){
+                if (queryResult.getInt(1) == 1) {
+                    setVisible(false);
+                    MainMenu mainMenu = new MainMenu();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Wrong Department Code or Username");
+                }
             }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
         }
     }
 
