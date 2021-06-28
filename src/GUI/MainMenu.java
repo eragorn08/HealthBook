@@ -51,8 +51,9 @@ public class MainMenu extends JFrame implements ActionListener{
         });
         Head.setBackground(new Color(0x283469));
         Head.setBounds(0, 0, 1280, 65);
-        Head.setLayout(new GridLayout(1,5));
+        Head.setLayout(new FlowLayout(FlowLayout.LEFT));
         Head.setVisible(true);
+        Head.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
         icon = new JLabel(new ImageIcon("logo_icon.png"));
         text = new JLabel(new ImageIcon("logo_name.png"));
