@@ -8,6 +8,8 @@ import javax.xml.transform.Result;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -68,19 +70,54 @@ public class LoginForm extends JFrame implements ActionListener{
         DisplayTitle.setFont(new Font("Bebas Neue",Font.PLAIN,45));
 
         //Text Fields
-        DisplayPanel.add(DeptCode = new JTextField("Dept Code"));
+        DisplayPanel.add(DeptCode = new JTextField());
 
         DeptCode.setBounds(150,200,250,40);
 
         DeptCode.setOpaque(false);
 
-        DeptCode.set
+        DeptCode.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(DeptCode.getText().trim().equals("Dept Code")) {
+                    DeptCode.setText("");
+                }
 
-        DisplayPanel.add(EmpID = new JTextField("Employee ID"));
+                DeptCode.setForeground(Color.BLACK);
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(DeptCode.getText().trim().equals("")) {
+                    DeptCode.setText("Dept Code");
+                }
+
+                DeptCode.setForeground(Color.LIGHT_GRAY);
+            }
+        });
+
+        DisplayPanel.add(EmpID = new JTextField());
 
         EmpID.setBounds(150,260,250,40);
 
         EmpID.setOpaque(false);
+        EmpID.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if(EmpID.getText().trim().equals("Dept Code")) {
+                    EmpID.setText("");
+                }
+
+                EmpID.setForeground(Color.BLACK);
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                if(EmpID.getText().trim().equals("")) {
+                    EmpID.setText("Dept Code");
+                }
+
+                EmpID.setForeground(Color.LIGHT_GRAY);
+            }
+        });
 
         //Submit Button
         DisplayPanel.add(Login = new JButton("Sign In"));
