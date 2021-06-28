@@ -2,6 +2,8 @@ package GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.text.Position;
+import javax.xml.crypto.Data;
 import javax.xml.transform.Result;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +15,7 @@ import java.io.IOException;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
@@ -69,9 +72,15 @@ public class LoginForm extends JFrame implements ActionListener{
 
         DeptCode.setBounds(150,200,250,40);
 
+        DeptCode.setOpaque(false);
+
+        DeptCode.set
+
         DisplayPanel.add(EmpID = new JTextField("Employee ID"));
 
         EmpID.setBounds(150,260,250,40);
+
+        EmpID.setOpaque(false);
 
         //Submit Button
         DisplayPanel.add(Login = new JButton("Sign In"));
@@ -103,24 +112,45 @@ public class LoginForm extends JFrame implements ActionListener{
         }
     }
 
+    public void GetPosition() throws SQLException {
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connect = connectNow.getConnection();
+
+        String Identify = "SELECT Position FROM accounts WHERE username = '" +EmpID.getText()+ "'";
+
+        Statement st = connect.createStatement();
+        ResultSet rs = st.executeQuery(Identify);
+        if(rs.next()) {
+            position = rs.getString("Position");
+        }
+    }
+
     public void validateLogin(){
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
         String verifyLogin = "SELECT count(1) FROM accounts WHERE Department = '" +DeptCode.getText()+ "' AND username = '" +EmpID.getText()+ "'";
-//        String Identify = "SELECT Position FROM accounts WHERE username = '" +EmpID.getText()+ "'";
 
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
-//            ResultSet identifypos = statement.executeQuery(Identify);
-//            String department = identifypos.getstring(2);
-//            System.out.println(department);
 
             while(queryResult.next()){
                 if (queryResult.getInt(1) == 1) {
-                    setVisible(false);
-                    MainMenu mainMenu = new MainMenu();
+                    GetPosition();
+                    if (position.equals("Doctor")){
+                        setVisible(false);
+                        new MainMenuDoctor();
+                    }
+                    else if (position.equals("Nurse")) {
+                        setVisible(false);
+                        new MainMenu();
+                    }
+                    else if (position.equals("Admin")){
+                        setVisible(false);
+                        new ADMINMENU();
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null, "Wrong Department Code or Username");
                 }
@@ -136,5 +166,6 @@ public class LoginForm extends JFrame implements ActionListener{
     public JTextField DeptCode, EmpID;
     public JLabel DisplayTitle;
     public JButton Login;
+    public String position;
     public BufferedImage home_button, logo_icon, logo_text, power_button, logout, add_button, search_button;
 }
