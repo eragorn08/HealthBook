@@ -30,7 +30,6 @@ public class LoginForm extends JFrame implements ActionListener{
             return;
         }
 
-
         SetDisplayPanel();
         SetDisplayContainer();
 
@@ -109,10 +108,14 @@ public class LoginForm extends JFrame implements ActionListener{
         Connection connectDB = connectNow.getConnection();
 
         String verifyLogin = "SELECT count(1) FROM accounts WHERE Department = '" +DeptCode.getText()+ "' AND username = '" +EmpID.getText()+ "'";
+//        String Identify = "SELECT Position FROM accounts WHERE username = '" +EmpID.getText()+ "'";
 
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
+//            ResultSet identifypos = statement.executeQuery(Identify);
+//            String department = identifypos.getstring(2);
+//            System.out.println(department);
 
             while(queryResult.next()){
                 if (queryResult.getInt(1) == 1) {
