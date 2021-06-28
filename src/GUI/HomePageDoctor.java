@@ -4,15 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class HomePage extends JPanel{
-    public HomePage(){
+public class HomePageDoctor extends JPanel{
+    public HomePageDoctor(){
         setLayout(null);
         home();
     }
 
     public void home(){
         setBackground(new Color(0x212C58));
-        add(greetingL = new JLabel("Welcome to HealthBook, Nurse!"));
+        add(greetingL = new JLabel("Welcome to HealthBook, Doctor _________!"));
         add(summaryL = new JLabel("Summary of Records"));
         greetingL.setFont(new Font("Helvetica", Font.PLAIN, 40));
         greetingL.setForeground(Color.white);
