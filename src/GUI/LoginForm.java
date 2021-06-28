@@ -74,8 +74,6 @@ public class LoginForm extends JFrame implements ActionListener{
 
         DeptCode.setOpaque(false);
 
-        DeptCode.set
-
         DisplayPanel.add(EmpID = new JTextField("Employee ID"));
 
         EmpID.setBounds(150,260,250,40);
