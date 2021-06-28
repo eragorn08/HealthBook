@@ -76,6 +76,7 @@ public class LoginForm extends JFrame implements ActionListener{
 
         DeptCode.setOpaque(false);
 
+
         DeptCode.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -96,6 +97,7 @@ public class LoginForm extends JFrame implements ActionListener{
         });
 
         DisplayPanel.add(EmpID = new JTextField());
+
 
         EmpID.setBounds(150,260,250,40);
 
