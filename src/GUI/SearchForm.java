@@ -1,15 +1,34 @@
 package GUI;
 
+import com.mysql.cj.protocol.Resultset;
+
 import javax.swing.*;
 
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.basic.BasicArrowButton;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.RescaleOp;
+import java.sql.*;
+import java.util.Arrays;
 
 
 public class SearchForm extends JPanel {
+    public String[] text;
+    public DefaultTableModel model;
+    public JPanel center = new JPanel();
+    public JTable table;
+    public JComboBox<String> sort_by;
     public SearchForm(){
         setBackground(new Color(0x212C58));
         setLayout(null);
@@ -52,6 +71,26 @@ public class SearchForm extends JPanel {
         search_field.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         search_field.setFont(new Font("Helvetica", Font.PLAIN, 25));
         north.add(search_field, BorderLayout.WEST);
+        search_field.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                String[] t = {"",""};
+                t[0] = search_field.getText();
+                t[1] = sort_by.getSelectedItem().toString();
+                gettableData(t);
+
+            }
+        });
 
         //searchBy label
         JLabel searchBy_label = new JLabel("Search By:");
@@ -63,14 +102,35 @@ public class SearchForm extends JPanel {
         north.add(searchBy_label);
 
         String[] sortBy = {"Name", "Date"};
-        JComboBox<String> sort_by = new JComboBox<>(sortBy);
-        //sort_by.setBounds(826,8,99,40);
+        sort_by = new JComboBox<>(sortBy);
+        sort_by.setOpaque(false);
+        sort_by.setUI(new MyComboBoxUI());
         sort_by.setFont(new Font("Helvetica", Font.PLAIN, 20));
         sort_by.setBackground(new Color(0x212C58));
         sort_by.setForeground(Color.white);
+
+        sort_by.setRenderer(new DefaultListCellRenderer(){
+            @Override
+            public void paint(Graphics g) {
+                setBackground(new Color(0x212C58));
+                setForeground(Color.white);
+                super.paint(g);
+            }
+        });
+        sort_by.setFocusable(false);
+
         north.add(sort_by, BorderLayout.EAST);
 
-        JPanel center = new JPanel();
+        sort_by.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] t = {"",""};
+                t[0] = search_field.getText();
+                t[1] = sort_by.getSelectedItem().toString();
+                gettableData(t);
+            }
+        });
+
         center.setBorder(new EmptyBorder(24,0,24,0));
         center.setLayout(new GridLayout(1,1));
         center.setBackground(new Color(0x212C58));
@@ -79,33 +139,64 @@ public class SearchForm extends JPanel {
         form.add(north, BorderLayout.NORTH);
         form.add(center, BorderLayout.CENTER);
 
+        createTable();
 
+
+
+
+        form.setVisible(true);
+        add(form);
+
+    }
+
+    public String[] gettableData(String[] text) {
+        String patientinfo;
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        if (text[0].equals(""))
+            patientinfo = "SELECT * FROM table_data";
+        else if (text[1].equals("Name"))
+            patientinfo = "SELECT * FROM table_data WHERE patient_name LIKE '" +text[0]+ "%'";
+        else
+            patientinfo = "SELECT * FROM table_data WHERE patient_recent_date LIKE '" +text[0]+ "%'";
+        try {
+            model.setRowCount(0);
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(patientinfo);
+
+
+            while(queryResult.next()){
+                int id = queryResult.getInt("patient_no");
+                String name = queryResult.getString("patient_name");
+                Date date = queryResult.getDate("patient_recent_date");
+
+                model.addRow(new Object[]{id,name,date});
+            }
+
+        }catch (Exception e){
+            e.getCause();
+            e.printStackTrace();
+        }
+        return text;
+
+    }
+
+
+    public void createTable(){
         String[] columnNames = {"Patient No.", "Name", "Date of Recent Checkup"};
-        Object[][] data = {
-                {1, "Cruz, Danica", "January 11, 2021"},
-                {2, "De Villa, Jerevon Cruz", "January 21, 2021"},
-                {3, "Diaz, Florante", "January 26, 2021"},
-                {4, "Ferrer, Iseah Nicole", "February 19, 2021"},
-                {5, "Gomez, John Lloyd", "March 05, 2021"},
-                {6, "Hernandez, Nathaniel Aldrin", "March 20, 2021"},
-                {7, "Javier, Carl Andrei", "April 19, 2021"},
-                {8, "Lim, Mary Elizabeth", "April 30, 2021"},
-                {9, "Marquez. Athena Sophie", "May 13, 2021 "},
-                {10, "Nacianceno, Mae Rose", "June 20, 2021"},
-                {1, "Cruz, Danica", "January 11, 2021"},
-                {2, "De Villa, Jerevon Cruz", "January 21, 2021"},
-                {3, "Diaz, Florante", "January 26, 2021"},
-                {4, "Ferrer, Iseah Nicole", "February 19, 2021"},
-                {5, "Gomez, John Lloyd", "March 05, 2021"},
-                {6, "Hernandez, Nathaniel Aldrin", "March 20, 2021"},
-                {7, "Javier, Carl Andrei", "April 19, 2021"},
-                {8, "Lim, Mary Elizabeth", "April 30, 2021"},
-                {9, "Marquez. Athena Sophie", "May 13, 2021 "},
-                {10, "Nacianceno, Mae Rose", "June 20, 2021"},
-        };
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
 
-        JTable table = new JTable(model);
+        Object[][] data = {};
+
+
+        table = new JTable(new DefaultTableModel());
+        model = (DefaultTableModel) table.getModel();
+        model.addColumn("Patient No.");
+        model.addColumn("Name");
+        model.addColumn("Date of Recent Checkup");
+
+
         table.setFont(new Font("Helvetica", Font.PLAIN, 20));
         table.setBackground(new Color(0x4b5576));
         table.setForeground(Color.white);
@@ -122,13 +213,13 @@ public class SearchForm extends JPanel {
 
         JScrollPane pane = new JScrollPane(table);
         table.setTableHeader(new JTableHeader(table.getColumnModel()) {
-            @Override
-            public Dimension getPreferredSize() {
-                Dimension d = super.getPreferredSize();
-                d.height = 38;
-                return d;
-            }
-                             }
+             @Override
+             public Dimension getPreferredSize() {
+                 Dimension d = super.getPreferredSize();
+                 d.height = 38;
+                 return d;
+             }
+         }
         );
         table.getTableHeader().setFont(new Font("Helvetica", Font.PLAIN, 20));
         table.getTableHeader().setBackground(new Color(0x4b5576));
@@ -140,6 +231,18 @@ public class SearchForm extends JPanel {
         table.getColumn("Patient No.").setCellRenderer(dtcr);
         table.getColumn("Name").setCellRenderer(dtcr);
         table.getColumn("Date of Recent Checkup").setCellRenderer(dtcr);
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                MainMenu main = new MainMenu();
+                main.cl.show(main.cardPanel,"info");
+                System.out.println("clicked");
+
+                super.mouseClicked(e);
+            }
+        });
+        String[] empty = {"","Name"};
+        gettableData(empty);
 
 
 
@@ -148,11 +251,26 @@ public class SearchForm extends JPanel {
 
         center.add(pane);
 
-
-
-        form.setVisible(true);
-        add(form);
-
     }
 
+}
+
+class MyComboBoxUI extends BasicComboBoxUI {
+    @Override
+    protected void installDefaults() {
+        super.installDefaults();
+        LookAndFeel.uninstallBorder(comboBox); //Uninstalls the LAF border for both button and label of combo box.
+    }
+
+    @Override
+    protected JButton createArrowButton() {
+        //Feel free to play with the colors:
+        final Color background = new Color(0x212C58);
+        final Color pressedButtonBorderColor = background;
+        final Color triangle = Color.WHITE;
+        final Color highlight = background;
+        final JButton button = new BasicArrowButton(BasicArrowButton.SOUTH, background, pressedButtonBorderColor, triangle, highlight);
+        button.setName("ComboBox.arrowButton"); //Mandatory, as per BasicComboBoxUI#createArrowButton().
+        return button;
+    }
 }

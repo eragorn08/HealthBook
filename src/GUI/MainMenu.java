@@ -6,7 +6,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
-
+import java.sql.SQLException;
 
 
 public class MainMenu extends JFrame implements ActionListener{
@@ -16,7 +16,7 @@ public class MainMenu extends JFrame implements ActionListener{
 
 
 
-    public MainMenu() {
+    public MainMenu()  {
         super("HealthBook");
         setNavPanel();
         setDisplayPanel();
@@ -142,6 +142,7 @@ public class MainMenu extends JFrame implements ActionListener{
         cardPanel.add("Home",new HomePage());
         cardPanel.add("add",new AddForm());
         cardPanel.add("search", new SearchForm());
+        cardPanel.add("info", new PatientInformation());
         cardPanel.setBounds(286,65,994,655);
         cl.show(cardPanel,"Home");
         add(cardPanel);
@@ -185,8 +186,8 @@ public class MainMenu extends JFrame implements ActionListener{
     }
 
 
-    private final CardLayout cl = new CardLayout();
+    public final CardLayout cl = new CardLayout();
     public JButton addButton, searchButton, homeButton, log_out, power;
-    private final JPanel cardPanel = new JPanel();
+    public final JPanel cardPanel = new JPanel();
     //public JFrame frame;
 }
