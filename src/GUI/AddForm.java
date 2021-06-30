@@ -440,8 +440,8 @@ public class AddForm extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirm) {
             InputPatient();
-            clearinput();
             JOptionPane.showMessageDialog(null, "Patient Information has Been Added!");
+            clearinput();
         }
     }
 
