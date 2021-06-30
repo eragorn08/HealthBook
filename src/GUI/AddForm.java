@@ -440,6 +440,8 @@ public class AddForm extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirm) {
             InputPatient();
+            clearinput();
+            JOptionPane.showMessageDialog(null, "Patient Information has Been Added!");
         }
     }
 
@@ -486,6 +488,22 @@ public class AddForm extends JPanel implements ActionListener {
             e.printStackTrace();
             e.getCause();
         }
+    }
+    public void clearinput(){
+        surnameField.setText("");
+        firstnameField.setText("");
+        middlenameField.setText("");
+        ageField.setText("");
+        monthField.setText("");
+        dayField.setText("");
+        yearField.setText("");
+        weightField.setText("");
+        heightField.setText("");
+        bloodPressureField1.setText("");
+        bloodPressureField2.setText("");
+        bodyTempField.setText("");
+        levelofpainField.setText("");
+        addressField.setText("");
     }
     private JTextField surnameField,firstnameField,middlenameField,ageField,monthField,dayField,yearField,
             weightField,heightField,bloodPressureField1,bloodPressureField2,bodyTempField,levelofpainField;
