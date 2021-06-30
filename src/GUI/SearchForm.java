@@ -140,9 +140,8 @@ public class SearchForm extends JPanel {
         form.add(center, BorderLayout.CENTER);
 
         createTable();
-
-
-
+        String[] empty = {"","Name"};
+        gettableData(empty);
 
         form.setVisible(true);
         add(form);
@@ -244,8 +243,6 @@ public class SearchForm extends JPanel {
                 super.mouseClicked(e);
             }
         });
-        String[] empty = {"","Name"};
-        gettableData(empty);
 
 
 

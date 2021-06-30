@@ -216,7 +216,10 @@ public class AddForm extends JPanel implements ActionListener {
                 int l = value.length();
                 if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
                         || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE){
-                    monthField.setEditable(l != 2);
+                    if (l != 2)
+                        monthField.setEditable(true);
+                    else
+                        monthField.setEditable(ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
                 }
                 else {
                     monthField.setEditable(false);
@@ -239,7 +242,10 @@ public class AddForm extends JPanel implements ActionListener {
                 int l = value.length();
                 if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
                         || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE){
-                    dayField.setEditable(l != 2);
+                    if (l != 2)
+                        dayField.setEditable(true);
+                    else
+                        dayField.setEditable(ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
                 }
                 else {
                     dayField.setEditable(false);
@@ -260,7 +266,10 @@ public class AddForm extends JPanel implements ActionListener {
                 int l = value.length();
                 if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
                         || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE){
-                    yearField.setEditable(l != 4);
+                    if (l != 4)
+                        yearField.setEditable(true);
+                    else
+                        yearField.setEditable(ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
                 }
                 else {
                     yearField.setEditable(false);
@@ -304,7 +313,7 @@ public class AddForm extends JPanel implements ActionListener {
             @Override
             public void keyPressed(KeyEvent ke) {
                 weightField.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
-                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE || ke.getKeyChar() == '.');
             }
         });
         addFormPanel.add(weightField);
@@ -318,7 +327,7 @@ public class AddForm extends JPanel implements ActionListener {
             @Override
             public void keyPressed(KeyEvent ke) {
                 heightField.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
-                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE || ke.getKeyChar() == '.');
             }
         });
         addFormPanel.add(heightField);
@@ -390,7 +399,7 @@ public class AddForm extends JPanel implements ActionListener {
             @Override
             public void keyPressed(KeyEvent ke) {
                 bodyTempField.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
-                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE || ke.getKeyChar() == '.');
             }
         });
         addFormPanel.add(bodyTempField);
@@ -504,6 +513,7 @@ public class AddForm extends JPanel implements ActionListener {
         bodyTempField.setText("");
         levelofpainField.setText("");
         addressField.setText("");
+        bloodtypeField.setSelectedIndex(0);
     }
     private JTextField surnameField,firstnameField,middlenameField,ageField,monthField,dayField,yearField,
             weightField,heightField,bloodPressureField1,bloodPressureField2,bodyTempField,levelofpainField;
