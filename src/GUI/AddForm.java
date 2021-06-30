@@ -6,15 +6,15 @@ import javax.swing.border.LineBorder;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.Calendar;
 
 //import javax.swing.JFrame;
 
-public class AddForm extends JPanel{
+public class AddForm extends JPanel implements ActionListener {
+
     public AddForm(){
         setLayout(null);
         addFormTitle();
@@ -41,10 +41,6 @@ public class AddForm extends JPanel{
 
         //JScrollPane scroll = new JScrollPane(addFormPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-
-
-
-
         //Create a form
         JLabel slashLabel1 = new JLabel("/");
         slashLabel1.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -58,8 +54,6 @@ public class AddForm extends JPanel{
         slashLabel2.setFont(new Font("Helvetica", Font.PLAIN, 20));
         slashLabel2.setForeground(Color.white);
         slashLabel2.setHorizontalTextPosition(JLabel.CENTER);
-
-
 
         //NAME FORM
         JLabel nameLabel = new JLabel("Name:");
@@ -86,21 +80,21 @@ public class AddForm extends JPanel{
         middleLabel.setBounds(613,57, 150,25);
         addFormPanel.add(middleLabel);
 
-        JTextField surnameField = new JTextField();
+        surnameField = new JTextField();
         surnameField.setBounds(136, 22, 200, 28);
         surnameField.setBorder(BorderFactory.createEmptyBorder());
         surnameField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         surnameField.setHorizontalAlignment(JTextField.CENTER);
         addFormPanel.add(surnameField);
 
-        JTextField firstnameField = new JTextField();
+        firstnameField = new JTextField();
         firstnameField.setBounds(368, 22, 200, 28);
         firstnameField.setBorder(BorderFactory.createEmptyBorder());
         firstnameField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         firstnameField.setHorizontalAlignment(JTextField.CENTER);
         addFormPanel.add(firstnameField);
 
-        JTextField middlenameField = new JTextField();
+        middlenameField = new JTextField();
         middlenameField.setBounds(593, 22, 200, 28);
         middlenameField.setBorder(BorderFactory.createEmptyBorder());
         middlenameField.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -127,12 +121,12 @@ public class AddForm extends JPanel{
         femaleLabel.setBounds(321,92, 85,25);
         addFormPanel.add(femaleLabel);
 
-        JRadioButton maleRadioButton = new JRadioButton();
+        maleRadioButton = new JRadioButton();
         maleRadioButton.setBounds(143,92,25,25);
         maleRadioButton.setBackground(new Color(0x212C58));
         addFormPanel.add(maleRadioButton);
 
-        JRadioButton femaleRadioButton = new JRadioButton();
+        femaleRadioButton = new JRadioButton();
         femaleRadioButton.setBounds(290,92,25,25);
         femaleRadioButton.setBackground(new Color(0x212C58));
         addFormPanel.add(femaleRadioButton);
@@ -149,7 +143,7 @@ public class AddForm extends JPanel{
         addressLabel.setBounds(25,135, 100,25);
         addFormPanel.add(addressLabel);
 
-        JTextArea addressField = new JTextArea();
+        addressField = new JTextArea();
         addressField.setEditable(true);
         JScrollPane AddressScroll = new JScrollPane(addressField);
         addressField.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -164,7 +158,7 @@ public class AddForm extends JPanel{
         ageLabel.setBounds(25,213, 59,25);
         addFormPanel.add(ageLabel);
 
-        JTextField ageField = new JTextField();
+        ageField = new JTextField();
         ageField.setBounds(136, 213, 100, 28);
         ageField.setBorder(BorderFactory.createEmptyBorder());
         ageField.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -210,7 +204,7 @@ public class AddForm extends JPanel{
         addFormPanel.add(slashLabel1);
 
 
-        JTextField monthField = new JTextField();
+        monthField = new JTextField();
         monthField.setBounds(513, 215, 120, 28);
         monthField.setBorder(BorderFactory.createEmptyBorder());
         monthField.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -233,7 +227,7 @@ public class AddForm extends JPanel{
 
         addFormPanel.add(monthField);
 
-        JTextField dayField = new JTextField();
+        dayField = new JTextField();
         dayField.setBounds(652, 215, 120, 28);
         dayField.setBorder(BorderFactory.createEmptyBorder());
         dayField.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -254,7 +248,7 @@ public class AddForm extends JPanel{
         });
         addFormPanel.add(dayField);
 
-        JTextField yearField = new JTextField();
+        yearField = new JTextField();
         yearField.setBounds(791, 215, 120, 28);
         yearField.setBorder(BorderFactory.createEmptyBorder());
         yearField.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -301,7 +295,7 @@ public class AddForm extends JPanel{
         cmLabel.setBounds(628,281, 48,25);
         addFormPanel.add(cmLabel);
 
-        JTextField weightField = new JTextField();
+        weightField = new JTextField();
         weightField.setBounds(136, 281, 100, 28);
         weightField.setBorder(BorderFactory.createEmptyBorder());
         weightField.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -315,7 +309,7 @@ public class AddForm extends JPanel{
         });
         addFormPanel.add(weightField);
 
-        JTextField heightField = new JTextField();
+        heightField = new JTextField();
         heightField.setBounds(513, 280, 100, 28);
         heightField.setBorder(BorderFactory.createEmptyBorder());
         heightField.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -346,12 +340,12 @@ public class AddForm extends JPanel{
         slashLabel2.setBounds(620, 349, 14, 20);
         addFormPanel.add(slashLabel2);
 
-        JComboBox<String> bloodtypeField = new JComboBox<>(bloodTypes);
+        bloodtypeField = new JComboBox<>(bloodTypes);
         bloodtypeField.setBounds(136,349,100,28);
         bloodtypeField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         addFormPanel.add(bloodtypeField);
 
-        JTextField bloodPressureField1 = new JTextField();
+        bloodPressureField1 = new JTextField();
         bloodPressureField1.setBounds(513,349,100,28);
         bloodPressureField1.setFont(new Font("Helvetica", Font.PLAIN, 20));
         bloodPressureField1.setHorizontalAlignment(JTextField.CENTER);
@@ -365,7 +359,7 @@ public class AddForm extends JPanel{
         });
         addFormPanel.add(bloodPressureField1);
 
-        JTextField bloodPressureField2 = new JTextField();
+        bloodPressureField2 = new JTextField();
         bloodPressureField2.setBounds(647,349,100,28);
         bloodPressureField2.setFont(new Font("Helvetica", Font.PLAIN, 20));
         bloodPressureField2.setHorizontalAlignment(JTextField.CENTER);
@@ -387,7 +381,7 @@ public class AddForm extends JPanel{
         bodyTempLabel.setBounds(22,398, 109,58);
         addFormPanel.add(bodyTempLabel);
 
-        JTextField bodyTempField = new JTextField();
+        bodyTempField = new JTextField();
         bodyTempField.setBounds(136,417,100,28);
         bodyTempField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         bodyTempField.setHorizontalAlignment(JTextField.CENTER);
@@ -408,7 +402,6 @@ public class AddForm extends JPanel{
         addFormPanel.add(celsiusLabel);
 
 
-
         //LEVEL OF PAIN
         JLabel levelofpainLabel = new JLabel("<html>Level of<br>Pain:</html>");
         levelofpainLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -416,7 +409,7 @@ public class AddForm extends JPanel{
         levelofpainLabel.setBounds(22,463, 109,58);
         addFormPanel.add(levelofpainLabel);
 
-        JTextField levelofpainField = new JTextField();
+        levelofpainField = new JTextField();
         levelofpainField.setBounds(136,478,100,28);
         levelofpainField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         levelofpainField.setHorizontalAlignment(JTextField.CENTER);
@@ -432,17 +425,74 @@ public class AddForm extends JPanel{
 
 
 
-        JButton confirm = new JButton(new ImageIcon("confirm_logo.png"));
+        confirm = new JButton(new ImageIcon("confirm_logo.png"));
         confirm.setFocusPainted(false);
         confirm.setBorder(BorderFactory.createEmptyBorder());
         confirm.setContentAreaFilled(false);
         confirm.setBounds(768,521,161,41);
+        confirm.addActionListener(this);
         addFormPanel.add(confirm);
-
 
 
         add(addFormPanel);
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == confirm) {
+            InputPatient();
+        }
+    }
 
+    public void InputPatient(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        //Input Variables
+        String surname = surnameField.getText();
+        String firstname = firstnameField.getText();
+        String middlename = middlenameField.getText();
+        String age = ageField.getText();
+        String month = monthField.getText();
+        String day = dayField.getText();
+        String year = yearField.getText();
+        String weight = weightField.getText();
+        String height = heightField.getText();
+        String bloodpressure = bloodPressureField1.getText() + '/' + bloodPressureField2.getText();
+        String bodyTemp = bodyTempField.getText();
+        String painlevel = levelofpainField.getText();
+
+        if(maleRadioButton.isSelected()){
+            gender = "Male";
+        }
+        if(femaleRadioButton.isSelected()){
+            gender = "Female";
+        }
+        String bloodtype = (String) bloodtypeField.getSelectedItem();
+        String address = addressField.getText();
+
+        //Input Database
+        String  insertFields = "INSERT INTO patientinfo(surname,givenname,middlename,gender,address,age,month," +
+                "day,year,weight,height,bloodtype,bloodpressure,bodytemp,levelofpain) VALUES ('";
+        String insertValue = surname + "','" + firstname + "','" + middlename + "','" + gender + "','" + address + "','" +
+                age + "','" + month + "','" + day + "','" + year + "','" + weight + "','" + height + "','" + bloodtype + "','" +
+                bloodpressure + "','" + bodyTemp + "','" + painlevel + "')";
+        String insertPatient = insertFields + insertValue;
+
+        try{
+            Statement statement = connectDB.createStatement();
+            statement.executeUpdate(insertPatient);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    private JTextField surnameField,firstnameField,middlenameField,ageField,monthField,dayField,yearField,
+            weightField,heightField,bloodPressureField1,bloodPressureField2,bodyTempField,levelofpainField;
+    private JComboBox<String> bloodtypeField;
+    private JRadioButton maleRadioButton,femaleRadioButton;
+    private JTextArea addressField;
+    private JButton confirm;
+    private String gender;
 }
 

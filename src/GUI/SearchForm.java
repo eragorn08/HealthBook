@@ -156,11 +156,11 @@ public class SearchForm extends JPanel {
         Connection connectDB = connectNow.getConnection();
 
         if (text[0].equals(""))
-            patientinfo = "SELECT * FROM table_data";
+            patientinfo = "SELECT * FROM patientinfo";
         else if (text[1].equals("Name"))
-            patientinfo = "SELECT * FROM table_data WHERE patient_name LIKE '" +text[0]+ "%'";
+            patientinfo = "SELECT * FROM patientinfo WHERE surname LIKE '" +text[0]+ "%'";
         else
-            patientinfo = "SELECT * FROM table_data WHERE patient_recent_date LIKE '" +text[0]+ "%'";
+            patientinfo = "SELECT * FROM patientinfo WHERE datetime LIKE '" +text[0]+ "%'";
         try {
             model.setRowCount(0);
             Statement statement = connectDB.createStatement();
@@ -168,9 +168,9 @@ public class SearchForm extends JPanel {
 
 
             while(queryResult.next()){
-                int id = queryResult.getInt("patient_no");
-                String name = queryResult.getString("patient_name");
-                Date date = queryResult.getDate("patient_recent_date");
+                int id = queryResult.getInt("patientID");
+                String name = queryResult.getString("surname");
+                Date date = queryResult.getDate("datetime");
 
                 model.addRow(new Object[]{id,name,date});
             }
