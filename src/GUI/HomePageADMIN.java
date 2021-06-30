@@ -12,7 +12,7 @@ public class HomePageADMIN extends JPanel{
 
     public void home(){
         setBackground(new Color(0x212C58));
-        add(greetingL = new JLabel("Tangina mo ADMIN!"));
+        add(greetingL = new JLabel("Welcome back, ADMIN!"));
         add(summaryL = new JLabel("Summary of Records"));
         greetingL.setFont(new Font("Helvetica", Font.PLAIN, 40));
         greetingL.setForeground(Color.white);
