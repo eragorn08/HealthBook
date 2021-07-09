@@ -2,6 +2,7 @@ package GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -67,6 +68,8 @@ public class LoginForm extends JFrame implements ActionListener{
 
         DeptCode.setBounds(110,200,250,40);
 
+        DeptCode.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
+
         DeptCode.setOpaque(false);
 
 
@@ -90,6 +93,7 @@ public class LoginForm extends JFrame implements ActionListener{
         });
 
         DisplayPanel.add(EmpID = new JTextField());
+        EmpID.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
 
 
         EmpID.setBounds(110,260,250,40);

@@ -332,6 +332,33 @@ public class AddForm extends JPanel implements ActionListener {
         });
         addFormPanel.add(heightField);
 
+        //PULSE RATE
+        pulseField = new JTextField();
+        pulseField.setBounds(513, 417, 100, 28);
+        pulseField.setBorder(BorderFactory.createEmptyBorder());
+        pulseField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        pulseField.setHorizontalAlignment(JTextField.CENTER);
+        pulseField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                pulseField.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE || ke.getKeyChar() == '.');
+            }
+        });
+        addFormPanel.add(pulseField);
+
+        JLabel pulseLabel = new JLabel("<html>Pulse<br>Rate:</html>");
+        pulseLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        pulseLabel.setForeground(Color.WHITE);
+        pulseLabel.setBounds(348,402, 109,48);
+        addFormPanel.add(pulseLabel);
+
+        JLabel bpmLabel = new JLabel("bpm");
+        bpmLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bpmLabel.setForeground(Color.WHITE);
+        bpmLabel.setBounds(628,423, 48,25);
+        addFormPanel.add(bpmLabel);
+
 
         //BLOOD FORM
         JLabel bloodtypeLabel = new JLabel("<html>Blood<br>Type:</html>");
@@ -516,7 +543,8 @@ public class AddForm extends JPanel implements ActionListener {
         bloodtypeField.setSelectedIndex(0);
     }
     private JTextField surnameField,firstnameField,middlenameField,ageField,monthField,dayField,yearField,
-            weightField,heightField,bloodPressureField1,bloodPressureField2,bodyTempField,levelofpainField;
+            weightField,heightField,bloodPressureField1,bloodPressureField2,bodyTempField,levelofpainField,
+            pulseField;
     private JComboBox<String> bloodtypeField;
     private JRadioButton maleRadioButton,femaleRadioButton;
     private JTextArea addressField;
