@@ -9,13 +9,51 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.FontRenderContext;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class PatientInformation extends JFrame implements ActionListener {
     public RoundedPanel body_panel, vitalsigns;
+    public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
+            lop;
     public JButton back_button;
     public JPanel panel;
     public int X = 0;
     public int Y = 0;
+
+    public void GetData() {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connect = connectNow.getConnection();
+
+        System.out.println(SearchForm.value);
+
+        String Identify = "SELECT * FROM patientinfo WHERE patientID = '" +SearchForm.value+ "'";
+        try{
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery(Identify);
+            if(rs.next()) {
+                lastname = rs.getString("surname");
+                firstname = rs.getString("givenname");
+                midname = rs.getString("middlename");
+                gend = rs.getString("gender");
+                ag = rs.getString("age");
+                addrress = rs.getString("address");
+                day = rs.getString("day");
+                month = rs.getString("month");
+                year = rs.getString("year");
+                weigh = rs.getString("weight");
+                heigh = rs.getString("height");
+                bt = rs.getString("bloodtype");
+                bloodpressure = rs.getString("bloodpressure");
+                btp = rs.getString("bodytemp");
+                lop = rs.getString("levelofpain");
+            }}
+        catch(Exception e){
+            e.getCause();
+            e.printStackTrace();
+        }
+    }
 
     public PatientInformation() {
         super("Patient Information");
@@ -47,6 +85,7 @@ public class PatientInformation extends JFrame implements ActionListener {
             }
         });
 
+        GetData();
 
         back_button = new JButton(new ImageIcon("back.png"));
         back_button.setContentAreaFilled(false);
@@ -82,10 +121,10 @@ public class PatientInformation extends JFrame implements ActionListener {
         // pwede mo ito i edit para may varibles na sila
         // ako na lang mag concatinate
         // VARIABLES FOR VITAL SIGNS//
-        String bp = "110/80";
-        String temp = "36.5°C";
-        String pulse = "110/80";
-        String pain = "110/80";
+        String bp = bloodpressure;
+        String temp = bt;
+        String pulse = "110/80" + " " + "bpm";
+        String pain = lop;
         //////////////////////////////
         panel.add(vitalsigns = new RoundedPanel(50,new Color(0x4d5579)));
         vitalsigns.setOpaque(false);
@@ -162,16 +201,16 @@ public class PatientInformation extends JFrame implements ActionListener {
         // pwede mo ito i edit para may varibles na sila
         // ako na lang mag concatinate
         // VARIABLES FOR BASIC DETAILS//
-        String name = "De Villa, Jerevon Cruz";
-        String sex = "Male";
-        String address = "Rt. Rev. G. Aglipay, Mandaluyong, Metro Manila";
-        String birth = "11/25/2001";
-        String bloodtype = "O-";
-        String age = "19";
-        String height = "166 cm";
-        String weight = "54 kg";
-        String no = "2";
-        String date = "01/21/2021";
+        String name = lastname +", " + firstname + " " + midname;
+        String sex = gend;
+        String address = addrress;
+        String birth = month + "/" + day + "/" + year;
+        String bloodtype = bt;
+        String age = ag;
+        String height = heigh;
+        String weight = weigh;
+        String no = SearchForm.value;
+        String date = SearchForm.date;
         //////////////////////////////
         panel.add(body_panel = new RoundedPanel(50,new Color(0x4d5579)));
         body_panel.setOpaque(false);
@@ -314,7 +353,7 @@ public class PatientInformation extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == back_button) {
-            dispose();
+            setVisible(false);
         }
     }
 
