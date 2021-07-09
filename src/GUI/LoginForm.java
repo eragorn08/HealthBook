@@ -201,7 +201,8 @@ public class LoginForm extends JFrame implements ActionListener{
     }
 
     public JPanel DisplayPanel, DisplayContainer;
-    public JTextField DeptCode, EmpID;
+    public JTextField DeptCode;
+    public static JTextField EmpID;
     public JLabel DisplayTitle;
     public JButton Login;
     public String position;
