@@ -14,11 +14,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class PatientInformation extends JFrame implements ActionListener {
+    public JPanel panel = new JPanel();
+    public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel, vitalsigns;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
             lop;
     public JButton back_button;
-    public JPanel panel;
     public int X = 0;
     public int Y = 0;
 
@@ -103,17 +104,33 @@ public class PatientInformation extends JFrame implements ActionListener {
         patient_details.setBounds(510, 30, 260, 54);
         title_panel.add(patient_details);
 
-        panel = new JPanel();
-        add(panel);
+
+        //add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(new EmptyBorder(new Insets(23, 40, 100, 40)));
         panel.setBackground(new Color(0x212C58));
         panel.setVisible(true);
         panel.setBounds(0, 77, 1280, 643);
+
+
+        scrollPane.setVisible(true);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setPreferredSize(new Dimension(1280,643));
+
         info();
         panel.add(Box.createRigidArea((new Dimension(5,15))));
         vitalSigns();
         panel.add(Box.createRigidArea((new Dimension(5,20))));
+
+
+        scrollPane = new JScrollPane(panel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        scrollPane.setLayout(new ScrollPaneLayout());
+        scrollPane.setBounds(0, 77, 1280, 643);
+
+        add(scrollPane);
 
 
     }

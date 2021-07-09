@@ -18,7 +18,7 @@ public class ADMINMENU extends JFrame implements ActionListener{
 
     public ADMINMENU() {
         super("HealthBook");
-
+        setNavPanel();
         setDisplayPanel();
         setHeader();
         setSize(1280, 720);
@@ -76,56 +76,56 @@ public class ADMINMENU extends JFrame implements ActionListener{
         Head.add(log_out);
         add(Head);
     }
-/*
+
     public void setNavPanel (){
         var NavPanel = new JPanel(new BorderLayout());
         var Spacer = new JPanel();
         Spacer.setBackground(new Color(0x212C58));
         NavPanel.setLayout(null);
         NavPanel.setBackground(new Color(0x283469));
-        NavPanel.add(homeButton = new JButton(new ImageIcon("home.png")));
-        NavPanel.add(addButton = new JButton(new ImageIcon("add.png")));
-        NavPanel.add(searchButton = new JButton(new ImageIcon("search.png")));
+        NavPanel.add(searchUser = new JButton(new ImageIcon("home.png")));
+        NavPanel.add(addUser = new JButton(new ImageIcon("add.png")));
+        NavPanel.add(ChangePass = new JButton(new ImageIcon("search.png")));
 
-        homeButton.setText("Home");
-        homeButton.setIconTextGap(25);
-        homeButton.setHorizontalAlignment(SwingConstants.LEFT);
+        searchUser.setText("Search User");
+        searchUser.setIconTextGap(25);
+        searchUser.setHorizontalAlignment(SwingConstants.LEFT);
 
-        homeButton.setBorder(BorderFactory.createEmptyBorder(0, 31, 0, 0));
-        //addButton.setBorder(BorderFactory.createEmptyBorder(0, 21, 0, 0));
-        searchButton.setBorder(BorderFactory.createEmptyBorder(0, 29, 0, 0));
+        searchUser.setBorder(BorderFactory.createEmptyBorder(0, 31, 0, 0));
+        addUser.setBorder(BorderFactory.createEmptyBorder(0, 21, 0, 0));
+        ChangePass.setBorder(BorderFactory.createEmptyBorder(0, 29, 0, 0));
 
-        //addButton.setText("Add Patient");
-        //.setIconTextGap(15);
-        //.setHorizontalAlignment(SwingConstants.LEFT);
+        addUser.setText("Add User");
+        addUser.setIconTextGap(15);
+        addUser.setHorizontalAlignment(SwingConstants.LEFT);
 
-        searchButton.setText("Search Patient");
-        searchButton.setIconTextGap(23);
-        searchButton.setHorizontalAlignment(SwingConstants.LEFT);
+        ChangePass.setText("Change Password");
+        ChangePass.setIconTextGap(23);
+        ChangePass.setHorizontalAlignment(SwingConstants.LEFT);
 
-        //addButton.addActionListener(this);
-        searchButton.addActionListener(this);
-        homeButton.addActionListener(this);
+        addUser.addActionListener(this);
+        ChangePass.addActionListener(this);
+        searchUser.addActionListener(this);
 
-        homeButton.setBackground(new Color(0x525c86));
-        homeButton.setForeground(Color.WHITE);
-        homeButton.setFont(new Font("Helvetica",Font.PLAIN,20));
+        searchUser.setBackground(new Color(0x525c86));
+        searchUser.setForeground(Color.WHITE);
+        searchUser.setFont(new Font("Helvetica",Font.PLAIN,20));
 
-        homeButton.setFocusPainted(false);
-        //addButton.setContentAreaFilled(false);
-//.setForeground(Color.white);
-        //addButton.setFont(new Font("Helvetica",Font.PLAIN,20));
+        searchUser.setFocusPainted(false);
+        addUser.setContentAreaFilled(false);
+        addUser.setForeground(Color.white);
+        addUser.setFont(new Font("Helvetica",Font.PLAIN,20));
 
-        // addButton.setFocusPainted(false);
-        searchButton.setContentAreaFilled(false);
-        searchButton.setForeground(Color.white);
-        searchButton.setFont(new Font("Helvetica",Font.PLAIN,20));
+        addUser.setFocusPainted(false);
+        ChangePass.setContentAreaFilled(false);
+        ChangePass.setForeground(Color.white);
+        ChangePass.setFont(new Font("Helvetica",Font.PLAIN,20));
 
-        searchButton.setFocusPainted(false);
+        ChangePass.setFocusPainted(false);
 
-        homeButton.setBounds(0,0, 286,56);
-        //addButton.setBounds(0, 57, 286, 56);
-        searchButton.setBounds(0, 57, 286, 56);
+        searchUser.setBounds(0,0, 286,56);
+        addUser.setBounds(0, 57, 286, 56);
+        ChangePass.setBounds(0, 114, 286, 56);
 
         Spacer.setBounds(0, 65, 286, 24);
         Spacer.setVisible(true);
@@ -135,42 +135,42 @@ public class ADMINMENU extends JFrame implements ActionListener{
         add(NavPanel);
     }
 
-*/
+
     public void setDisplayPanel(){
         cardPanel.setLayout(cl);
         cardPanel.add("Home",new HomePageADMIN());
         cardPanel.add("add",new AddForm());
         cardPanel.add("search",new SearchForm());
-        cardPanel.setBounds(0,65,1280,655);
+        cardPanel.setBounds(286,65,994,655);
         cl.show(cardPanel,"Home");
         add(cardPanel);
     }
 
     @Override
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == homeButton){
-            homeButton.setContentAreaFilled(true);
-            homeButton.setBackground(new Color(0x525c86));
+        if(e.getSource() == searchUser){
+            searchUser.setContentAreaFilled(true);
+            searchUser.setBackground(new Color(0x525c86));
             cl.show(cardPanel, "Home");
 
-            addButton.setContentAreaFilled(false);
-            searchButton.setContentAreaFilled(false);
+            addUser.setContentAreaFilled(false);
+            ChangePass.setContentAreaFilled(false);
         }
 
-        if(e.getSource() == addButton){
-            addButton.setContentAreaFilled(true);
-            addButton.setBackground(new Color(0x525c86));
+        if(e.getSource() == addUser){
+            addUser.setContentAreaFilled(true);
+            addUser.setBackground(new Color(0x525c86));
             cl.show(cardPanel, "add");
-            homeButton.setContentAreaFilled(false);
-            searchButton.setContentAreaFilled(false);
+            searchUser.setContentAreaFilled(false);
+            ChangePass.setContentAreaFilled(false);
         }
 
-        if(e.getSource() == searchButton) {
-            searchButton.setContentAreaFilled(true);
-            searchButton.setBackground(new Color(0x525c86));
+        if(e.getSource() == ChangePass) {
+            ChangePass.setContentAreaFilled(true);
+            ChangePass.setBackground(new Color(0x525c86));
             cl.show(cardPanel, "search");
-            homeButton.setBackground(null);
-            addButton.setBackground(null);
+            searchUser.setBackground(null);
+            addUser.setBackground(null);
         }
 
         if(e.getSource() == log_out) {
@@ -185,7 +185,7 @@ public class ADMINMENU extends JFrame implements ActionListener{
 
 
     private final CardLayout cl = new CardLayout();
-    public JButton addButton, searchButton, homeButton, log_out, power;
+    public JButton addUser, ChangePass, searchUser, log_out, power;
     private final JPanel cardPanel = new JPanel();
     //public JFrame frame;
 }

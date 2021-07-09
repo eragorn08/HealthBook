@@ -139,8 +139,7 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
     public void setDisplayPanel(){
         cardPanel.setLayout(cl);
         cardPanel.add("Home",new HomePageDoctor());
-        cardPanel.add("add",new AddForm());
-        cardPanel.add("search",new SearchForm());
+        cardPanel.add("search",new SearchFormDoctor());
         cardPanel.setBounds(286,65,994,655);
         cl.show(cardPanel,"Home");
         add(cardPanel);
@@ -157,13 +156,6 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
             searchButton.setContentAreaFilled(false);
         }
 
-        if(e.getSource() == addButton){
-            addButton.setContentAreaFilled(true);
-            addButton.setBackground(new Color(0x525c86));
-            cl.show(cardPanel, "add");
-            homeButton.setContentAreaFilled(false);
-            searchButton.setContentAreaFilled(false);
-        }
 
         if(e.getSource() == searchButton) {
             searchButton.setContentAreaFilled(true);
