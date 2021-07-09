@@ -2,9 +2,6 @@ package GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.text.Position;
-import javax.xml.crypto.Data;
-import javax.xml.transform.Result;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,14 +11,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ResourceBundle;
-
-import java.net.URL;
 
 public class LoginForm extends JFrame implements ActionListener{
 
@@ -72,7 +65,7 @@ public class LoginForm extends JFrame implements ActionListener{
         //Text Fields
         DisplayPanel.add(DeptCode = new JTextField());
 
-        DeptCode.setBounds(150,200,250,40);
+        DeptCode.setBounds(110,200,250,40);
 
         DeptCode.setOpaque(false);
 
@@ -80,7 +73,7 @@ public class LoginForm extends JFrame implements ActionListener{
         DeptCode.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(DeptCode.getText().trim().equals("Dept Code")) {
+                if(DeptCode.getText().trim().equals("Department Code")) {
                     DeptCode.setText("");
                 }
 
@@ -89,7 +82,7 @@ public class LoginForm extends JFrame implements ActionListener{
             @Override
             public void focusLost(FocusEvent e) {
                 if(DeptCode.getText().trim().equals("")) {
-                    DeptCode.setText("Dept Code");
+                    DeptCode.setText("Department Code");
                 }
 
                 DeptCode.setForeground(Color.LIGHT_GRAY);
@@ -99,13 +92,13 @@ public class LoginForm extends JFrame implements ActionListener{
         DisplayPanel.add(EmpID = new JTextField());
 
 
-        EmpID.setBounds(150,260,250,40);
+        EmpID.setBounds(110,260,250,40);
 
         EmpID.setOpaque(false);
         EmpID.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(EmpID.getText().trim().equals("Dept Code")) {
+                if(EmpID.getText().trim().equals("Employee ID")) {
                     EmpID.setText("");
                 }
 
@@ -114,7 +107,7 @@ public class LoginForm extends JFrame implements ActionListener{
             @Override
             public void focusLost(FocusEvent e) {
                 if(EmpID.getText().trim().equals("")) {
-                    EmpID.setText("Dept Code");
+                    EmpID.setText("Employee ID");
                 }
 
                 EmpID.setForeground(Color.LIGHT_GRAY);
@@ -124,11 +117,17 @@ public class LoginForm extends JFrame implements ActionListener{
         //Submit Button
         DisplayPanel.add(Login = new JButton("Sign In"));
 
-        Login.setBounds(180,380,200,60);
+        Login.setBounds(140,380,200,60);
 
         Login.setFont(new Font("Arial",Font.PLAIN,40));
 
         Login.addActionListener(this);
+
+//        Login.setOpaque(false);
+//        Login.setFocusPainted(false);
+//        Login.setBorderPainted(false);
+//        Login.setContentAreaFilled(false);
+//        Login.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 
         DisplayPanel.setBounds(416,54,448,510);
         DisplayPanel.setVisible(true);
