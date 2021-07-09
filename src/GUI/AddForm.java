@@ -478,6 +478,7 @@ public class AddForm extends JPanel implements ActionListener {
             InputPatient();
             JOptionPane.showMessageDialog(null, "Patient Information has Been Added!");
             clearinput();
+            new SearchForm();
         }
     }
 
@@ -498,6 +499,7 @@ public class AddForm extends JPanel implements ActionListener {
         String bloodpressure = bloodPressureField1.getText() + '/' + bloodPressureField2.getText();
         String bodyTemp = bodyTempField.getText();
         String painlevel = levelofpainField.getText();
+        String pulse = pulseField.getText();
 
         if(maleRadioButton.isSelected()){
             gender = "Male";
@@ -510,10 +512,10 @@ public class AddForm extends JPanel implements ActionListener {
 
         //Input Database
         String  insertFields = "INSERT INTO patientinfo(surname,givenname,middlename,gender,address,age,month," +
-                "day,year,weight,height,bloodtype,bloodpressure,bodytemp,levelofpain) VALUES ('";
+                "day,year,weight,height,bloodtype,bloodpressure,bodytemp,levelofpain,pulserate) VALUES ('";
         String insertValue = surname + "','" + firstname + "','" + middlename + "','" + gender + "','" + address + "','" +
                 age + "','" + month + "','" + day + "','" + year + "','" + weight + "','" + height + "','" + bloodtype + "','" +
-                bloodpressure + "','" + bodyTemp + "','" + painlevel + "')";
+                bloodpressure + "','" + bodyTemp + "','" + painlevel + "','" + pulse + "')";
         String insertPatient = insertFields + insertValue;
 
         try{
@@ -540,6 +542,7 @@ public class AddForm extends JPanel implements ActionListener {
         bodyTempField.setText("");
         levelofpainField.setText("");
         addressField.setText("");
+        pulseField.setText("");
         bloodtypeField.setSelectedIndex(0);
     }
     private JTextField surnameField,firstnameField,middlenameField,ageField,monthField,dayField,yearField,

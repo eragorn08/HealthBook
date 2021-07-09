@@ -16,7 +16,7 @@ import java.sql.Statement;
 public class PatientInformation extends JFrame implements ActionListener {
     public RoundedPanel body_panel, vitalsigns;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop;
+            lop,bpulse;
     public JButton back_button;
     public JPanel panel;
     public int X = 0;
@@ -48,6 +48,7 @@ public class PatientInformation extends JFrame implements ActionListener {
                 bloodpressure = rs.getString("bloodpressure");
                 btp = rs.getString("bodytemp");
                 lop = rs.getString("levelofpain");
+                bpulse = rs.getString("pulserate");
             }}
         catch(Exception e){
             e.getCause();
@@ -114,16 +115,15 @@ public class PatientInformation extends JFrame implements ActionListener {
         panel.add(Box.createRigidArea((new Dimension(5,15))));
         vitalSigns();
         panel.add(Box.createRigidArea((new Dimension(5,20))));
-
-
     }
+
     public void vitalSigns(){
         // pwede mo ito i edit para may varibles na sila
         // ako na lang mag concatinate
         // VARIABLES FOR VITAL SIGNS//
         String bp = bloodpressure;
-        String temp = bt;
-        String pulse = "110/80" + " " + "bpm";
+        String temp = btp + " " + "°C";
+        String pulse = bpulse + " " + "bpm";
         String pain = lop;
         //////////////////////////////
         panel.add(vitalsigns = new RoundedPanel(50,new Color(0x4d5579)));
@@ -193,8 +193,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 4;
         vitalsigns.add(painLabel, c);
-
-
     }
 
     public void info() {
@@ -207,8 +205,8 @@ public class PatientInformation extends JFrame implements ActionListener {
         String birth = month + "/" + day + "/" + year;
         String bloodtype = bt;
         String age = ag;
-        String height = heigh;
-        String weight = weigh;
+        String height = heigh + " " + "CM";
+        String weight = weigh + " " + "KG";
         String no = SearchForm.value;
         String date = SearchForm.date;
         //////////////////////////////
