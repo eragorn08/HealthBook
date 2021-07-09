@@ -37,6 +37,7 @@ public class SearchForm extends JPanel implements ActionListener{
     public JComboBox<String> sort_by;
     public JLabel searchPatientTitle;
     public JButton view;
+    public static String value,date;
     public SearchForm(){
         setBackground(new Color(0x212C58));
         setLayout(new BorderLayout());
@@ -290,9 +291,6 @@ public class SearchForm extends JPanel implements ActionListener{
         c.gridy = 0;
         center.add(pane, c);
 
-
-
-
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.0;
         c.weighty = 0.0;
@@ -313,10 +311,11 @@ public class SearchForm extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e){
 
         if(e.getSource() == view){
+            int row = table.getSelectedRow();
+            value = table.getModel().getValueAt(row, 0).toString();
+            date = table.getModel().getValueAt(row,2).toString();
             table.clearSelection();
             new PatientInformation();
-
-
         }
     }
 }
