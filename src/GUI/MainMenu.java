@@ -142,7 +142,6 @@ public class MainMenu extends JFrame implements ActionListener{
         cardPanel.add("Home",new HomePage());
         cardPanel.add("add",new AddForm());
         cardPanel.add("search", new SearchForm());
-        cardPanel.add("info", new PatientInformation());
         cardPanel.setBounds(286,65,994,655);
         cl.show(cardPanel,"Home");
         add(cardPanel);

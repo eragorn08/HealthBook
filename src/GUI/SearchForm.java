@@ -1,6 +1,7 @@
 package GUI;
 
 import com.mysql.cj.protocol.Resultset;
+import jdk.jfr.Enabled;
 
 import javax.swing.*;
 
@@ -28,22 +29,18 @@ import java.util.Arrays;
 
 
 public class SearchForm extends JPanel implements ActionListener{
-    public final CardLayout cl1 = new CardLayout();
-    public String[] text;
+    public GridBagConstraints c = new GridBagConstraints();
     public DefaultTableModel model;
-    public JScrollPane sp = new JScrollPane();
-    public JPanel info = new JPanel();
-    public JPanel form = new JPanel();
     public JPanel center = new JPanel();
     public JPanel north = new JPanel();
-    public final JPanel south = new JPanel();
     public JTable table;
     public JComboBox<String> sort_by;
     public JLabel searchPatientTitle;
-    public JButton back, view;
+    public JButton view;
     public SearchForm(){
         setBackground(new Color(0x212C58));
-        setLayout(null);
+        setLayout(new BorderLayout());
+        setVisible(true);
         searchformtitle();
         searchform();
 
@@ -52,23 +49,19 @@ public class SearchForm extends JPanel implements ActionListener{
         searchPatientTitle = new JLabel("Search Patient");
         searchPatientTitle.setFont(new Font("Helvetica", Font.PLAIN, 40));
         searchPatientTitle.setForeground(Color.white);
-        searchPatientTitle.setBounds(22, 19, 275, 55);
-        add(searchPatientTitle);
+        searchPatientTitle.setBorder(new EmptyBorder(23,22,0,0));
+        //searchPatientTitle.setBounds(22, 19, 275, 55);
+        add(searchPatientTitle, BorderLayout.NORTH);
     }
 
     public void searchform(){
 
-        form.setLayout(new BorderLayout());
-        form.setBackground(new Color(0x212C58));
-        form.setBounds(0,76,994,578);
         north.setLayout(new FlowLayout(FlowLayout.LEFT));
         north.setBackground(new Color(0x212C58));
-        north.setBorder(new EmptyBorder(0,22,0,22));
-        form.setBorder(new EmptyBorder(8,0,0,0));
+        north.setBorder(new EmptyBorder(22,22,0,22));
         north.setVisible(true);
 
-        south.setLayout(cl1);
-        form.add(south, BorderLayout.CENTER);
+        add(center, BorderLayout.SOUTH);
 
 
 
@@ -148,25 +141,23 @@ public class SearchForm extends JPanel implements ActionListener{
             }
         });
 
-        center.setBorder(new EmptyBorder(24,22,24,22));
-        center.setLayout(new GridLayout(2,2,1,1));
+        center.setLayout(new GridBagLayout());
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+
+
         center.setBackground(new Color(0x212C58));
         center.setVisible(true);
         //center.setBorder(new EmptyBorder(8,22,0,22));
-        form.add(north, BorderLayout.NORTH);
+        add(north, BorderLayout.CENTER);
 
-        south.add("view",info);
-        south.add("searchform",center);
 
 
 
         createTable();
         String[] empty = {"","Name"};
         gettableData(empty);
-        cl1.show(south, "searchform");
 
-        form.setVisible(true);
-        add(form);
 
     }
 
@@ -263,8 +254,11 @@ public class SearchForm extends JPanel implements ActionListener{
         view = new JButton(new ImageIcon("view.png"));
         view.addActionListener(this);
 
-        if(table.getSelectionModel().isSelectionEmpty())
-            view.setVisible(false);
+        if(table.getSelectionModel().isSelectionEmpty()){
+            view.setEnabled(false);
+
+        }
+
 
         view.setContentAreaFilled(false);
         view.setFocusPainted(false);
@@ -275,7 +269,8 @@ public class SearchForm extends JPanel implements ActionListener{
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 table.clearSelection();
-                view.setVisible(false);
+                view.setEnabled(false);
+
             }
         });
 
@@ -283,58 +278,45 @@ public class SearchForm extends JPanel implements ActionListener{
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                view.setVisible(true);
+                view.setEnabled(true);
+
             }
         });
+        c.fill = GridBagConstraints.BOTH;
+        c.gridwidth = 3;
+        c.gridheight = 3;
+        c.insets = new Insets(0, 25, 0, 25);
+        c.gridx = 0;
+        c.gridy = 0;
+        center.add(pane, c);
 
-        center.add(pane);
-        center.add(view, 1,1);
+
+
+
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 0.0;
+        c.weighty = 0.0;
+        c.insets = new Insets(10, 800, 15, 35);
+        //c.anchor = GridBagConstraints.PAGE_END;
+        c.gridwidth = 2;
+        c.gridx = 1;
+        c.gridy = 3;
+        view.setEnabled(false);
+
+        center.add(view,c);
     }
 
 
-
-    public void patientInfo(){
-        cl1.show(south, "view");
-        searchPatientTitle.setText("Patient Details");
-        back = new JButton(new ImageIcon("back.png"));
-        back.setBounds(24, 16, 55, 63);
-        back.setBorder(BorderFactory.createEmptyBorder());
-        back.addActionListener(this);
-        back.setFocusPainted(false);
-        back.setContentAreaFilled(false);
-        add(back);
-
-        //container
-        info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
-        info.setBackground(new Color(0x212C58));
-        for(int i=0;i<100;i++){
-            info.add(new JButton("JButton + "+i));
-        }
-        sp = new JScrollPane(info);
-        sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        sp.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        sp.setBorder(BorderFactory.createEmptyBorder());
-        form.add(sp, BorderLayout.CENTER);
-
-
-    }
 
 
     @Override
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == back) {
-            cl1.show(south, "searchform");
-            form.add(center, BorderLayout.CENTER);
-            back.setVisible(false);
-            searchPatientTitle.setText("Search Patient");
-            searchPatientTitle.setBounds(22, 19, 275, 55);
-            north.setVisible(true);
-
-        }
 
         if(e.getSource() == view){
             table.clearSelection();
-            patientInfo();
+            new PatientInformation();
+
+
         }
     }
 }
