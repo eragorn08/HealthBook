@@ -190,6 +190,7 @@ public class AdminSearch extends JPanel implements ActionListener{
             ResultSet queryResult = statement.executeQuery(patientinfo);
 
             while(queryResult.next()){
+                String id = queryResult.getString("idaccounts");
                 String firstname = queryResult.getString("GivenName");
                 String middlename = queryResult.getString("Middlename");
                 String surname = queryResult.getString("LastName");
@@ -197,7 +198,7 @@ public class AdminSearch extends JPanel implements ActionListener{
                 String position = queryResult.getString("Position");
                 String dept = queryResult.getString("Department");
 
-                model.addRow(new Object[]{name,position,dept});
+                model.addRow(new Object[]{id,name,position,dept});
             }
 
 
@@ -219,6 +220,7 @@ public class AdminSearch extends JPanel implements ActionListener{
         table = new JTable(new DefaultTableModel());
         table.clearSelection();
         model = (DefaultTableModel) table.getModel();
+        model.addColumn("ID");
         model.addColumn("Name");
         model.addColumn("Role");
         model.addColumn("Department");
@@ -251,12 +253,14 @@ public class AdminSearch extends JPanel implements ActionListener{
         table.getTableHeader().setFont(new Font("Helvetica", Font.PLAIN, 20));
         table.getTableHeader().setBackground(new Color(0x4b5576));
         table.getTableHeader().setForeground(Color.white);
-        table.getColumnModel().getColumn(0).setPreferredWidth(300);
-        //table.getColumnModel().getColumn(1).setPreferredWidth(250);
-        //table.getColumnModel().getColumn(2).setPreferredWidth(230);
+        table.getColumnModel().getColumn(0).setPreferredWidth(30);
+        table.getColumnModel().getColumn(1).setPreferredWidth(350);
+        table.getColumnModel().getColumn(2).setPreferredWidth(200);
+        table.getColumnModel().getColumn(3).setPreferredWidth(200);
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
 
+        table.getColumn("ID").setCellRenderer(dtcr);
         table.getColumn("Name").setCellRenderer(dtcr);
         table.getColumn("Role").setCellRenderer(dtcr);
         table.getColumn("Department").setCellRenderer(dtcr);
