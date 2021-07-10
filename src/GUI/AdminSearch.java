@@ -190,7 +190,7 @@ public class AdminSearch extends JPanel implements ActionListener{
             ResultSet queryResult = statement.executeQuery(patientinfo);
 
             while(queryResult.next()){
-                String id = queryResult.getString("idaccounts");
+                int id = queryResult.getInt("idaccounts");
                 String firstname = queryResult.getString("GivenName");
                 String middlename = queryResult.getString("Middlename");
                 String surname = queryResult.getString("LastName");
@@ -329,7 +329,6 @@ public class AdminSearch extends JPanel implements ActionListener{
         if(e.getSource() == view){
             int row = table.getSelectedRow();
             value = table.getModel().getValueAt(row, 0).toString();
-            date = table.getModel().getValueAt(row,2).toString();
             table.clearSelection();
             new UserDetails();
         }

@@ -17,7 +17,8 @@ public class UserDetails extends JFrame implements ActionListener {
     public JPanel panel = new JPanel();
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel;
-    public String lastname,firstname,midname;
+    public String lastname,firstname,midname,dep,cod,id;
+    public int ida;
     public JButton back_button;
     public JTextField surnameTextField, givenNameTextField, middleNameTextField, deptTextField, codeTextField, IDTextField;
     public int X = 0;
@@ -29,20 +30,32 @@ public class UserDetails extends JFrame implements ActionListener {
 
         System.out.println(SearchForm.value);
 
-        String Identify = "SELECT * FROM accounts WHERE patientID = '" +SearchForm.value+ "'";
+        String Identify = "SELECT * FROM accounts WHERE idaccounts = '" +SearchForm.value+ "'";
         try{
             Statement st = connect.createStatement();
             ResultSet rs = st.executeQuery(Identify);
             if(rs.next()) {
-                lastname = rs.getString("surname");
-                firstname = rs.getString("givenname");
-                midname = rs.getString("middlename");
-
+                lastname = rs.getString("LastName");
+                firstname = rs.getString("GivenName");
+                midname = rs.getString("MiddleName");
+                dep = rs.getString("Department");
+                cod = rs.getString("DepartmentCode");
+                ida = rs.getInt("idaccounts");
+                id = Integer.toString(ida);
             }}
         catch(Exception e){
             e.getCause();
             e.printStackTrace();
         }
+    }
+
+    public void TransData(){
+        surnameTextField.setText(lastname);
+        givenNameTextField.setText(firstname);
+        middleNameTextField.setText(midname);
+        deptTextField.setText(dep);
+        codeTextField.setText(cod);
+        IDTextField.setText(id);
     }
 
     public UserDetails() {
