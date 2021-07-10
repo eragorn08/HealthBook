@@ -31,7 +31,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         System.out.println(SearchForm.value);
 
-        String Identify = "SELECT * FROM patientinfo WHERE patientID = '" +SearchForm.value+ "'";
+        String Identify = "SELECT * FROM patientinfo WHERE patientID = '" +SearchFormDoctor.value+ "'";
         try{
             Statement st = connect.createStatement();
             ResultSet rs = st.executeQuery(Identify);
@@ -235,8 +235,8 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         String age = ag;
         String height = heigh;
         String weight = weigh;
-        String no = SearchForm.value;
-        String date = SearchForm.date;
+        String no = SearchFormDoctor.value;
+        String date = SearchFormDoctor.date;
         //////////////////////////////
         panel.add(body_panel = new RoundedPanel(50,new Color(0x4d5579)));
         body_panel.setOpaque(false);
