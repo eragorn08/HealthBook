@@ -172,7 +172,7 @@ public class LoginForm extends JFrame implements ActionListener{
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT count(1) FROM accounts WHERE Department = '" +DeptCode.getText()+ "' AND username = '" +EmpID.getText()+ "'";
+        String verifyLogin = "SELECT count(1) FROM accounts WHERE DepartmentCode = '" +DeptCode.getText()+ "' AND username = '" +EmpID.getText()+ "'";
 
         try {
             Statement statement = connectDB.createStatement();

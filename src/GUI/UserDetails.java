@@ -16,9 +16,8 @@ import java.sql.Statement;
 public class UserDetails extends JFrame implements ActionListener {
     public JPanel panel = new JPanel();
     public JScrollPane scrollPane = new JScrollPane(panel);
-    public RoundedPanel body_panel, vitalsigns;
-    public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop;
+    public RoundedPanel body_panel;
+    public String lastname,firstname,midname;
     public JButton back_button;
     public JTextField surnameTextField, givenNameTextField, middleNameTextField, deptTextField, codeTextField, IDTextField;
     public int X = 0;
@@ -30,7 +29,7 @@ public class UserDetails extends JFrame implements ActionListener {
 
         System.out.println(SearchForm.value);
 
-        String Identify = "SELECT * FROM patientinfo WHERE patientID = '" +SearchForm.value+ "'";
+        String Identify = "SELECT * FROM accounts WHERE patientID = '" +SearchForm.value+ "'";
         try{
             Statement st = connect.createStatement();
             ResultSet rs = st.executeQuery(Identify);
@@ -38,18 +37,7 @@ public class UserDetails extends JFrame implements ActionListener {
                 lastname = rs.getString("surname");
                 firstname = rs.getString("givenname");
                 midname = rs.getString("middlename");
-                gend = rs.getString("gender");
-                ag = rs.getString("age");
-                addrress = rs.getString("address");
-                day = rs.getString("day");
-                month = rs.getString("month");
-                year = rs.getString("year");
-                weigh = rs.getString("weight");
-                heigh = rs.getString("height");
-                bt = rs.getString("bloodtype");
-                bloodpressure = rs.getString("bloodpressure");
-                btp = rs.getString("bodytemp");
-                lop = rs.getString("levelofpain");
+
             }}
         catch(Exception e){
             e.getCause();
@@ -146,7 +134,7 @@ public class UserDetails extends JFrame implements ActionListener {
     public void disableAllTextField(){
         surnameTextField.setEditable(false);
         givenNameTextField.setEditable(false);
-        middleNameField.setEditable(false);
+        middleNameTextField.setEditable(false);
         deptTextField.setEditable(false);
         codeTextField.setEditable(false);
         IDTextField.setEditable(false);

@@ -39,6 +39,7 @@ public class AdminSearch extends JPanel implements ActionListener{
     public JLabel searchPatientTitle;
     public JButton view;
     public static String value,date;
+
     public AdminSearch(){
         setBackground(new Color(0x212C58));
         setLayout(new BorderLayout());
@@ -47,6 +48,7 @@ public class AdminSearch extends JPanel implements ActionListener{
         searchform();
 
     }
+
     public void searchtitle(){
         searchPatientTitle = new JLabel("Search User");
         searchPatientTitle.setFont(new Font("Helvetica", Font.PLAIN, 40));
@@ -63,9 +65,6 @@ public class AdminSearch extends JPanel implements ActionListener{
         north.setVisible(true);
 
         add(center, BorderLayout.SOUTH);
-
-
-
 
         //search label
         JLabel search_label = new JLabel("Search Users:");
@@ -179,28 +178,28 @@ public class AdminSearch extends JPanel implements ActionListener{
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        if (text[0].equals(""))
-            patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo";
-        else if (text[1].equals("Name"))
-            patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo WHERE surname LIKE '" +text[0]+ "%'";
-        else
-            patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo WHERE datetime LIKE '" +text[0]+ "%'";
+//        if (text[0].equals(""))
+            patientinfo = "SELECT * FROM accounts WHERE position != 'Admin'";
+//        else if (text[1].equals("Name"))
+//            patientinfo = "SELECT LastName, GivenName, MiddleName, Position, Department FROM accounts WHERE LastName LIKE '" +text[0]+ "%'";
+//        else
+//            patientinfo = "SELECT LastName, GivenName, MiddleName, Position, Department FROM accounts WHERE datetime LIKE '" +text[0]+ "%'";
         try {
             model.setRowCount(0);
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(patientinfo);
 
-
             while(queryResult.next()){
-                int id = queryResult.getInt("patientID");
-                String firstname = queryResult.getString("givenname");
-                String middlename = queryResult.getString("middlename");
-                String surname = queryResult.getString("surname");
+                String firstname = queryResult.getString("GivenName");
+                String middlename = queryResult.getString("Middlename");
+                String surname = queryResult.getString("LastName");
                 String name = surname + ", " + firstname + " " + middlename;
-                Date date = queryResult.getDate("datetime");
+                String position = queryResult.getString("Position");
+                String dept = queryResult.getString("Department");
 
-                model.addRow(new Object[]{id,name,date});
+                model.addRow(new Object[]{name,position,dept});
             }
+
 
         }catch (Exception e){
             e.getCause();
