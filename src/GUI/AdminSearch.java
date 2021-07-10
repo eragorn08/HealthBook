@@ -253,10 +253,10 @@ public class AdminSearch extends JPanel implements ActionListener{
         table.getTableHeader().setFont(new Font("Helvetica", Font.PLAIN, 20));
         table.getTableHeader().setBackground(new Color(0x4b5576));
         table.getTableHeader().setForeground(Color.white);
-        table.getColumnModel().getColumn(0).setPreferredWidth(30);
-        table.getColumnModel().getColumn(1).setPreferredWidth(350);
-        table.getColumnModel().getColumn(2).setPreferredWidth(200);
-        table.getColumnModel().getColumn(3).setPreferredWidth(200);
+        table.getColumnModel().getColumn(0).setPreferredWidth(20);
+        table.getColumnModel().getColumn(1).setPreferredWidth(220);
+        //table.getColumnModel().getColumn(2).setPreferredWidth(180);
+        //table.getColumnModel().getColumn(3).setPreferredWidth(200);
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
 

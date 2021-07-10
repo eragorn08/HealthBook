@@ -90,6 +90,7 @@ public class UserDetails extends JFrame implements ActionListener {
 
         GetData();
 
+
         back_button = new JButton(new ImageIcon("back.png"));
         back_button.setContentAreaFilled(false);
         back_button.setVisible(true);
@@ -140,6 +141,7 @@ public class UserDetails extends JFrame implements ActionListener {
         scrollPane.setBounds(0, 169, 1280, 551);
 
         add(scrollPane);
+        TransData();
 
 
     }

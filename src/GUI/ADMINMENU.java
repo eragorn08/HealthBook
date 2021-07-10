@@ -151,7 +151,7 @@ public class ADMINMENU extends JFrame implements ActionListener{
     public void setDisplayPanel(){
         cardPanel.setLayout(cl);
         cardPanel.add("Home",new AdminSearch());
-        cardPanel.add("add",new AddForm());
+        cardPanel.add("add",new AddUser());
         cardPanel.add("search",new SearchForm());
         cardPanel.setBounds(286,65,994,655);
         cl.show(cardPanel,"Home");
