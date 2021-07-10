@@ -83,16 +83,28 @@ public class ADMINMENU extends JFrame implements ActionListener{
         Spacer.setBackground(new Color(0x212C58));
         NavPanel.setLayout(null);
         NavPanel.setBackground(new Color(0x283469));
-        NavPanel.add(searchUser = new JButton(new ImageIcon("home.png")));
-        NavPanel.add(addUser = new JButton(new ImageIcon("add.png")));
-        NavPanel.add(ChangePass = new JButton(new ImageIcon("search.png")));
+
+        NavPanel.add(usersLabel = new JLabel("USERS"));
+        usersLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        usersLabel.setForeground(Color.white);
+        usersLabel.setBounds(18, 17, 72, 33);
+
+        NavPanel.add(adminLabel = new JLabel("ADMIN"));
+        adminLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        adminLabel.setForeground(Color.white);
+        adminLabel.setBounds(18, 180, 72, 33);
+
+
+        NavPanel.add(searchUser = new JButton(new ImageIcon("search.png")));
+        NavPanel.add(addUser = new JButton(new ImageIcon("adduser.png")));
+        NavPanel.add(ChangePass = new JButton(new ImageIcon("padlock.png")));
 
         searchUser.setText("Search User");
         searchUser.setIconTextGap(25);
         searchUser.setHorizontalAlignment(SwingConstants.LEFT);
 
         searchUser.setBorder(BorderFactory.createEmptyBorder(0, 31, 0, 0));
-        addUser.setBorder(BorderFactory.createEmptyBorder(0, 21, 0, 0));
+        addUser.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
         ChangePass.setBorder(BorderFactory.createEmptyBorder(0, 29, 0, 0));
 
         addUser.setText("Add User");
@@ -123,9 +135,9 @@ public class ADMINMENU extends JFrame implements ActionListener{
 
         ChangePass.setFocusPainted(false);
 
-        searchUser.setBounds(0,0, 286,56);
-        addUser.setBounds(0, 57, 286, 56);
-        ChangePass.setBounds(0, 114, 286, 56);
+        searchUser.setBounds(0,57, 286,56);
+        addUser.setBounds(0, 113, 286, 56);
+        ChangePass.setBounds(0, 225, 286, 56);
 
         Spacer.setBounds(0, 65, 286, 24);
         Spacer.setVisible(true);
@@ -138,7 +150,7 @@ public class ADMINMENU extends JFrame implements ActionListener{
 
     public void setDisplayPanel(){
         cardPanel.setLayout(cl);
-        cardPanel.add("Home",new HomePageADMIN());
+        cardPanel.add("Home",new AdminSearch());
         cardPanel.add("add",new AddForm());
         cardPanel.add("search",new SearchForm());
         cardPanel.setBounds(286,65,994,655);
@@ -187,5 +199,8 @@ public class ADMINMENU extends JFrame implements ActionListener{
     private final CardLayout cl = new CardLayout();
     public JButton addUser, ChangePass, searchUser, log_out, power;
     private final JPanel cardPanel = new JPanel();
+    public JLabel usersLabel, adminLabel;
     //public JFrame frame;
 }
+
+
