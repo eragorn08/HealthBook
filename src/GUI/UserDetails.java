@@ -17,7 +17,7 @@ public class UserDetails extends JFrame implements ActionListener {
     public JPanel panel = new JPanel();
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel;
-    public String lastname,firstname,midname,dep,cod,id;
+    public String lastname,firstname,midname,dep,cod,id,pos;
     public int ida;
     public JButton back_button;
     public JTextField surnameTextField, givenNameTextField, middleNameTextField, deptTextField, codeTextField, IDTextField;
@@ -28,9 +28,9 @@ public class UserDetails extends JFrame implements ActionListener {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connect = connectNow.getConnection();
 
-        System.out.println(SearchForm.value);
+        System.out.println(AdminSearch.value);
 
-        String Identify = "SELECT * FROM accounts WHERE idaccounts = '" +SearchForm.value+ "'";
+        String Identify = "SELECT * FROM accounts WHERE idaccounts = '" +AdminSearch.value+ "'";
         try{
             Statement st = connect.createStatement();
             ResultSet rs = st.executeQuery(Identify);
@@ -40,6 +40,7 @@ public class UserDetails extends JFrame implements ActionListener {
                 midname = rs.getString("MiddleName");
                 dep = rs.getString("Department");
                 cod = rs.getString("DepartmentCode");
+                pos = rs.getString("Position");
                 ida = rs.getInt("idaccounts");
                 id = Integer.toString(ida);
             }}
@@ -47,15 +48,6 @@ public class UserDetails extends JFrame implements ActionListener {
             e.getCause();
             e.printStackTrace();
         }
-    }
-
-    public void TransData(){
-        surnameTextField.setText(lastname);
-        givenNameTextField.setText(firstname);
-        middleNameTextField.setText(midname);
-        deptTextField.setText(dep);
-        codeTextField.setText(cod);
-        IDTextField.setText(id);
     }
 
     public UserDetails() {
@@ -87,8 +79,6 @@ public class UserDetails extends JFrame implements ActionListener {
                 setLocation(evt.getXOnScreen() - X, evt.getYOnScreen() - Y);
             }
         });
-
-        GetData();
 
         back_button = new JButton(new ImageIcon("back.png"));
         back_button.setContentAreaFilled(false);
@@ -128,6 +118,7 @@ public class UserDetails extends JFrame implements ActionListener {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(1280,643));
 
+        GetData();
         info();
         panel.add(Box.createRigidArea((new Dimension(5,15))));
 
@@ -155,6 +146,10 @@ public class UserDetails extends JFrame implements ActionListener {
 
 
     public void info() {
+
+
+
+
         panel.add(body_panel = new RoundedPanel(50,new Color(0x4d5579)));
         body_panel.setOpaque(false);
         body_panel.setBorder(BorderFactory.createEmptyBorder());
@@ -298,7 +293,6 @@ public class UserDetails extends JFrame implements ActionListener {
         c.gridy = 3;
         body_panel.add(nurseRadio, c);
 
-
         //RADIO BUTTON GROUP
         ButtonGroup Roles = new ButtonGroup();
         Roles.add(doctorRadio);
@@ -340,7 +334,19 @@ public class UserDetails extends JFrame implements ActionListener {
         c.gridy = 5;
         body_panel.add(IDTextField, c);
 
-
+        //Transfer Data
+        surnameTextField.setText(lastname);
+        givenNameTextField.setText(firstname);
+        middleNameTextField.setText(midname);
+        deptTextField.setText(dep);
+        codeTextField.setText(cod);
+        IDTextField.setText(id);
+        if (pos == "Doctor"){
+            doctorRadio.setSelected(true);
+        }
+        else if(pos == "Nurse"){
+            nurseRadio.setSelected(true);
+        }
     }
 
     @Override
