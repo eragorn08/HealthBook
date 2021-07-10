@@ -51,7 +51,8 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
         });
         Head.setBackground(new Color(0x283469));
         Head.setBounds(0, 0, 1280, 65);
-        Head.setLayout(new GridLayout(1,5));
+        Head.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
         Head.setVisible(true);
 
         icon = new JLabel(new ImageIcon("logo_icon.png"));
@@ -70,10 +71,34 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
         power.addActionListener(this);
         log_out.addActionListener(this);
 
-        Head.add(icon);
-        Head.add(text);
-        Head.add(power);
-        Head.add(log_out);
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 0.0;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.insets = new Insets(0, 15, 0, 0);
+        Head.add(icon,c);
+        c.insets = new Insets(0, 11, 0, 0);
+        c.gridx = 1;
+        c.gridy = 0;
+        Head.add(text,c);
+        JLabel Empty = new JLabel("WAAAAAAAH");
+        Empty.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        Empty.setForeground(new Color(0x283469));
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 1.0;
+        c.insets = new Insets(20, 33, 2, 0);
+        c.gridx = 2;
+        c.gridy = 0;
+        Head.add(Empty, c);
+        c.weightx = 0.0;
+        c.insets = new Insets(0, 0, 0, 0);
+        c.gridx = 3;
+        c.gridy = 0;
+        Head.add(power,c);
+        c.insets = new Insets(0, 16, 0, 30);
+        c.gridx = 4;
+        c.gridy = 0;
+        Head.add(log_out,c);
         add(Head);
     }
 

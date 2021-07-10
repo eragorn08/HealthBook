@@ -21,6 +21,7 @@ public class UserDetails extends JFrame implements ActionListener {
     public int ida;
     public JButton back_button;
     public JTextField surnameTextField, givenNameTextField, middleNameTextField, deptTextField, codeTextField, IDTextField;
+    public JRadioButton doctorRadio, nurseRadio;
     public int X = 0;
     public int Y = 0;
 
@@ -275,28 +276,7 @@ public class UserDetails extends JFrame implements ActionListener {
         c.gridy = 3;
         body_panel.add(roleLabel, c);
 
-        JRadioButton doctorRadio = new JRadioButton("Doctor");
-        doctorRadio.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        doctorRadio.setBackground(new Color(0x4d5579));
-        doctorRadio.setForeground(Color.white);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 1;
-        c.gridy = 3;
-        body_panel.add(doctorRadio, c);
 
-        JRadioButton nurseRadio = new JRadioButton("Nurse");
-        nurseRadio.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        nurseRadio.setBackground(new Color(0x4d5579));
-        nurseRadio.setForeground(Color.white);
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 2;
-        c.gridy = 3;
-        body_panel.add(nurseRadio, c);
-
-        //RADIO BUTTON GROUP
-        ButtonGroup Roles = new ButtonGroup();
-        Roles.add(doctorRadio);
-        Roles.add(nurseRadio);
 
 
         //Code:
@@ -341,12 +321,36 @@ public class UserDetails extends JFrame implements ActionListener {
         deptTextField.setText(dep);
         codeTextField.setText(cod);
         IDTextField.setText(id);
-        if (pos == "Doctor"){
-            doctorRadio.setSelected(true);
+        if (pos.equals("Doctor")){
+            doctorRadio = new JRadioButton("Doctor",true);
+            nurseRadio = new JRadioButton("Nurse",false);
         }
-        else if(pos == "Nurse"){
-            nurseRadio.setSelected(true);
+        else if(pos.equals("Nurse")){
+            doctorRadio = new JRadioButton("Doctor",false);
+            nurseRadio = new JRadioButton("Nurse",true);
         }
+
+        doctorRadio.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        doctorRadio.setBackground(new Color(0x4d5579));
+        doctorRadio.setForeground(Color.white);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 3;
+        body_panel.add(doctorRadio, c);
+
+
+        nurseRadio.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        nurseRadio.setBackground(new Color(0x4d5579));
+        nurseRadio.setForeground(Color.white);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 2;
+        c.gridy = 3;
+        body_panel.add(nurseRadio, c);
+
+        //RADIO BUTTON GROUP
+        ButtonGroup Roles = new ButtonGroup();
+        Roles.add(doctorRadio);
+        Roles.add(nurseRadio);
     }
 
     @Override

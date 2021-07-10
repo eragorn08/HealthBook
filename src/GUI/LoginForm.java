@@ -2,12 +2,9 @@ package GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +29,9 @@ public class LoginForm extends JFrame implements ActionListener{
         SetDisplayPanel();
         SetDisplayContainer();
 
+        setUndecorated(true);
         setVisible(true);
+        getContentPane().requestFocusInWindow();
         setSize(1280, 720);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -58,83 +57,75 @@ public class LoginForm extends JFrame implements ActionListener{
 
         //Login
         DisplayPanel.add(DisplayTitle = new JLabel("SIGN IN"));
-
         DisplayTitle.setBounds(174,81,480,50);
-
         DisplayTitle.setFont(new Font("Bebas Neue",Font.PLAIN,45));
 
+
+
         //Text Fields
-        DisplayPanel.add(DeptCode = new JTextField());
-
-        DeptCode.setBounds(110,200,250,40);
-
+        DeptCode = new JTextField("Dept Code");
+        DeptCode.setBounds(59,177,330,40);
         DeptCode.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
-
+        DeptCode.setFont(new Font("Roboto", Font.PLAIN, 22));
         DeptCode.setOpaque(false);
-
-
-        DeptCode.addFocusListener(new FocusAdapter() {
+        DeptCode.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(DeptCode.getText().trim().equals("Department Code")) {
+                if (DeptCode.getText().equals("Dept Code")) {
                     DeptCode.setText("");
+                    DeptCode.setForeground(Color.BLACK);
                 }
-
-                DeptCode.setForeground(Color.BLACK);
             }
             @Override
             public void focusLost(FocusEvent e) {
-                if(DeptCode.getText().trim().equals("")) {
-                    DeptCode.setText("Department Code");
+                if (DeptCode.getText().isEmpty()) {
+                    DeptCode.setForeground(Color.BLACK);
+                    DeptCode.setText("Dept Code");
                 }
-
-                DeptCode.setForeground(Color.LIGHT_GRAY);
             }
         });
 
-        DisplayPanel.add(EmpID = new JTextField());
+
+        EmpID = new JTextField("Employee ID");
         EmpID.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
-
-
-        EmpID.setBounds(110,260,250,40);
-
+        EmpID.setBounds(59,283,330,40);
+        EmpID.setFont(new Font("Roboto", Font.PLAIN, 22));
         EmpID.setOpaque(false);
-        EmpID.addFocusListener(new FocusAdapter() {
+        EmpID.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(EmpID.getText().trim().equals("Employee ID")) {
+                if (EmpID.getText().equals("Employee ID")) {
                     EmpID.setText("");
+                    EmpID.setForeground(Color.BLACK);
                 }
-
-                EmpID.setForeground(Color.BLACK);
             }
             @Override
             public void focusLost(FocusEvent e) {
-                if(EmpID.getText().trim().equals("")) {
+                if (EmpID.getText().isEmpty()) {
+                    EmpID.setForeground(Color.BLACK);
                     EmpID.setText("Employee ID");
                 }
-
-                EmpID.setForeground(Color.LIGHT_GRAY);
             }
         });
 
+
         //Submit Button
-        DisplayPanel.add(Login = new JButton("Sign In"));
+        DisplayPanel.add(Login = new JButton(new ImageIcon("signin.png")));
 
-        Login.setBounds(140,380,200,60);
-
+        Login.setBounds(59,431,330,53);
+        Login.setBorder(BorderFactory.createEmptyBorder());
+        Login.setFocusPainted(false);
         Login.setFont(new Font("Arial",Font.PLAIN,40));
+
 
         Login.addActionListener(this);
 
-//        Login.setOpaque(false);
-//        Login.setFocusPainted(false);
-//        Login.setBorderPainted(false);
-//        Login.setContentAreaFilled(false);
-//        Login.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+
 
         DisplayPanel.setBounds(416,54,448,510);
         DisplayPanel.setVisible(true);
+        DisplayPanel.add(DeptCode);
+        DisplayPanel.add(EmpID);
         getContentPane().add(DisplayPanel);
     }
 
@@ -144,6 +135,17 @@ public class LoginForm extends JFrame implements ActionListener{
         DisplayContainer.setBackground(new Color(0x283469));
 
         DisplayContainer.setBounds(0,0,320, 180);
+
+
+
+        //POWER_OFF
+        power = new JButton(new ImageIcon("power_button.png"));
+        power.setFocusPainted(false);
+        power.setBackground(new Color(0x283469));
+        power.setBorder(BorderFactory.createEmptyBorder());
+        power.setBounds(1227,21,25,27);
+        power.addActionListener(this);
+        DisplayContainer.add(power);
         getContentPane().add(DisplayContainer);
     }
 
@@ -151,6 +153,9 @@ public class LoginForm extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == Login) {
             validateLogin();
+        }
+        if (e.getSource() == power){
+            System.exit(0);
         }
     }
 
@@ -181,17 +186,19 @@ public class LoginForm extends JFrame implements ActionListener{
             while(queryResult.next()){
                 if (queryResult.getInt(1) == 1) {
                     GetPosition();
-                    if (position.equals("Doctor")){
-                        setVisible(false);
-                        new MainMenuDoctor();
-                    }
-                    else if (position.equals("Nurse")) {
-                        setVisible(false);
-                        new MainMenu();
-                    }
-                    else if (position.equals("Admin")){
-                        setVisible(false);
-                        new ADMINMENU();
+                    switch (position) {
+                        case "Doctor" -> {
+                            setVisible(false);
+                            new MainMenuDoctor();
+                        }
+                        case "Nurse" -> {
+                            setVisible(false);
+                            new MainMenu();
+                        }
+                        case "Admin" -> {
+                            setVisible(false);
+                            new ADMINMENU();
+                        }
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Wrong Department Code or Username");
@@ -208,7 +215,7 @@ public class LoginForm extends JFrame implements ActionListener{
     public JTextField DeptCode;
     public static JTextField EmpID;
     public JLabel DisplayTitle;
-    public JButton Login;
+    public JButton Login,power;
     public String position;
-    public BufferedImage home_button, logo_icon, logo_text, power_button, logout, add_button, search_button;
 }
+

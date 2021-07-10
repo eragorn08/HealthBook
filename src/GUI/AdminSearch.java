@@ -67,7 +67,7 @@ public class AdminSearch extends JPanel implements ActionListener{
         add(center, BorderLayout.SOUTH);
 
         //search label
-        JLabel search_label = new JLabel("Search Users:");
+        JLabel search_label = new JLabel("Search Name:");
         search_label.setFont(new Font("Helvetica", Font.PLAIN, 20));
         search_label.setForeground(Color.WHITE);
         search_label.setBorder(BorderFactory.createEmptyBorder(0,0,0,8));
@@ -122,7 +122,7 @@ public class AdminSearch extends JPanel implements ActionListener{
                 "Opthalmology",
                 "Orthopaedics",
                 "Otolarngology",
-                "Urology", };
+                "Urology"};
         sort_by = new JComboBox<>(sortBy);
         sort_by.setOpaque(false);
         sort_by.setUI(new MyComboBoxUI());
