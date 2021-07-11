@@ -193,10 +193,10 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
             EmpID = IDField.getText();
             Verification = verifyField.getText();
             if(doctorRadio.isSelected()){
-                Position = "Male";
+                Position = "Doctor";
             }
             if(nurseRadio.isSelected()){
-                Position = "Female";
+                Position = "Nurse";
             }
             department = (String)dept.getSelectedItem();
 
