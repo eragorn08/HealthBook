@@ -14,12 +14,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class UserDetails extends JFrame implements ActionListener {
+    public GridBagConstraints c;
+    public ButtonGroup Roles;
     public JPanel panel = new JPanel();
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel;
     public String lastname,firstname,midname,dep,cod,id,pos;
+    public JComboBox<String> depts;
     public int ida;
-    public JButton back_button;
+    public JButton back_button, edit, confirm;
     public JTextField surnameTextField, givenNameTextField, middleNameTextField, deptTextField, codeTextField, IDTextField;
     public JRadioButton doctorRadio, nurseRadio;
     public int X = 0;
@@ -97,13 +100,14 @@ public class UserDetails extends JFrame implements ActionListener {
         patient_details.setBounds(510, 30, 260, 54);
         title_panel.add(patient_details);
 
-        JButton edit = new JButton(new ImageIcon("edit.png"));
+        edit = new JButton(new ImageIcon("edit.png"));
         edit.setContentAreaFilled(false);
         edit.setFocusPainted(false);
         edit.setBorder(BorderFactory.createEmptyBorder());
         edit.addActionListener(this);
         edit.setBounds(1037,101,147,48);
         title_panel.add(edit);
+        edit.addActionListener(this);
 
 
         //add(panel);
@@ -137,12 +141,27 @@ public class UserDetails extends JFrame implements ActionListener {
     }
 
     public void disableAllTextField(){
+        confirm.setVisible(false);
+        nurseRadio.setEnabled(false);
+        doctorRadio.setEnabled(false);
         surnameTextField.setEditable(false);
         givenNameTextField.setEditable(false);
         middleNameTextField.setEditable(false);
-        deptTextField.setEditable(false);
         codeTextField.setEditable(false);
         IDTextField.setEditable(false);
+        depts.setEnabled(false);
+    }
+
+    public void setAllEditable(){
+        edit.setVisible(false);
+        confirm.setVisible(true);
+        nurseRadio.setEnabled(true);
+        doctorRadio.setEnabled(true);
+        surnameTextField.setEditable(true);
+        givenNameTextField.setEditable(true);
+        middleNameTextField.setEditable(true);
+        depts.setEnabled(true);
+        IDTextField.setEditable(true);
     }
 
 
@@ -152,7 +171,7 @@ public class UserDetails extends JFrame implements ActionListener {
         body_panel.setOpaque(false);
         body_panel.setBorder(BorderFactory.createEmptyBorder());
         body_panel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        c = new GridBagConstraints();
 
         c.weightx = 1.0;
         c.weighty = 0.0;
@@ -253,13 +272,27 @@ public class UserDetails extends JFrame implements ActionListener {
         c.gridy = 2;
         body_panel.add(deptLabel, c);
 
-        deptTextField = new JTextField(10);
-        deptTextField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        String[] department_list = {
+                "Cardiology",
+                "Gastroenterology",
+                "Gynecology",
+                "Nephrology",
+                "Neurology",
+                "Oncology",
+                "Ophthalmology",
+                "Orthopaedics",
+                "Otolaryngology",
+                "Urology"};
+
+        depts = new JComboBox<>(department_list);
+        depts.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        depts.setSelectedItem(dep);
+
         c.fill = GridBagConstraints.HORIZONTAL;
-        //c.insets = new Insets(15, 33, 2, 0);
         c.gridx = 1;
         c.gridy = 2;
-        body_panel.add(deptTextField, c);
+        body_panel.add(depts, c);
+
 
 
 
@@ -311,11 +344,21 @@ public class UserDetails extends JFrame implements ActionListener {
         c.gridy = 5;
         body_panel.add(IDTextField, c);
 
+
+        confirm = new JButton(new ImageIcon("confirm_logo.png"));
+        confirm.setFocusPainted(false);
+        confirm.setContentAreaFilled(false);
+        confirm.addActionListener(this);
+        //confirm.setBorder(BorderFactory.createEmptyBorder());
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 4;
+        c.gridy = 5;
+        body_panel.add(confirm, c);
+
         //Transfer Data
         surnameTextField.setText(lastname);
         givenNameTextField.setText(firstname);
         middleNameTextField.setText(midname);
-        deptTextField.setText(dep);
         codeTextField.setText(cod);
         IDTextField.setText(id);
         if (pos.equals("Doctor")){
@@ -345,15 +388,23 @@ public class UserDetails extends JFrame implements ActionListener {
         body_panel.add(nurseRadio, c);
 
         //RADIO BUTTON GROUP
-        ButtonGroup Roles = new ButtonGroup();
+        Roles = new ButtonGroup();
         Roles.add(doctorRadio);
         Roles.add(nurseRadio);
+
+
+
+        disableAllTextField();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == back_button) {
             setVisible(false);
+        }
+
+        if(e.getSource() == edit){
+            setAllEditable();
         }
     }
 
