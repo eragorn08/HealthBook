@@ -3,6 +3,7 @@ package GUI;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +20,9 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel, vitalsigns,symptoms_panel, diagnosis_panel, medication_panel;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop;
-    public JButton back_button;
+            lop, symptoms_info,diagnosis_info,medication_info;
+    public JButton back_button, edit, confirm;
+    public JTextArea symptoms_content, diagnosis_content, medication_content;
 
     public int X = 0;
     public int Y = 0;
@@ -51,6 +53,9 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
                 bloodpressure = rs.getString("bloodpressure");
                 btp = rs.getString("bodytemp");
                 lop = rs.getString("levelofpain");
+                symptoms_info = rs.getString("symptoms");
+                diagnosis_info = rs.getString("diagnosis");
+                medication_info = rs.getString("medication");
             }}
         catch(Exception e){
             e.getCause();
@@ -66,7 +71,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         setResizable(true);
         setVisible(true);
         setLayout(null);
-        //setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
         JPanel title_panel = new JPanel();
         title_panel.setLayout(null);
@@ -130,6 +134,15 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         diagnosis();
         panel.add(Box.createRigidArea((new Dimension(5,15))));
         medication();
+        panel.add(Box.createRigidArea((new Dimension(5,15))));
+
+        confirm = new JButton(new ImageIcon("confirm_logo.png"));
+        confirm.setFocusPainted(false);
+        confirm.setBorder(BorderFactory.createEmptyBorder());
+        confirm.setContentAreaFilled(false);
+        confirm.addActionListener(this);
+        panel.add(confirm);
+        setAllUneditable();
 
 
         scrollPane = new JScrollPane(panel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -401,7 +414,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.weightx = 1.0;
 
         //Patient No.:
-        JButton edit = new JButton(new ImageIcon("edit.png"));
+        edit = new JButton(new ImageIcon("edit.png"));
         edit.setContentAreaFilled(false);
         edit.setFocusPainted(false);
         edit.setBorder(BorderFactory.createEmptyBorder());
@@ -438,14 +451,25 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.weightx = 1.0;
 
 
-        JLabel symptoms_content = new JLabel("<Empty>");
-        symptoms_content.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        symptoms_content = new JTextArea();
+        symptoms_content.setColumns(50);
+        symptoms_content.setRows(1);
+        symptoms_content.setLineWrap(true);
+        symptoms_content.setWrapStyleWord(true);
+        symptoms_content.setEditable(true);
+        symptoms_content.setBackground(new Color(0x4d5579));
         symptoms_content.setForeground(Color.white);
+        symptoms_content.setBorder(new LineBorder(Color.WHITE,2));
+        symptoms_content.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(15, 33, 2, 0);
+        c.insets = new Insets(15, 40, 15, 40);
         c.gridx = 0;
         c.gridy = 1;
         symptoms_panel.add(symptoms_content, c);
+
+        symptoms_content.setText(symptoms_info);
+
+
 
     }
     public void diagnosis() {
@@ -472,14 +496,24 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.weightx = 1.0;
 
 
-        JLabel diagnosis_content = new JLabel("<Empty>");
-        diagnosis_content.setFont(new Font("Helvetica", Font.PLAIN, 20));
+
+        diagnosis_content = new JTextArea();
+        diagnosis_content.setColumns(50);
+        diagnosis_content.setRows(1);
+        diagnosis_content.setLineWrap(true);
+        diagnosis_content.setWrapStyleWord(true);
+        diagnosis_content.setEditable(true);
+        diagnosis_content.setBackground(new Color(0x4d5579));
         diagnosis_content.setForeground(Color.white);
+        diagnosis_content.setBorder(new LineBorder(Color.WHITE,2));
+        diagnosis_content.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(15, 33, 2, 0);
+        c.insets = new Insets(15, 40, 15, 40);
         c.gridx = 0;
         c.gridy = 1;
         diagnosis_panel.add(diagnosis_content, c);
+
+        diagnosis_content.setText(diagnosis_info);
 
     }
     public void medication(){
@@ -505,14 +539,44 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         medication_panel.add(medication_label, c);
         c.weightx = 1.0;
 
-        JLabel medication_content = new JLabel("<Empty>");
-        medication_content.setFont(new Font("Helvetica", Font.PLAIN, 20));
+
+
+        medication_content = new JTextArea();
+        medication_content.setColumns(50);
+        medication_content.setRows(1);
+        medication_content.setLineWrap(true);
+        medication_content.setWrapStyleWord(true);
+        medication_content.setEditable(true);
+        medication_content.setBackground(new Color(0x4d5579));
         medication_content.setForeground(Color.white);
+        medication_content.setBorder(new LineBorder(Color.WHITE,2));
+        medication_content.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(15, 33, 2, 0);
+        c.insets = new Insets(15, 40, 15, 40);
         c.gridx = 0;
         c.gridy = 1;
         medication_panel.add(medication_content, c);
+
+
+        medication_content.setText(medication_info);
+
+    }
+
+    public void setAllUneditable(){
+        symptoms_content.setEditable(false);
+        diagnosis_content.setEditable(false);
+        medication_content.setEditable(false);
+        confirm.setVisible(false);
+
+    }
+
+    public void setAllEditable(){
+        symptoms_content.setEditable(true);
+        diagnosis_content.setEditable(true);
+        medication_content.setEditable(true);
+        confirm.setVisible(true);
+
+
 
     }
 
@@ -520,6 +584,14 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == back_button) {
             setVisible(false);
+        }
+
+        if (e.getSource() == edit){
+            setAllEditable();
+        }
+
+        if (e.getSource() == confirm){
+            setAllUneditable();
         }
     }
 
