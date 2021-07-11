@@ -4,29 +4,57 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.font.FontRenderContext;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class UserDetails extends JFrame implements ActionListener {
+public class UserDetails extends JFrame implements ActionListener, MouseListener {
     public GridBagConstraints c;
     public ButtonGroup Roles;
     public JPanel panel = new JPanel();
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel;
-    public String lastname,firstname,midname,dep,cod,id,pos;
+    public String lastname,firstname,midname,dep,cod,id,pos,upsurname,upgivenname,upmiddlename,uppos,updept,upcode,upid;
     public JComboBox<String> depts;
-    public int ida;
     public JButton back_button, edit, confirm;
     public JTextField surnameTextField, givenNameTextField, middleNameTextField, deptTextField, codeTextField, IDTextField;
     public JRadioButton doctorRadio, nurseRadio;
     public int X = 0;
     public int Y = 0;
+
+    public void TransData(){
+        upsurname  =  surnameTextField.getText();
+        upgivenname = givenNameTextField.getText();
+        upmiddlename = middleNameTextField.getText();
+        if(doctorRadio.isSelected()){
+            uppos = "Doctor";
+        }
+        if(nurseRadio.isSelected()){
+            uppos = "Nurse";
+        }
+        updept = (String)depts.getSelectedItem();
+        upcode = codeTextField.getText();
+        upid = IDTextField.getText();
+    }
+
+    public void UpdateData(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connect = connectNow.getConnection();
+
+        String Source = "UPDATE accounts SET LastName = '" +upsurname+ "', GivenName = '"+upgivenname+"',MiddleName = " +
+                "'"+upmiddlename+"',Position = '"+uppos+"',Username= '"+upid+"',DepartmentCode = '"+upcode+"', " +
+                "Department = '"+updept+"' WHERE idaccounts = '"+AdminSearch.value+"'";
+        try{
+            Statement statement = connect.createStatement();
+            statement.executeUpdate(Source);
+        }catch (Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 
     public void GetData() {
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -45,8 +73,7 @@ public class UserDetails extends JFrame implements ActionListener {
                 dep = rs.getString("Department");
                 cod = rs.getString("DepartmentCode");
                 pos = rs.getString("Position");
-                ida = rs.getInt("idaccounts");
-                id = Integer.toString(ida);
+                id = rs.getString("Username");
             }}
         catch(Exception e){
             e.getCause();
@@ -163,7 +190,6 @@ public class UserDetails extends JFrame implements ActionListener {
         depts.setEnabled(true);
         IDTextField.setEditable(true);
     }
-
 
     public void info() {
 
@@ -288,6 +314,8 @@ public class UserDetails extends JFrame implements ActionListener {
         depts.setFont(new Font("Helvetica", Font.PLAIN, 20));
         depts.setSelectedItem(dep);
 
+        depts.addMouseListener(this);
+
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 2;
@@ -406,6 +434,68 @@ public class UserDetails extends JFrame implements ActionListener {
         if(e.getSource() == edit){
             setAllEditable();
         }
+        if(e.getSource() == confirm){
+            TransData();
+            UpdateData();
+            disableAllTextField();
+        }
+    }
+
+    public void DeptAssign(){
+        if (depts.getSelectedItem().equals("Cardiology")){
+            codeTextField.setText("Cardiology123");
+        }
+        else if (depts.getSelectedItem().equals("Gastroenterology")){
+            codeTextField.setText("Gastroenterology123");
+        }
+        else if (depts.getSelectedItem().equals("Gynecology")){
+            codeTextField.setText("Gynecology123");
+        }
+        else if (depts.getSelectedItem().equals("Nephrology")){
+            codeTextField.setText("Nephrology123");
+        }
+        else if (depts.getSelectedItem().equals("Neurology")){
+            codeTextField.setText("Neurology123");
+        }
+        else if (depts.getSelectedItem().equals("Oncology")){
+            codeTextField.setText("Oncology123");
+        }
+        else if (depts.getSelectedItem().equals("Ophthalmology")){
+            codeTextField.setText("Ophthalmology123");
+        }
+        else if (depts.getSelectedItem().equals("Orthopaedics")){
+            codeTextField.setText("Orthopaedics123");
+        }
+        else if (depts.getSelectedItem().equals("Otolaryngology")){
+            codeTextField.setText("Otolaryngology123");
+        }
+        else if (depts.getSelectedItem().equals("Urology")){
+            codeTextField.setText("Urology123");
+        }
+    }
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        DeptAssign();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        DeptAssign();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        DeptAssign();
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        DeptAssign();
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        DeptAssign();
     }
 
     static class RoundedPanel extends JPanel {

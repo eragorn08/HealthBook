@@ -252,8 +252,7 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
     private JRadioButton doctorRadio,nurseRadio;
     private JButton confirmButton;
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
+    public void Test(){
         if (dept.getSelectedItem().equals("Cardiology")){
             codeField.setText("Cardiology123");
         }
@@ -284,142 +283,30 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
         else if (dept.getSelectedItem().equals("Urology")){
             codeField.setText("Urology123");
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Test();
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (dept.getSelectedItem().equals("Cardiology")){
-            codeField.setText("Cardiology123");
-        }
-        else if (dept.getSelectedItem().equals("Gastroenterology")){
-            codeField.setText("Gastroenterology123");
-        }
-        else if (dept.getSelectedItem().equals("Gynecology")){
-            codeField.setText("Gynecology123");
-        }
-        else if (dept.getSelectedItem().equals("Nephrology")){
-            codeField.setText("Nephrology123");
-        }
-        else if (dept.getSelectedItem().equals("Neurology")){
-            codeField.setText("Neurology123");
-        }
-        else if (dept.getSelectedItem().equals("Oncology")){
-            codeField.setText("Oncology123");
-        }
-        else if (dept.getSelectedItem().equals("Ophthalmology")){
-            codeField.setText("Ophthalmology123");
-        }
-        else if (dept.getSelectedItem().equals("Orthopaedics")){
-            codeField.setText("Orthopaedics123");
-        }
-        else if (dept.getSelectedItem().equals("Otolaryngology")){
-            codeField.setText("Otolaryngology123");
-        }
-        else if (dept.getSelectedItem().equals("Urology")){
-            codeField.setText("Urology123");
-        }
+        Test();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (dept.getSelectedItem().equals("Cardiology")){
-            codeField.setText("Cardiology123");
-        }
-        else if (dept.getSelectedItem().equals("Gastroenterology")){
-            codeField.setText("Gastroenterology123");
-        }
-        else if (dept.getSelectedItem().equals("Gynecology")){
-            codeField.setText("Gynecology123");
-        }
-        else if (dept.getSelectedItem().equals("Nephrology")){
-            codeField.setText("Nephrology123");
-        }
-        else if (dept.getSelectedItem().equals("Neurology")){
-            codeField.setText("Neurology123");
-        }
-        else if (dept.getSelectedItem().equals("Oncology")){
-            codeField.setText("Oncology123");
-        }
-        else if (dept.getSelectedItem().equals("Ophthalmology")){
-            codeField.setText("Ophthalmology123");
-        }
-        else if (dept.getSelectedItem().equals("Orthopaedics")){
-            codeField.setText("Orthopaedics123");
-        }
-        else if (dept.getSelectedItem().equals("Otolaryngology")){
-            codeField.setText("Otolaryngology123");
-        }
-        else if (dept.getSelectedItem().equals("Urology")){
-            codeField.setText("Urology123");
-        }
-
+        Test();
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        if (dept.getSelectedItem().equals("Cardiology")){
-            codeField.setText("Cardiology123");
-        }
-        else if (dept.getSelectedItem().equals("Gastroenterology")){
-            codeField.setText("Gastroenterology123");
-        }
-        else if (dept.getSelectedItem().equals("Gynecology")){
-            codeField.setText("Gynecology123");
-        }
-        else if (dept.getSelectedItem().equals("Nephrology")){
-            codeField.setText("Nephrology123");
-        }
-        else if (dept.getSelectedItem().equals("Neurology")){
-            codeField.setText("Neurology123");
-        }
-        else if (dept.getSelectedItem().equals("Oncology")){
-            codeField.setText("Oncology123");
-        }
-        else if (dept.getSelectedItem().equals("Ophthalmology")){
-            codeField.setText("Ophthalmology123");
-        }
-        else if (dept.getSelectedItem().equals("Orthopaedics")){
-            codeField.setText("Orthopaedics123");
-        }
-        else if (dept.getSelectedItem().equals("Otolaryngology")){
-            codeField.setText("Otolaryngology123");
-        }
-        else if (dept.getSelectedItem().equals("Urology")){
-            codeField.setText("Urology123");
-        }
+        Test();
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (dept.getSelectedItem().equals("Cardiology")){
-            codeField.setText("Cardiology123");
-        }
-        else if (dept.getSelectedItem().equals("Gastroenterology")){
-            codeField.setText("Gastroenterology123");
-        }
-        else if (dept.getSelectedItem().equals("Gynecology")){
-            codeField.setText("Gynecology123");
-        }
-        else if (dept.getSelectedItem().equals("Nephrology")){
-            codeField.setText("Nephrology123");
-        }
-        else if (dept.getSelectedItem().equals("Neurology")){
-            codeField.setText("Neurology123");
-        }
-        else if (dept.getSelectedItem().equals("Oncology")){
-            codeField.setText("Oncology123");
-        }
-        else if (dept.getSelectedItem().equals("Ophthalmology")){
-            codeField.setText("Ophthalmology123");
-        }
-        else if (dept.getSelectedItem().equals("Orthopaedics")){
-            codeField.setText("Orthopaedics123");
-        }
-        else if (dept.getSelectedItem().equals("Otolaryngology")){
-            codeField.setText("Otolaryngology123");
-        }
-        else if (dept.getSelectedItem().equals("Urology")){
-            codeField.setText("Urology123");
-        }
+        Test();
     }
 }
