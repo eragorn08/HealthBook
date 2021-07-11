@@ -24,6 +24,8 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
         setSize(1280, 720);
         setLayout(null);
         setResizable(false);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
         setVisible(true);

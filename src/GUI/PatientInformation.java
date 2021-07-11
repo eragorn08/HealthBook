@@ -63,6 +63,8 @@ public class PatientInformation extends JFrame implements ActionListener {
         setUndecorated(true);
         setResizable(false);
         setVisible(true);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setLayout(null);
         //setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 

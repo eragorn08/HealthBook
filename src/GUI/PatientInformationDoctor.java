@@ -68,6 +68,8 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         setSize(1280, 720);
 
         setUndecorated(true);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setResizable(true);
         setVisible(true);
         setLayout(null);
@@ -139,6 +141,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         confirm = new JButton(new ImageIcon("confirm_logo.png"));
         confirm.setFocusPainted(false);
         confirm.setBorder(BorderFactory.createEmptyBorder());
+        confirm.setAlignmentX(Component.CENTER_ALIGNMENT);
         confirm.setContentAreaFilled(false);
         confirm.addActionListener(this);
         panel.add(confirm);
