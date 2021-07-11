@@ -511,7 +511,7 @@ public class AddForm extends JPanel implements ActionListener {
         String address = addressField.getText();
 
         //Input Database
-        String  insertFields = "INSERT INTO patientinfo(surname,givenname,middlename,gender,address,age,month," +
+        String insertFields = "INSERT INTO patientinfo(surname,givenname,middlename,gender,address,age,month," +
                 "day,year,weight,height,bloodtype,bloodpressure,bodytemp,levelofpain,pulserate) VALUES ('";
         String insertValue = surname + "','" + firstname + "','" + middlename + "','" + gender + "','" + address + "','" +
                 age + "','" + month + "','" + day + "','" + year + "','" + weight + "','" + height + "','" + bloodtype + "','" +

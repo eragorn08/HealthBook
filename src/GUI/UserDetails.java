@@ -148,9 +148,6 @@ public class UserDetails extends JFrame implements ActionListener {
 
     public void info() {
 
-
-
-
         panel.add(body_panel = new RoundedPanel(50,new Color(0x4d5579)));
         body_panel.setOpaque(false);
         body_panel.setBorder(BorderFactory.createEmptyBorder());

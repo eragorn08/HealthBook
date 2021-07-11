@@ -164,13 +164,16 @@ public class LoginForm extends JFrame implements ActionListener{
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connect = connectNow.getConnection();
 
-        String Identify = "SELECT Position FROM accounts WHERE username = '" +EmpID.getText()+ "'";
+        String Identify = "SELECT * FROM accounts WHERE username = '" +EmpID.getText()+ "'";
 
         Statement st = connect.createStatement();
         ResultSet rs = st.executeQuery(Identify);
         if(rs.next()) {
             position = rs.getString("Position");
+            ida = rs.getString("idaccounts");
+
         }
+        id = Integer.parseInt(ida);
     }
 
     public void validateLogin(){
@@ -214,8 +217,9 @@ public class LoginForm extends JFrame implements ActionListener{
     public JPanel DisplayPanel, DisplayContainer;
     public JTextField DeptCode;
     public static JTextField EmpID;
+    public static int id;
     public JLabel DisplayTitle;
     public JButton Login,power;
-    public String position;
+    private String position,ida;
 }
 
