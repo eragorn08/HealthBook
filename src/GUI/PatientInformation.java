@@ -15,8 +15,9 @@ public class PatientInformation extends JFrame implements ActionListener {
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel, vitalsigns, addOldPatient;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop;
-    public JButton back_button, addrecord;
+            lop,temp,pulse,pain,height,weight,btot;
+    public JTextField bpEntry0,bpEntry1,tempEntry,pulseEntry,painEntry,heightEntry,weightEntry;
+    public JButton back_button, addrecord,confirm_add_old;
     public int X = 0;
     public int Y = 0;
 
@@ -420,7 +421,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         addOldPatient.add(bpLabel, c);
 
-        JTextField bpEntry0 = new JTextField(3);
+        bpEntry0 = new JTextField(3);
         bpEntry0.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -446,7 +447,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(slash, c);
         c.weightx = 1;
 
-        JTextField bpEntry1 = new JTextField(3);
+        bpEntry1 = new JTextField(3);
         bpEntry1.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         bpEntry1.addKeyListener(new KeyAdapter() {
@@ -482,7 +483,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 2;
         addOldPatient.add(tempLabel, c);
 
-        JTextField tempEntry = new JTextField(5);
+        tempEntry = new JTextField(5);
         tempEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         tempEntry.addKeyListener(new KeyAdapter() {
@@ -520,7 +521,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 3;
         addOldPatient.add(pulseLabel, c);
 
-        JTextField pulseEntry = new JTextField(5);
+        pulseEntry = new JTextField(5);
         pulseEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -555,7 +556,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 4;
         addOldPatient.add(painLabel, c);
 
-        JTextField painEntry = new JTextField(5);
+        painEntry = new JTextField(5);
         painEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -580,7 +581,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 5;
         addOldPatient.add(heightLabel, c);
 
-        JTextField heightEntry = new JTextField(5);
+        heightEntry = new JTextField(5);
         heightEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -614,7 +615,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 6;
         addOldPatient.add(weightLabel, c);
 
-        JTextField weightEntry = new JTextField(5);
+        weightEntry = new JTextField(5);
         weightEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -640,7 +641,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         panel.add(Box.createRigidArea((new Dimension(5,20))));
 
 
-        JButton confirm_add_old = new JButton(new ImageIcon("confirm_logo.png"));
+        confirm_add_old = new JButton(new ImageIcon("confirm_logo.png"));
         confirm_add_old.setContentAreaFilled(false);
         confirm_add_old.setVisible(true);
         confirm_add_old.setFocusPainted(false);
@@ -652,10 +653,35 @@ public class PatientInformation extends JFrame implements ActionListener {
 
 
     }
+    public void TransferData(){
+        btot = bpEntry0.getText() + "/" + bpEntry1.getText();
+        temp = tempEntry.getText();
+        pulse = pulseEntry.getText();
+        pain = painEntry.getText();
+        height = heightEntry.getText();
+        weight = weightEntry.getText();
+    }
 
     public void InsertOldPatient(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
 
+        //Input Database
+        String insertFields = "INSERT INTO patientinfo(surname,givenname,middlename,gender,address,age,month," +
+                "day,year,weight,height,bloodtype,bloodpressure,bodytemp,levelofpain,pulserate,department) VALUES ('";
+        String insertValue = lastname + "','" + firstname + "','" + midname + "','" + gend + "','" + addrress + "','" +
+                ag + "','" + month + "','" + day + "','" + year + "','" + weight + "','" + height + "','" + btp + "','" +
+                btot + "','" + temp + "','" + pain + "','" + pulse + "','"+LoginForm.dept+"')";
+        String insertPatient = insertFields + insertValue;
 
+        try{
+            Statement statement = connectDB.createStatement();
+            statement.executeUpdate(insertPatient);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
     @Override
@@ -663,10 +689,15 @@ public class PatientInformation extends JFrame implements ActionListener {
         if (e.getSource() == back_button) {
             setVisible(false);
         }
-
         if (e.getSource() == addrecord) {
             addrecord.setVisible(false);
             OldPatient();
+        }
+        if(e.getSource() == confirm_add_old){
+            TransferData();
+            InsertOldPatient();
+            JOptionPane.showMessageDialog(null, " Old Patient Information has Been Added!");
+            addOldPatient.setVisible(false);
         }
     }
 
