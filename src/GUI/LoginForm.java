@@ -172,6 +172,7 @@ public class LoginForm extends JFrame implements ActionListener{
             position = rs.getString("Position");
             ida = rs.getString("idaccounts");
             dept= rs.getString("Department");
+            doc = rs.getString("LastName");
         }
         id = Integer.parseInt(ida);
     }
@@ -218,7 +219,7 @@ public class LoginForm extends JFrame implements ActionListener{
     public JTextField DeptCode;
     public static JTextField EmpID;
     public static int id;
-    public static String dept;
+    public static String dept,doc;
     public JLabel DisplayTitle;
     public JButton Login,power;
     private String position,ida;

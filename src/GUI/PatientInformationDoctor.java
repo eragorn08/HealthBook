@@ -20,12 +20,29 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel, vitalsigns,symptoms_panel, diagnosis_panel, medication_panel;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop, symptoms_info,diagnosis_info,medication_info,pulserate;
+            lop, symptoms_info,diagnosis_info,medication_info,pulserate,doctor;
     public JButton back_button, edit, confirm;
     public JTextArea symptoms_content, diagnosis_content, medication_content;
 
     public int X = 0;
     public int Y = 0;
+
+    public void InputDoc(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connect = connectNow.getConnection();
+
+        String Identify = "UPDATE patientinfo SET symptoms='"+symptoms_content.getText()+"' , " +
+                "diagnosis='"+diagnosis_content.getText()+"',medication='"+medication_content.getText()+"'" +
+                ",doctor='"+LoginForm.doc+"' WHERE patientID = '"+SearchFormDoctor.value+"'";
+        try{
+            Statement st = connect.createStatement();
+            st.executeUpdate(Identify);
+            }
+        catch(Exception e){
+            e.getCause();
+            e.printStackTrace();
+        }
+    }
 
     public void GetData() {
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -57,6 +74,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
                 symptoms_info = rs.getString("symptoms");
                 diagnosis_info = rs.getString("diagnosis");
                 medication_info = rs.getString("medication");
+                doctor = rs.getString("doctor");
             }}
         catch(Exception e){
             e.getCause();
@@ -595,6 +613,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == confirm){
+            InputDoc();
             setAllUneditable();
         }
     }
