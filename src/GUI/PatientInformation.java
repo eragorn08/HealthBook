@@ -16,7 +16,7 @@ public class PatientInformation extends JFrame implements ActionListener {
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel, vitalsigns, addOldPatient, adminAuthentication;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop, department,pulse,obp,obt,opr,olop,ohei,owei;
+            lop, department,pulse,obp,obt,opr,olop,ohei,owei,ebp;
     public JButton back_button, addrecord,editPatient,confirm_add_old, confirm_edit, cancel_edit;
     public JTextField surnameField, givennameField, middlenameFIeld, genderField, monthField,
             dayField, yearField, btypeField, ageField, heightField ,weightField,
@@ -117,12 +117,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridx = 1;
         c.gridy = 3;
         adminAuthentication.add(cancel_edit, c);
-
-
-
-
-
-
     }
     public void setNotEditable(){
         surnameField.setEditable(false);
@@ -281,13 +275,13 @@ public class PatientInformation extends JFrame implements ActionListener {
         //Transfer Data
         surnameField.setText(lastname);
         givennameField.setText(firstname);
-        middlenameFIeld.setText(firstname);
+        middlenameFIeld.setText(midname);
         genderField.setText(gend);
         addressField.setText(addrress);
         monthField.setText(month);
         dayField.setText(day);
         yearField.setText(year);
-        btypeField.setText(btp);
+        btypeField.setText(bt);
         ageField.setText(ag);
         heightField.setText(heigh);
         weightField.setText(weigh);
@@ -980,6 +974,44 @@ public class PatientInformation extends JFrame implements ActionListener {
             e.getCause();
         }
     }
+
+    public void editinsert(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        lastname = surnameField.getText();
+        firstname = givennameField.getText();
+        midname = middlenameFIeld.getText();
+        gend = genderField.getText();
+        addrress = addressField.getText();
+        ag = ageField.getText();
+        month = monthField.getText();
+        day = dayField.getText();
+        year = yearField.getText();
+        weigh = weightField.getText();
+        heigh = heightField.getText();
+        bt = btypeField.getText();
+        ebp = blpField0.getText();
+        bt = tempeField.getText();
+        lop = plevelField.getText();
+        pulse = pulField.getText();
+
+        String insertFields = "UPDATE patientinfo SET surname = '"+lastname+"',givenname = '"+firstname+"',middlename = " +
+                "'"+midname+"',gender = '"+gend+"',address='"+addrress+"',age='"+ag+"',month='"+month+"',day='"+day+"'," +
+                "year='"+year+"',weight='"+weigh+"',height='"+heigh+"',bloodtype='"+bt+"',bloodpressure='"+ebp+"',bodytemp='"+bt+"'" +
+                ",levelofpain='"+lop+"',pulserate='"+pulse+"',department='"+LoginForm.dept+"' WHERE patientID = '"+SearchForm.value+"'";
+
+        try{
+            Statement statement = connectDB.createStatement();
+            statement.executeUpdate(insertFields);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+
+    }
+
     //admin authentication
     public void autheticate(){
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -992,9 +1024,11 @@ public class PatientInformation extends JFrame implements ActionListener {
             ResultSet queryResult = statement.executeQuery(verifyLogin);
             while(queryResult.next()){
                 if (queryResult.getInt(1) == 1) {
-                    //
+                    editinsert();
+                    JOptionPane.showMessageDialog(null, "Account has Been Edited");
+
                 }else{
-                    JOptionPane.showMessageDialog(null, "Wrong Department Code or Username");
+                    JOptionPane.showMessageDialog(null, "Wrong Username for Admin.");
                 }
             }
 
@@ -1022,6 +1056,9 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         if (e.getSource() == confirm_add_old){
             InsertOldPatient();
+        }
+        if (e.getSource() == confirm_edit){
+            autheticate();
         }
     }
 
