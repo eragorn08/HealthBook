@@ -135,7 +135,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         panel.setBorder(new EmptyBorder(new Insets(23, 40, 100, 40)));
         panel.setBackground(new Color(0x212C58));
         panel.setVisible(true);
-        panel.setBounds(0, 77, 1280, 643);
+        panel.setBounds(0, 100, 1280, 620);
 
         scrollPane.setVisible(true);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -171,7 +171,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.setLayout(new ScrollPaneLayout());
-        scrollPane.setBounds(0, 77, 1280, 643);
+        scrollPane.setBounds(0, 100, 1280, 620);
 
         add(scrollPane);
 
@@ -365,7 +365,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
 
         //Height
-        JLabel heightLabel = new JLabel("Height: " + height);
+        JLabel heightLabel = new JLabel("Height: " + height + " cm");
         heightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         heightLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
@@ -376,7 +376,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
 
         //Weight
-        JLabel weightLabel = new JLabel("Weight: " + weight);
+        JLabel weightLabel = new JLabel("Weight: " + weight + " kg");
         weightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         weightLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;

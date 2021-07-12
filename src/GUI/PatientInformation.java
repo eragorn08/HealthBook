@@ -336,6 +336,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
 
 
+
         //Body Temperature
         JLabel tempLabel = new JLabel("Body Temperature:");
         tempLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -352,6 +353,15 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridx = 1;
         c.gridy = 2;
         vitalsigns.add(tempeField, c);
+
+        JLabel degreeLabel = new JLabel("°C");
+        degreeLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        degreeLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 2;
+        c.gridy = 2;
+        vitalsigns.add(degreeLabel, c);
 
 
 
@@ -372,6 +382,15 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridx = 1;
         c.gridy = 3;
         vitalsigns.add(pulField, c);
+
+        JLabel bpmLabel = new JLabel("bpm");
+        bpmLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bpmLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 2;
+        c.gridy = 3;
+        vitalsigns.add(bpmLabel, c);
 
 
 
@@ -476,6 +495,33 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 1;
         body_panel.add(givennameField, c);
 
+        JLabel surnameLabel = new JLabel("Surname");
+        surnameLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        surnameLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 1;
+        c.gridy = 2;
+        body_panel.add(surnameLabel, c);
+
+        JLabel givennameLabel = new JLabel("Given Name");
+        givennameLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        givennameLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 2;
+        c.gridy = 2;
+        body_panel.add(givennameLabel, c);
+
+        JLabel middlenameLabel = new JLabel("Middle Name");
+        middlenameLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        middlenameLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 3;
+        c.gridy = 2;
+        body_panel.add(middlenameLabel, c);
+
         //Sex
         JLabel sexLabel = new JLabel("Sex:");
         sexLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -483,14 +529,14 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
         c.gridx = 0;
-        c.gridy = 2;
+        c.gridy = 3;
         body_panel.add(sexLabel, c);
 
         genderField = new JTextField(10);
         genderField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
-        c.gridy = 2;
+        c.gridy = 3;
         body_panel.add(genderField, c);
 
 
@@ -504,7 +550,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
         c.gridx = 0;
-        c.gridy = 3;
+        c.gridy = 4;
         body_panel.add(addressLabel, c);
 
 
@@ -519,7 +565,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.fill = GridBagConstraints.BOTH;
         c.gridwidth = 2;
         c.gridx = 1;
-        c.gridy = 3;
+        c.gridy = 4;
         body_panel.add(addressField, c);
         c.gridwidth = 1;
 
@@ -533,29 +579,59 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
         c.gridx = 0;
-        c.gridy = 4;
+        c.gridy = 5;
         body_panel.add(birthLabel, c);
 
         yearField = new JTextField(4);
         yearField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
-        c.gridy = 4;
+        c.gridy = 5;
         body_panel.add(yearField, c);
+
+        JLabel yyyyLabel = new JLabel("YYYY");
+        yyyyLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        yyyyLabel.setForeground(Color.white);
+        yyyyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        c.fill = GridBagConstraints.BOTH;
+        //c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 1;
+        c.gridy = 6;
+        body_panel.add(yyyyLabel, c);
 
         monthField = new JTextField(2);
         monthField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 2;
-        c.gridy = 4;
+        c.gridy = 5;
         body_panel.add(monthField, c);
+
+        JLabel mmLabel = new JLabel("MM");
+        mmLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        mmLabel.setForeground(Color.white);
+        mmLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        c.fill = GridBagConstraints.BOTH;
+        //c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 2;
+        c.gridy = 6;
+        body_panel.add(mmLabel, c);
 
         dayField = new JTextField(2);
         dayField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 3;
-        c.gridy = 4;
+        c.gridy = 5;
         body_panel.add(dayField, c);
+
+        JLabel ddLabel = new JLabel("DD");
+        ddLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        ddLabel.setForeground(Color.white);
+        ddLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        c.fill = GridBagConstraints.BOTH;
+        //c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 3;
+        c.gridy = 6;
+        body_panel.add(ddLabel, c);
 
 
 
@@ -567,14 +643,14 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
         c.gridx = 0;
-        c.gridy = 5;
+        c.gridy = 7;
         body_panel.add(bloodTypeLabel, c);
 
         btypeField = new JTextField(10);
         btypeField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
-        c.gridy = 5;
+        c.gridy = 7;
         body_panel.add(btypeField, c);
 
 
@@ -585,14 +661,14 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
         c.gridx = 0;
-        c.gridy = 6;
+        c.gridy = 8;
         body_panel.add(ageLabel, c);
 
         ageField = new JTextField(10);
         ageField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
-        c.gridy = 6;
+        c.gridy = 8;
         body_panel.add(ageField, c);
 
 
@@ -603,15 +679,24 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 2, 0);
         c.gridx = 0;
-        c.gridy = 7;
+        c.gridy = 9;
         body_panel.add(heightLabel, c);
 
         heightField = new JTextField(10);
         heightField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
-        c.gridy = 7;
+        c.gridy = 9;
         body_panel.add(heightField, c);
+
+        JLabel cmLabel = new JLabel("cm");
+        cmLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        cmLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 2;
+        c.gridy = 9;
+        body_panel.add(cmLabel, c);
 
 
         //Weight
@@ -621,15 +706,24 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(15, 33, 14, 0);
         c.gridx = 0;
-        c.gridy = 8;
+        c.gridy = 10;
         body_panel.add(weightLabel, c);
 
         weightField = new JTextField(10);
         weightField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
-        c.gridy = 8;
+        c.gridy = 10;
         body_panel.add(weightField, c);
+
+        JLabel kgLabel = new JLabel("kg");
+        kgLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        kgLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 2;
+        c.gridy = 10;
+        body_panel.add(kgLabel, c);
 
 
 

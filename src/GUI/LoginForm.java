@@ -86,7 +86,8 @@ public class LoginForm extends JFrame implements ActionListener{
         });
 
 
-        EmpID = new JTextField("Employee ID");
+        EmpID = new JPasswordField("Employee ID");
+        EmpID.setEchoChar((char) 0);
         EmpID.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
         EmpID.setBounds(59,283,330,40);
         EmpID.setFont(new Font("Roboto", Font.PLAIN, 22));
@@ -96,12 +97,14 @@ public class LoginForm extends JFrame implements ActionListener{
             public void focusGained(FocusEvent e) {
                 if (EmpID.getText().equals("Employee ID")) {
                     EmpID.setText("");
+                    EmpID.setEchoChar('•');
                     EmpID.setForeground(Color.BLACK);
                 }
             }
             @Override
             public void focusLost(FocusEvent e) {
                 if (EmpID.getText().isEmpty()) {
+                    EmpID.setEchoChar((char) 0);
                     EmpID.setForeground(Color.BLACK);
                     EmpID.setText("Employee ID");
                 }
@@ -217,7 +220,7 @@ public class LoginForm extends JFrame implements ActionListener{
 
     public JPanel DisplayPanel, DisplayContainer;
     public JTextField DeptCode;
-    public static JTextField EmpID;
+    public static JPasswordField EmpID;
     public static int id;
     public static String dept,doc;
     public JLabel DisplayTitle;
