@@ -442,6 +442,82 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         panel.add(delete);
     }
 
+    public void showConfirmation(){
+        smallFrame = new RoundedPanel(30,new Color(0x212C58));
+        //smallFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        //smallFrame.putClientProperty("JInternalFrame.isPalette",Boolean.TRUE);
+        //smallFrame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+        smallFrame.setSize(500,300);
+        smallFrame.setOpaque(false);
+        //mallFrame.setUndecorated(true);
+/*
+        Dimension desktopSize = getSize();
+        Dimension jInternalFrameSize = smallFrame.getSize();
+        int width = (desktopSize.width - jInternalFrameSize.width) / 2;
+        int height = (desktopSize.height - jInternalFrameSize.height) / 2;
+        smallFrame.setLocation(width,height);
+*/
+        smallFrame.setLayout(new FlowLayout());
+        smallFrame.setVisible(true);
+        //smallFrame.setBackground(new Color(0x212C58));
+
+        //smallFrame.setSize(new Dimension(500,300));
+        smallFrame.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(smallFrame);
+
+
+        //logos and titles
+        JLabel x = new JLabel(new ImageIcon("x_logo.png"));
+        x.setBorder(BorderFactory.createEmptyBorder());
+        x.setOpaque(false);
+        smallFrame.add(x);
+
+        JLabel AreYouSure = new JLabel("Are you sure?");
+        AreYouSure.setFont(new Font("Helvetica", Font.PLAIN, 40));
+        //AreYouSure.setBounds(120,112,290,45);
+        AreYouSure.setForeground(Color.white);
+        smallFrame.add(AreYouSure);
+        JLabel message = new JLabel("<html><div style = 'text-align: center;'>Do you really want to delete" +
+                " this account?<br>This process cannot be undone.</div></html>");
+        message.setForeground(new Color(0x8891a6));
+        message.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        //message.setBounds(64, 158, 371, 47);
+        smallFrame.add(message);
+
+        cancel = new JButton(new ImageIcon("cancel.png"));
+        //.setBounds(61, 222, 161, 41);
+        cancel.setBorder(BorderFactory.createEmptyBorder());
+        cancel.setContentAreaFilled(false);
+        cancel.setFocusPainted(false);
+        cancel.addActionListener(this);
+        smallFrame.add(cancel);
+
+
+        confirmdelete = new JButton(new ImageIcon("confirm_logo.png"));
+
+        confirmdelete.setBorder(BorderFactory.createEmptyBorder());
+        confirmdelete.setContentAreaFilled(false);
+        confirmdelete.setFocusPainted(false);
+        confirmdelete.addActionListener(this);
+        smallFrame.add(confirmdelete);
+
+    }
+
+    public void deleterec(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String delete = "DELETE FROM accounts WHERE idaccounts = '"+AdminSearch.value+"'";
+
+        try{
+            Statement statement = connectDB.createStatement();
+            statement.executeQuery(delete);
+        }catch(Exception e){
+            e.getCause();
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == back_button) {
@@ -461,6 +537,7 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         }
 
         if(e.getSource() == delete){
+            deleterec();
             edit.setVisible(false);
             delete.setVisible(false);
             showConfirmation();
@@ -529,89 +606,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
     public void mouseExited(MouseEvent e) {
         DeptAssign();
     }
-
-
-
-
-    public void showConfirmation(){
-        smallFrame = new RoundedPanel(30,new Color(0x212C58));
-        //smallFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        //smallFrame.putClientProperty("JInternalFrame.isPalette",Boolean.TRUE);
-        //smallFrame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-        smallFrame.setSize(500,300);
-        smallFrame.setOpaque(false);
-        //mallFrame.setUndecorated(true);
-/*
-        Dimension desktopSize = getSize();
-        Dimension jInternalFrameSize = smallFrame.getSize();
-        int width = (desktopSize.width - jInternalFrameSize.width) / 2;
-        int height = (desktopSize.height - jInternalFrameSize.height) / 2;
-        smallFrame.setLocation(width,height);
-*/
-        smallFrame.setLayout(new FlowLayout());
-        smallFrame.setVisible(true);
-        //smallFrame.setBackground(new Color(0x212C58));
-
-        //smallFrame.setSize(new Dimension(500,300));
-        smallFrame.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(smallFrame);
-
-
-        //logos and titles
-        JLabel x = new JLabel(new ImageIcon("x_logo.png"));
-        x.setBorder(BorderFactory.createEmptyBorder());
-        x.setOpaque(false);
-        smallFrame.add(x);
-
-        JLabel AreYouSure = new JLabel("Are you sure?");
-        AreYouSure.setFont(new Font("Helvetica", Font.PLAIN, 40));
-        //AreYouSure.setBounds(120,112,290,45);
-        AreYouSure.setForeground(Color.white);
-        smallFrame.add(AreYouSure);
-        JLabel message = new JLabel("<html><div style = 'text-align: center;'>Do you really want to delete" +
-                " this account?<br>This process cannot be undone.</div></html>");
-        message.setForeground(new Color(0x8891a6));
-        message.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        //message.setBounds(64, 158, 371, 47);
-        smallFrame.add(message);
-
-        cancel = new JButton(new ImageIcon("cancel.png"));
-        //.setBounds(61, 222, 161, 41);
-        cancel.setBorder(BorderFactory.createEmptyBorder());
-        cancel.setContentAreaFilled(false);
-        cancel.setFocusPainted(false);
-        cancel.addActionListener(this);
-        smallFrame.add(cancel);
-
-
-        confirmdelete = new JButton(new ImageIcon("confirm_logo.png"));
-
-        confirmdelete.setBorder(BorderFactory.createEmptyBorder());
-        confirmdelete.setContentAreaFilled(false);
-        confirmdelete.setFocusPainted(false);
-        confirmdelete.addActionListener(this);
-        smallFrame.add(confirmdelete);
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-
-
-
-
 
     static class RoundedPanel extends JPanel {
         private Color backgroundColor;

@@ -20,7 +20,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel, vitalsigns,symptoms_panel, diagnosis_panel, medication_panel;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop, symptoms_info,diagnosis_info,medication_info;
+            lop, symptoms_info,diagnosis_info,medication_info,pulserate;
     public JButton back_button, edit, confirm;
     public JTextArea symptoms_content, diagnosis_content, medication_content;
 
@@ -50,6 +50,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
                 weigh = rs.getString("weight");
                 heigh = rs.getString("height");
                 bt = rs.getString("bloodtype");
+                pulserate = rs.getString("pulserate");
                 bloodpressure = rs.getString("bloodpressure");
                 btp = rs.getString("bodytemp");
                 lop = rs.getString("levelofpain");
@@ -165,7 +166,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         // VARIABLES FOR VITAL SIGNS//
         String bp = bloodpressure;
         String temp = bt;
-        String pulse = "110/80" + " " + "bpm";
+        String pulse = pulserate + " " + "bpm";
         String pain = lop;
         //////////////////////////////
         panel.add(vitalsigns = new RoundedPanel(50,new Color(0x4d5579)));
