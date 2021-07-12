@@ -15,7 +15,7 @@ public class PatientInformation extends JFrame implements ActionListener {
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel, vitalsigns, addOldPatient;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop,temp,pulse,pain,height,weight,btot;
+            lop,temp,pulse,pain,height,weight,btot,pul;
     public JTextField bpEntry0,bpEntry1,tempEntry,pulseEntry,painEntry,heightEntry,weightEntry;
     public JButton back_button, addrecord,confirm_add_old;
     public int X = 0;
@@ -47,6 +47,7 @@ public class PatientInformation extends JFrame implements ActionListener {
                 bloodpressure = rs.getString("bloodpressure");
                 btp = rs.getString("bodytemp");
                 lop = rs.getString("levelofpain");
+                pul = rs.getString("pulserate");
             }}
         catch(Exception e){
             e.getCause();
@@ -149,7 +150,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         // VARIABLES FOR VITAL SIGNS//
         String bp = bloodpressure;
         String temp = bt;
-        String pulse = "110/80" + " " + "bpm";
+        String pulse =  pul + "bpm";
         String pain = lop;
         //////////////////////////////
         panel.add(vitalsigns = new RoundedPanel(50,new Color(0x4d5579)));
