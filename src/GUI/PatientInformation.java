@@ -4,10 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,10 +13,10 @@ import java.sql.Statement;
 public class PatientInformation extends JFrame implements ActionListener {
     public JPanel panel = new JPanel();
     public JScrollPane scrollPane = new JScrollPane(panel);
-    public RoundedPanel body_panel, vitalsigns;
+    public RoundedPanel body_panel, vitalsigns, addOldPatient;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
             lop;
-    public JButton back_button;
+    public JButton back_button, addrecord;
     public int X = 0;
     public int Y = 0;
 
@@ -99,6 +96,15 @@ public class PatientInformation extends JFrame implements ActionListener {
         back_button.addActionListener(this);
         title_panel.add(back_button);
 
+        addrecord = new JButton(new ImageIcon("addnewrecord.png"));
+        addrecord.setContentAreaFilled(false);
+        addrecord.setVisible(true);
+        addrecord.setFocusPainted(false);
+        addrecord.setBorder(BorderFactory.createEmptyBorder());
+        addrecord.setBounds(1007, 34, 221, 41);
+        addrecord.addActionListener(this);
+        title_panel.add(addrecord);
+
         JLabel patient_details = new JLabel("Patient Details");
         patient_details.setForeground(Color.white);
         patient_details.setFont(new Font("Helvetica", Font.PLAIN, 40));
@@ -112,7 +118,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         panel.setBorder(new EmptyBorder(new Insets(23, 40, 100, 40)));
         panel.setBackground(new Color(0x212C58));
         panel.setVisible(true);
-        panel.setBounds(0, 77, 1280, 643);
+        panel.setBounds(0, 100, 1280, 620);
 
 
         scrollPane.setVisible(true);
@@ -130,7 +136,7 @@ public class PatientInformation extends JFrame implements ActionListener {
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         scrollPane.setLayout(new ScrollPaneLayout());
-        scrollPane.setBounds(0, 77, 1280, 643);
+        scrollPane.setBounds(0, 100, 1280, 620);
 
         add(scrollPane);
 
@@ -369,10 +375,295 @@ public class PatientInformation extends JFrame implements ActionListener {
 
     }
 
+
+    public void OldPatient(){
+        scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum()+ 3);
+
+        JLabel oldpatientLabel = new JLabel("Add Old Patient");
+        oldpatientLabel.setForeground(Color.white);
+        oldpatientLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        oldpatientLabel.setFont(new Font("Helvetica", Font.PLAIN, 40));
+        oldpatientLabel.setVisible(true);
+        panel.add(oldpatientLabel);
+
+        panel.add(addOldPatient = new RoundedPanel(50,new Color(0x4d5579)));
+        addOldPatient.setOpaque(false);
+        addOldPatient.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+
+        addOldPatient.setVisible(true);
+        panel.add(Box.createRigidArea((new Dimension(5,20))));
+
+        //Vital Signs Title
+        JLabel vitalSignsLabel = new JLabel("Vital Signs");
+        vitalSignsLabel.setFont(new Font("Helvetica", Font.BOLD, 25));
+        vitalSignsLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 0.5;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.insets = new Insets(13, 33, 2, 0);
+        addOldPatient.add(vitalSignsLabel, c);
+        c.weightx = 1.0;
+
+        //Blood Pressure
+        JLabel bpLabel = new JLabel("Blood Pressure: ");
+        bpLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bpLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 0;
+        c.gridy = 1;
+
+        addOldPatient.add(bpLabel, c);
+
+        JTextField bpEntry0 = new JTextField(3);
+        bpEntry0.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 1;
+        bpEntry0.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                bpEntry0.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE|| ke.getKeyChar() == '.');
+            }
+        });
+        addOldPatient.add(bpEntry0, c);
+
+        JLabel slash = new JLabel("/");
+        slash.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        slash.setHorizontalAlignment(JLabel.CENTER);
+        slash.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 0, 2, 0);
+        c.weightx = 0;
+        c.gridx = 2;
+        c.gridy = 1;
+        addOldPatient.add(slash, c);
+        c.weightx = 1;
+
+        JTextField bpEntry1 = new JTextField(3);
+        bpEntry1.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        c.fill = GridBagConstraints.HORIZONTAL;
+        bpEntry1.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                bpEntry1.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE|| ke.getKeyChar() == '.');
+            }
+        });
+        c.gridx = 3;
+        c.gridy = 1;
+        addOldPatient.add(bpEntry1, c);
+
+
+        JLabel space = new JLabel("DFDSFASDFASDFSDFSDFASDFSDFSDFASDFSDFSDDSFSD");
+        space.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        space.setForeground(new Color(0x4d5579));
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 4;
+        c.gridy = 1;
+        addOldPatient.add(space, c);
+
+
+
+        //Body Temperature
+        JLabel tempLabel = new JLabel("Body Temperature:");
+        tempLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        tempLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 0;
+        c.gridy = 2;
+        addOldPatient.add(tempLabel, c);
+
+        JTextField tempEntry = new JTextField(5);
+        tempEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        c.fill = GridBagConstraints.HORIZONTAL;
+        tempEntry.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                tempEntry.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE|| ke.getKeyChar() == '.');
+            }
+        });
+        c.gridx = 1;
+        c.gridy = 2;
+        addOldPatient.add(tempEntry, c);
+
+        JLabel celsius = new JLabel("°C");
+        celsius.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        celsius.setForeground(Color.white);
+        celsius.setHorizontalAlignment(JLabel.CENTER);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 0, 2, 0);
+        c.weightx = 0;
+        c.gridx = 2;
+        c.gridy = 2;
+        addOldPatient.add(celsius, c);
+        c.weightx = 1;
+
+
+
+        //Pulse Rate
+        JLabel pulseLabel = new JLabel("Pulse Rate:");
+        pulseLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        pulseLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 2, 0);
+        c.gridx = 0;
+        c.gridy = 3;
+        addOldPatient.add(pulseLabel, c);
+
+        JTextField pulseEntry = new JTextField(5);
+        pulseEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 3;
+        pulseEntry.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                pulseEntry.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE|| ke.getKeyChar() == '.');
+            }
+        });
+        addOldPatient.add(pulseEntry, c);
+
+
+        JLabel bpm = new JLabel("bpm");
+        bpm.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        bpm.setForeground(Color.white);
+        bpm.setHorizontalAlignment(JLabel.CENTER);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 0, 2, 0);
+        c.gridx = 2;
+        c.gridy = 3;
+        addOldPatient.add(bpm, c);
+
+
+
+        //Level of Pain:
+        JLabel painLabel = new JLabel("Level of Pain:");
+        painLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        painLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 14, 0);
+        c.gridx = 0;
+        c.gridy = 4;
+        addOldPatient.add(painLabel, c);
+
+        JTextField painEntry = new JTextField(5);
+        painEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 4;
+        painEntry.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                painEntry.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE|| ke.getKeyChar() == '.');
+            }
+        });
+        addOldPatient.add(painEntry, c);
+
+
+        //Height:
+        JLabel heightLabel = new JLabel("Height:");
+        heightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        heightLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 14, 0);
+        c.gridx = 0;
+        c.gridy = 5;
+        addOldPatient.add(heightLabel, c);
+
+        JTextField heightEntry = new JTextField(5);
+        heightEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 5;
+        heightEntry.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                heightEntry.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE|| ke.getKeyChar() == '.');
+            }
+        });
+        addOldPatient.add(heightEntry, c);
+
+        JLabel cm = new JLabel("cm");
+        cm.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        cm.setHorizontalAlignment(JLabel.CENTER);
+        cm.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 0, 2, 0);
+        c.gridx = 2;
+        c.gridy = 5;
+        addOldPatient.add(cm, c);
+
+        //Weight:
+        JLabel weightLabel = new JLabel("Weight:");
+        weightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        weightLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 14, 0);
+        c.gridx = 0;
+        c.gridy = 6;
+        addOldPatient.add(weightLabel, c);
+
+        JTextField weightEntry = new JTextField(5);
+        weightEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 1;
+        c.gridy = 6;
+        weightEntry.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                weightEntry.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
+                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE|| ke.getKeyChar() == '.');
+            }
+        });
+        addOldPatient.add(weightEntry, c);
+
+        JLabel kg = new JLabel("kg");
+        kg.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        kg.setForeground(Color.white);
+        kg.setHorizontalAlignment(JLabel.CENTER);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 0, 2, 0);
+        c.gridx = 2;
+        c.gridy = 6;
+        addOldPatient.add(kg, c);
+        panel.add(Box.createRigidArea((new Dimension(5,20))));
+
+
+        JButton confirm_add_old = new JButton(new ImageIcon("confirm_logo.png"));
+        confirm_add_old.setContentAreaFilled(false);
+        confirm_add_old.setVisible(true);
+        confirm_add_old.setFocusPainted(false);
+        confirm_add_old.setBorder(BorderFactory.createEmptyBorder(0,0,20,0));
+        confirm_add_old.addActionListener(this);
+        confirm_add_old.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(confirm_add_old);
+        panel.add(Box.createRigidArea((new Dimension(5,20))));
+
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == back_button) {
             setVisible(false);
+        }
+
+        if (e.getSource() == addrecord) {
+            addrecord.setVisible(false);
+            OldPatient();
         }
     }
 
