@@ -16,11 +16,12 @@ public class PatientInformation extends JFrame implements ActionListener {
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel, vitalsigns, addOldPatient, adminAuthentication;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop, department;
-    public JButton back_button, addrecord,editPatient;
+            lop, department,pulse,obp,obt,opr,olop,ohei,owei;
+    public JButton back_button, addrecord,editPatient,confirm_add_old;
     public JTextField surnameField, givennameField, middlenameFIeld, genderField, monthField,
             dayField, yearField, btypeField, ageField, heightField ,weightField,
-            blpField0,blpField1, tempeField,pulField,plevelField;
+            blpField0,blpField1, tempeField,pulField,plevelField,bpEntry0,bpEntry1,tempEntry,pulseEntry,painEntry,
+            heightEntry,weightEntry,adminPass;
     public JTextArea addressField;
 
     public int X = 0;
@@ -68,7 +69,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 0;
         adminAuthentication.add(basicDetails, c);
 
-        JTextField adminPass = new JTextField(10);
+        adminPass = new JTextField(10);
         adminPass.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 0;
@@ -125,6 +126,8 @@ public class PatientInformation extends JFrame implements ActionListener {
                 bloodpressure = rs.getString("bloodpressure");
                 btp = rs.getString("bodytemp");
                 lop = rs.getString("levelofpain");
+                pulse = rs.getString("pulserate");
+
             }}
         catch(Exception e){
             e.getCause();
@@ -230,6 +233,24 @@ public class PatientInformation extends JFrame implements ActionListener {
         add(scrollPane);
 
         setNotEditable();
+
+        //Transfer Data
+        surnameField.setText(lastname);
+        givennameField.setText(firstname);
+        middlenameFIeld.setText(firstname);
+        genderField.setText(gend);
+        addressField.setText(addrress);
+        monthField.setText(month);
+        dayField.setText(day);
+        yearField.setText(year);
+        btypeField.setText(btp);
+        ageField.setText(ag);
+        heightField.setText(heigh);
+        weightField.setText(weigh);
+        blpField0.setText(bloodpressure);
+        tempeField.setText(btp);
+        pulField.setText(pulse);
+        plevelField.setText(lop);
 
 
     }
@@ -676,7 +697,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         addOldPatient.add(bpLabel, c);
 
-        JTextField bpEntry0 = new JTextField(3);
+        bpEntry0 = new JTextField(3);
         bpEntry0.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -702,7 +723,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(slash, c);
         c.weightx = 1;
 
-        JTextField bpEntry1 = new JTextField(3);
+        bpEntry1 = new JTextField(3);
         bpEntry1.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         bpEntry1.addKeyListener(new KeyAdapter() {
@@ -738,7 +759,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 2;
         addOldPatient.add(tempLabel, c);
 
-        JTextField tempEntry = new JTextField(5);
+        tempEntry = new JTextField(5);
         tempEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         tempEntry.addKeyListener(new KeyAdapter() {
@@ -776,7 +797,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 3;
         addOldPatient.add(pulseLabel, c);
 
-        JTextField pulseEntry = new JTextField(5);
+        pulseEntry = new JTextField(5);
         pulseEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -811,7 +832,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 4;
         addOldPatient.add(painLabel, c);
 
-        JTextField painEntry = new JTextField(5);
+        painEntry = new JTextField(5);
         painEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -836,7 +857,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 5;
         addOldPatient.add(heightLabel, c);
 
-        JTextField heightEntry = new JTextField(5);
+        heightEntry = new JTextField(5);
         heightEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -870,7 +891,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 6;
         addOldPatient.add(weightLabel, c);
 
-        JTextField weightEntry = new JTextField(5);
+        weightEntry = new JTextField(5);
         weightEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
@@ -896,7 +917,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         panel.add(Box.createRigidArea((new Dimension(5,20))));
 
 
-        JButton confirm_add_old = new JButton(new ImageIcon("confirm_logo.png"));
+        confirm_add_old = new JButton(new ImageIcon("confirm_logo.png"));
         confirm_add_old.setContentAreaFilled(false);
         confirm_add_old.setVisible(true);
         confirm_add_old.setFocusPainted(false);
@@ -910,7 +931,54 @@ public class PatientInformation extends JFrame implements ActionListener {
     }
 
     public void InsertOldPatient(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
 
+        obp = bpEntry0.getText() + "/" + bpEntry1.getText();
+        obt = tempEntry.getText();
+        opr = pulseEntry.getText();
+        olop = painEntry.getText();
+        ohei = heightEntry.getText();
+        owei = weightEntry.getText();
+
+        String insertFields = "INSERT INTO patientinfo(surname,givenname,middlename,gender,address,age,month," +
+                "day,year,weight,height,bloodtype,bloodpressure,bodytemp,levelofpain,pulserate,department) VALUES ('";
+        String insertValue = lastname + "','" + firstname + "','" + midname + "','" + gend + "','" + addrress + "','" +
+                ag + "','" + month + "','" + day + "','" + year + "','" + owei + "','" + ohei + "','" + btp + "','" +
+                obp + "','" + obt + "','" + olop + "','" + opr + "','"+LoginForm.dept+"')";
+        String insertPatient = insertFields + insertValue;
+
+        try{
+            Statement statement = connectDB.createStatement();
+            statement.executeUpdate(insertPatient);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    //admin authentication
+    public void autheticate(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String verifyLogin = "SELECT count(1) FROM accounts WHERE DepartmentCode = '" +adminPass.getText()+ "' AND Position = 'Admin'";
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+            while(queryResult.next()){
+                if (queryResult.getInt(1) == 1) {
+                    //
+                }else{
+                    JOptionPane.showMessageDialog(null, "Wrong Department Code or Username");
+                }
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
 
     }
 
@@ -927,6 +995,10 @@ public class PatientInformation extends JFrame implements ActionListener {
 
         if (e.getSource() == editPatient){
             setEditable();
+        }
+
+        if (e.getSource() == confirm_add_old){
+            InsertOldPatient();
         }
     }
 
