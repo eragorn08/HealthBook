@@ -59,7 +59,7 @@ public class ADMINMENU extends JFrame implements ActionListener{
 
         icon = new JLabel(new ImageIcon("logo_icon.png"));
         text = new JLabel(new ImageIcon("logo_name.png"));
-        power = new JButton(new ImageIcon("power_button.png"));
+        power = new JButton(new ImageIcon("header_space.png"));
         log_out = new JButton(new ImageIcon("log_out.png"));
 
         power.setContentAreaFilled(false);
@@ -70,7 +70,6 @@ public class ADMINMENU extends JFrame implements ActionListener{
         log_out.setFocusPainted(false);
         log_out.setBorder(noborder);
 
-        power.addActionListener(this);
         log_out.addActionListener(this);
 
         c.fill = GridBagConstraints.BOTH;
@@ -217,9 +216,7 @@ public class ADMINMENU extends JFrame implements ActionListener{
             new LoginForm();
         }
 
-        if(e.getSource() == power){
-            dispose();
-        }
+
     }
 
 

@@ -202,9 +202,6 @@ public class SearchForm extends JPanel implements ActionListener{
 
 
     public void createTable(){
-        String[] columnNames = {"Patient No.", "Name", "Date of Recent Checkup"};
-
-        Object[][] data = {};
 
 
         table = new JTable(new DefaultTableModel());
@@ -212,7 +209,7 @@ public class SearchForm extends JPanel implements ActionListener{
         model = (DefaultTableModel) table.getModel();
         model.addColumn("Patient No.");
         model.addColumn("Name");
-        model.addColumn("Date of Recent Checkup");
+        model.addColumn("Date of Checkup");
 
 
         table.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -248,7 +245,7 @@ public class SearchForm extends JPanel implements ActionListener{
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
         table.getColumn("Patient No.").setCellRenderer(dtcr);
         table.getColumn("Name").setCellRenderer(dtcr);
-        table.getColumn("Date of Recent Checkup").setCellRenderer(dtcr);
+        table.getColumn("Date of Checkup").setCellRenderer(dtcr);
 
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

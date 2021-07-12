@@ -464,14 +464,14 @@ public class PatientInformation extends JFrame implements ActionListener {
         middlenameFIeld = new JTextField(10);
         middlenameFIeld.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 2;
+        c.gridx = 3;
         c.gridy = 1;
         body_panel.add(middlenameFIeld, c);
 
         givennameField = new JTextField(10);
         givennameField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 3;
+        c.gridx = 2;
         c.gridy = 1;
         body_panel.add(givennameField, c);
 
@@ -1046,19 +1046,33 @@ public class PatientInformation extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == addrecord) {
+            editPatient.setVisible(false);
             addrecord.setVisible(false);
             OldPatient();
         }
 
         if (e.getSource() == editPatient){
+            addrecord.setVisible(false);
             setEditable();
         }
 
         if (e.getSource() == confirm_add_old){
+            editPatient.setVisible(true);
             InsertOldPatient();
+            dispose();
         }
         if (e.getSource() == confirm_edit){
+            addrecord.setVisible(true);
+            adminAuthentication.setVisible(false);
             autheticate();
+            setNotEditable();
+        }
+
+        if (e.getSource() == cancel_edit){
+            addrecord.setVisible(true);
+            editPatient.setVisible(true);
+            adminAuthentication.setVisible(false);
+            setNotEditable();
         }
     }
 
