@@ -511,7 +511,7 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
 
         try{
             Statement statement = connectDB.createStatement();
-            statement.executeQuery(delete);
+            statement.executeUpdate(delete);
         }catch(Exception e){
             e.getCause();
             e.printStackTrace();
@@ -537,13 +537,18 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         }
 
         if(e.getSource() == delete){
-            deleterec();
             edit.setVisible(false);
             delete.setVisible(false);
             showConfirmation();
         }
 
         if (e.getSource() == cancel){
+            smallFrame.setVisible(false);
+            delete.setVisible(true);
+            edit.setVisible(true);
+        }
+        if (e.getSource() == confirmdelete){
+            deleterec();
             smallFrame.setVisible(false);
             delete.setVisible(true);
             edit.setVisible(true);
