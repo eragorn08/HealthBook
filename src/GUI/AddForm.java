@@ -510,6 +510,8 @@ public class AddForm extends JPanel implements ActionListener {
         String bloodtype = (String) bloodtypeField.getSelectedItem();
         String address = addressField.getText();
 
+        System.out.println(LoginForm.dept);
+
         //Input Database
         String insertFields = "INSERT INTO patientinfo(surname,givenname,middlename,gender,address,age,month," +
                 "day,year,weight,height,bloodtype,bloodpressure,bodytemp,levelofpain,pulserate,department) VALUES ('";

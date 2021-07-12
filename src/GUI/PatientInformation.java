@@ -166,6 +166,7 @@ public class PatientInformation extends JFrame implements ActionListener {
                 btp = rs.getString("bodytemp");
                 lop = rs.getString("levelofpain");
                 pulse = rs.getString("pulserate");
+                department = rs.getString("department");
 
             }}
         catch(Exception e){
@@ -996,10 +997,12 @@ public class PatientInformation extends JFrame implements ActionListener {
         lop = plevelField.getText();
         pulse = pulField.getText();
 
+        System.out.println(LoginForm.dept);
+
         String insertFields = "UPDATE patientinfo SET surname = '"+lastname+"',givenname = '"+firstname+"',middlename = " +
                 "'"+midname+"',gender = '"+gend+"',address='"+addrress+"',age='"+ag+"',month='"+month+"',day='"+day+"'," +
                 "year='"+year+"',weight='"+weigh+"',height='"+heigh+"',bloodtype='"+bt+"',bloodpressure='"+ebp+"',bodytemp='"+bt+"'" +
-                ",levelofpain='"+lop+"',pulserate='"+pulse+"',department='"+LoginForm.dept+"' WHERE patientID = '"+SearchForm.value+"'";
+                ",levelofpain='"+lop+"',pulserate='"+pulse+"' WHERE patientID = '"+SearchForm.value+"'";
 
         try{
             Statement statement = connectDB.createStatement();
@@ -1017,7 +1020,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT count(1) FROM accounts WHERE DepartmentCode = '" +adminPass.getText()+ "' AND Position = 'Admin'";
+        String verifyLogin = "SELECT count(1) FROM accounts WHERE Username = '" +adminPass.getText()+ "' AND Position = 'Admin'";
 
         try {
             Statement statement = connectDB.createStatement();
@@ -1026,7 +1029,6 @@ public class PatientInformation extends JFrame implements ActionListener {
                 if (queryResult.getInt(1) == 1) {
                     editinsert();
                     JOptionPane.showMessageDialog(null, "Account has Been Edited");
-
                 }else{
                     JOptionPane.showMessageDialog(null, "Wrong Username for Admin.");
                 }

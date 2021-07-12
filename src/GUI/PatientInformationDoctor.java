@@ -33,7 +33,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
 
         String Identify = "UPDATE patientinfo SET symptoms='"+symptoms_content.getText()+"' , " +
                 "diagnosis='"+diagnosis_content.getText()+"',medication='"+medication_content.getText()+"'" +
-                ",doctor='"+LoginForm.doc+"' WHERE patientID = '"+SearchFormDoctor.value+"'";
+                ",doctor='"+LoginForm.EmpID+"' WHERE patientID = '"+SearchFormDoctor.value+"'";
         try{
             Statement st = connect.createStatement();
             st.executeUpdate(Identify);
