@@ -114,14 +114,14 @@ public class AdminSearch extends JPanel implements ActionListener{
         String[] sortBy = {
                 "All",
                 "Cardiology",
-                "Gastroentrology",
+                "Gastroenterology",
                 "Gynecology",
                 "Nephrology",
                 "Neurology",
                 "Oncology",
-                "Opthalmology",
+                "Ophthalmology",
                 "Orthopaedics",
-                "Otolarngology",
+                "Otolaryngology",
                 "Urology"};
         sort_by = new JComboBox<>(sortBy);
         sort_by.setOpaque(false);
