@@ -17,10 +17,10 @@ public class PatientInformation extends JFrame implements ActionListener {
     public RoundedPanel body_panel, vitalsigns, addOldPatient, adminAuthentication;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
             lop, department,pulse,obp,obt,opr,olop,ohei,owei;
-    public JButton back_button, addrecord,editPatient,confirm_add_old;
+    public JButton back_button, addrecord,editPatient,confirm_add_old, confirm_edit, cancel_edit;
     public JTextField surnameField, givennameField, middlenameFIeld, genderField, monthField,
             dayField, yearField, btypeField, ageField, heightField ,weightField,
-            blpField0,blpField1, tempeField,pulField,plevelField,bpEntry0,bpEntry1,tempEntry,pulseEntry,painEntry,
+            blpField0, tempeField,pulField,plevelField,bpEntry0,bpEntry1,tempEntry,pulseEntry,painEntry,
             heightEntry,weightEntry,adminPass;
     public JTextArea addressField;
 
@@ -41,11 +41,12 @@ public class PatientInformation extends JFrame implements ActionListener {
         heightField.setEditable(true);
         weightField.setEditable(true);
         blpField0.setEditable(true);
-        blpField1.setEditable(true);
         tempeField.setEditable(true);
         pulField.setEditable(true);
         plevelField.setEditable(true);
         editPatient.setVisible(false);
+
+        panel.add(Box.createRigidArea((new Dimension(5,20))));
 
         panel.add(adminAuthentication = new RoundedPanel(50,new Color(0x212C58)));
         adminAuthentication.setOpaque(false);
@@ -58,23 +59,68 @@ public class PatientInformation extends JFrame implements ActionListener {
         adminAuthentication.setVisible(true);
 
         JLabel basicDetails = new JLabel("<html><div style= 'text-align:center;'>" +
-                "To make changes, type the Admin Employee ID to<br>allow this, and then" +
+                "To make changes, type the Admin Employee ID to<br>allow this, and then " +
                 "click Confirm<div></html>");
         basicDetails.setFont(new Font("Helvetica", Font.BOLD, 25));
         basicDetails.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(0, 0, 0, 0);
+        c.insets = new Insets(0, 0, 30, 0);
         c.gridwidth = 2;
         c.gridx = 0;
         c.gridy = 0;
         adminAuthentication.add(basicDetails, c);
 
+        JLabel AdminLabel = new JLabel("Administrator");
+        AdminLabel.setFont(new Font("Helvetica", Font.BOLD, 25));
+        AdminLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(0, 0, 0, 0);
+        c.gridwidth = 1;
+        c.gridx = 0;
+        c.gridy = 1;
+        adminAuthentication.add(AdminLabel, c);
+
+
+
         adminPass = new JTextField(10);
         adminPass.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridwidth = 2;
         c.gridx = 0;
         c.gridy = 2;
+        c.insets = new Insets(0, 0, 20, 0);
         adminAuthentication.add(adminPass, c);
+
+
+        confirm_edit = new JButton(new ImageIcon("confirmedit.png"));
+        confirm_edit.setContentAreaFilled(false);
+        confirm_edit.setVisible(true);
+        confirm_edit.setFocusPainted(false);
+        confirm_edit.setBorder(BorderFactory.createEmptyBorder());
+        confirm_edit.addActionListener(this);
+        confirm_edit.setAlignmentX(Component.CENTER_ALIGNMENT);
+        c.fill = GridBagConstraints.BOTH;
+        c.gridwidth =1;
+        c.gridx = 0;
+        c.gridy = 3;
+        adminAuthentication.add(confirm_edit, c);
+
+        cancel_edit = new JButton(new ImageIcon("close.png"));
+        cancel_edit.setContentAreaFilled(false);
+        cancel_edit.setVisible(true);
+        cancel_edit.setFocusPainted(false);
+        cancel_edit.setBorder(BorderFactory.createEmptyBorder());
+        cancel_edit.addActionListener(this);
+        confirm_edit.setAlignmentX(Component.CENTER_ALIGNMENT);
+        c.fill = GridBagConstraints.BOTH;
+        c.gridwidth = 1;
+        c.gridx = 1;
+        c.gridy = 3;
+        adminAuthentication.add(cancel_edit, c);
+
+
+
+
 
 
     }
@@ -92,7 +138,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         heightField.setEditable(false);
         weightField.setEditable(false);
         blpField0.setEditable(false);
-        blpField1.setEditable(false);
         tempeField.setEditable(false);
         pulField.setEditable(false);
         plevelField.setEditable(false);
@@ -145,7 +190,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setLayout(null);
-        //setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
         JPanel title_panel = new JPanel();
         title_panel.setLayout(null);
@@ -255,14 +299,7 @@ public class PatientInformation extends JFrame implements ActionListener {
 
     }
     public void vitalSigns(){
-        // pwede mo ito i edit para may varibles na sila
-        // ako na lang mag concatinate
-        // VARIABLES FOR VITAL SIGNS//
-        String bp = bloodpressure;
-        String temp = bt;
-        String pulse = "110/80" + " " + "bpm";
-        String pain = lop;
-        //////////////////////////////
+
         panel.add(vitalsigns = new RoundedPanel(50,new Color(0x4d5579)));
         vitalsigns.setOpaque(false);
         vitalsigns.setLayout(new GridBagLayout());
@@ -301,12 +338,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 1;
         vitalsigns.add(blpField0, c);
 
-        blpField1 =  new JTextField(10);
-        blpField1.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 2;
-        c.gridy = 1;
-        vitalsigns.add(blpField1, c);
 
 
 
@@ -394,14 +425,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         // pwede mo ito i edit para may varibles na sila
         // ako na lang mag concatinate
         // VARIABLES FOR BASIC DETAILS//
-        String name = lastname +", " + firstname + " " + midname;
-        String sex = gend;
-        String address = addrress;
-        String birth = month + "/" + day + "/" + year;
-        String bloodtype = bt;
-        String age = ag;
-        String height = heigh;
-        String weight = weigh;
         String no = SearchForm.value;
         String date = SearchForm.date;
         //////////////////////////////
