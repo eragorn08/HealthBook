@@ -74,7 +74,7 @@ public class AdminSearch extends JPanel implements ActionListener{
         north.add(search_label, BorderLayout.WEST);
 
         //search field
-        JTextField search_field = new JTextField(23);
+        JTextField search_field = new JTextField(18);
         //search_field.setBounds(105,8, 561, 40);
         search_field.setBackground(new Color(0x4b5576));
         search_field.setForeground(Color.white);
@@ -108,7 +108,6 @@ public class AdminSearch extends JPanel implements ActionListener{
         searchBy_label.setForeground(Color.WHITE);
         searchBy_label.setBorder(BorderFactory.createEmptyBorder(5,15,5,5));
 
-        //searchBy_label.setBounds(705, 12, 109, 33);
         north.add(searchBy_label);
 
         String[] sortBy = {
@@ -166,7 +165,7 @@ public class AdminSearch extends JPanel implements ActionListener{
 
 
         createTable();
-        String[] empty = {"","Name"};
+        String[] empty = {"","All"};
         gettableData(empty);
 
 
@@ -177,13 +176,19 @@ public class AdminSearch extends JPanel implements ActionListener{
 
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
+        if (text[1].equals("All")){
+            if(text[0].equals(""))
+                patientinfo = "SELECT * FROM accounts WHERE position != 'Admin'";
+            else
+                patientinfo = "SELECT * FROM accounts WHERE position != 'Admin' AND Lastname LIKE '" + text[0] + "%'";
+        }else {
+            if(text[0].equals(""))
+                patientinfo = "SELECT * FROM accounts WHERE position != 'Admin' AND Department = '" + text[1] + "'";
+            else
+                patientinfo = "SELECT * FROM accounts WHERE position != 'Admin' AND Department = '" + text[1] + "' " +
+                        "AND Lastname LIKE '" + text[0] + "%'";
+        }
 
-//        if (text[0].equals(""))
-            patientinfo = "SELECT * FROM accounts WHERE position != 'Admin'";
-//        else if (text[1].equals("Name"))
-//            patientinfo = "SELECT LastName, GivenName, MiddleName, Position, Department FROM accounts WHERE LastName LIKE '" +text[0]+ "%'";
-//        else
-//            patientinfo = "SELECT LastName, GivenName, MiddleName, Position, Department FROM accounts WHERE datetime LIKE '" +text[0]+ "%'";
         try {
             model.setRowCount(0);
             Statement statement = connectDB.createStatement();
@@ -214,7 +219,6 @@ public class AdminSearch extends JPanel implements ActionListener{
     public void createTable(){
 
 
-        Object[][] data = {};
 
 
         table = new JTable(new DefaultTableModel());
@@ -255,8 +259,6 @@ public class AdminSearch extends JPanel implements ActionListener{
         table.getTableHeader().setForeground(Color.white);
         table.getColumnModel().getColumn(0).setPreferredWidth(20);
         table.getColumnModel().getColumn(1).setPreferredWidth(220);
-        //table.getColumnModel().getColumn(2).setPreferredWidth(180);
-        //table.getColumnModel().getColumn(3).setPreferredWidth(200);
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
 
