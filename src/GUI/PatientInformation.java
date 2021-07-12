@@ -545,8 +545,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 3;
         addOldPatient.add(bpm, c);
 
-
-
         //Level of Pain:
         JLabel painLabel = new JLabel("Level of Pain:");
         painLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -651,6 +649,11 @@ public class PatientInformation extends JFrame implements ActionListener {
         confirm_add_old.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(confirm_add_old);
         panel.add(Box.createRigidArea((new Dimension(5,20))));
+
+
+    }
+
+    public void InsertOldPatient(){
 
 
     }

@@ -512,10 +512,10 @@ public class AddForm extends JPanel implements ActionListener {
 
         //Input Database
         String insertFields = "INSERT INTO patientinfo(surname,givenname,middlename,gender,address,age,month," +
-                "day,year,weight,height,bloodtype,bloodpressure,bodytemp,levelofpain,pulserate) VALUES ('";
+                "day,year,weight,height,bloodtype,bloodpressure,bodytemp,levelofpain,pulserate,department) VALUES ('";
         String insertValue = surname + "','" + firstname + "','" + middlename + "','" + gender + "','" + address + "','" +
                 age + "','" + month + "','" + day + "','" + year + "','" + weight + "','" + height + "','" + bloodtype + "','" +
-                bloodpressure + "','" + bodyTemp + "','" + painlevel + "','" + pulse + "')";
+                bloodpressure + "','" + bodyTemp + "','" + painlevel + "','" + pulse + "','"+LoginForm.dept+"')";
         String insertPatient = insertFields + insertValue;
 
         try{

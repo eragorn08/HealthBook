@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import GUI.LoginForm;
 
 public class HomePageDoctor extends JPanel{
     public HomePageDoctor(){
