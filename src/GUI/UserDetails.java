@@ -384,6 +384,7 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         confirm = new JButton(new ImageIcon("confirm_logo.png"));
         confirm.setFocusPainted(false);
         confirm.setContentAreaFilled(false);
+        confirm.setBorder(BorderFactory.createEmptyBorder());
         confirm.addActionListener(this);
         //confirm.setBorder(BorderFactory.createEmptyBorder());
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -448,15 +449,19 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         }
 
         if(e.getSource() == edit){
+            delete.setVisible(false);
             setAllEditable();
         }
         if(e.getSource() == confirm){
+            delete.setVisible(true);
+            edit.setVisible(true);
             TransData();
             UpdateData();
             disableAllTextField();
         }
 
         if(e.getSource() == delete){
+            edit.setVisible(false);
             delete.setVisible(false);
             showConfirmation();
         }
@@ -464,6 +469,7 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         if (e.getSource() == cancel){
             smallFrame.setVisible(false);
             delete.setVisible(true);
+            edit.setVisible(true);
         }
     }
 
