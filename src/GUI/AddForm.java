@@ -469,7 +469,7 @@ public class AddForm extends JPanel implements ActionListener {
             InputPatient();
             JOptionPane.showMessageDialog(null, "Patient Information has Been Added!");
             clearinput();
-            new SearchForm();
+            SearchForm.gettableData(empty);
         }
     }
 
@@ -537,10 +537,6 @@ public class AddForm extends JPanel implements ActionListener {
         surnameField.setText("");
         firstnameField.setText("");
         middlenameField.setText("");
-        //ageField.setText("");
-        monthField.setText("");
-        dayField.setText("");
-        yearField.setText("");
         weightField.setText("");
         heightField.setText("");
         bloodPressureField1.setText("");
@@ -560,5 +556,6 @@ public class AddForm extends JPanel implements ActionListener {
     private JTextArea addressField;
     private JButton confirm;
     private String gender;
+    private final String[] empty = {"","Name"};
 }
 

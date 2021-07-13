@@ -19,7 +19,7 @@ public class PatientInformation extends JFrame implements ActionListener {
     public RoundedPanel body_panel, vitalsigns, addOldPatient, adminAuthentication;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
             lop, department,pulse,obp,obt,opr,olop,ohei,owei,ebp;
-    private final String[] empty = {"",""};
+    private final String[] empty = {"","Name"};
     public JButton back_button, addrecord,editPatient,confirm_add_old, confirm_edit, cancel_edit;
     public JTextField surnameField, givennameField, middlenameFIeld, genderField, monthField,
             dayField, yearField, btypeField, ageField, heightField ,weightField,
