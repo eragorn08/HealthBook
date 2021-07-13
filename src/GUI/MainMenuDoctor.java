@@ -1,20 +1,14 @@
 package GUI;
 
-
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
-
-
 public class MainMenuDoctor extends JFrame implements ActionListener{
 
     public int posX = 0;
     public int posY = 0;
-
-
 
     public MainMenuDoctor() {
         super("HealthBook");
@@ -30,8 +24,6 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
         setUndecorated(true);
         setVisible(true);
     }
-
-
 
     public void setHeader() {
         Border noborder = BorderFactory.createEmptyBorder();
@@ -118,18 +110,12 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
         homeButton.setHorizontalAlignment(SwingConstants.LEFT);
 
         homeButton.setBorder(BorderFactory.createEmptyBorder(0, 31, 0, 0));
-        //addButton.setBorder(BorderFactory.createEmptyBorder(0, 21, 0, 0));
         searchButton.setBorder(BorderFactory.createEmptyBorder(0, 29, 0, 0));
-
-        //addButton.setText("Add Patient");
-        //.setIconTextGap(15);
-        //.setHorizontalAlignment(SwingConstants.LEFT);
 
         searchButton.setText("Search Patient");
         searchButton.setIconTextGap(23);
         searchButton.setHorizontalAlignment(SwingConstants.LEFT);
 
-        //addButton.addActionListener(this);
         searchButton.addActionListener(this);
         homeButton.addActionListener(this);
 
@@ -138,11 +124,7 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
         homeButton.setFont(new Font("Helvetica",Font.PLAIN,20));
 
         homeButton.setFocusPainted(false);
-        //addButton.setContentAreaFilled(false);
-//.setForeground(Color.white);
-        //addButton.setFont(new Font("Helvetica",Font.PLAIN,20));
 
-       // addButton.setFocusPainted(false);
         searchButton.setContentAreaFilled(false);
         searchButton.setForeground(Color.white);
         searchButton.setFont(new Font("Helvetica",Font.PLAIN,20));
@@ -150,7 +132,6 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
         searchButton.setFocusPainted(false);
 
         homeButton.setBounds(0,0, 286,56);
-        //addButton.setBounds(0, 57, 286, 56);
         searchButton.setBounds(0, 57, 286, 56);
 
         Spacer.setBounds(0, 65, 286, 24);
@@ -182,7 +163,6 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
             searchButton.setContentAreaFilled(false);
         }
 
-
         if(e.getSource() == searchButton) {
             searchButton.setContentAreaFilled(true);
             searchButton.setBackground(new Color(0x525c86));
@@ -197,10 +177,7 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
         }
 
     }
-
-
     private final CardLayout cl = new CardLayout();
     public JButton addButton, searchButton, homeButton, log_out, power;
     private final JPanel cardPanel = new JPanel();
-    //public JFrame frame;
 }

@@ -1,7 +1,6 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -9,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.font.FontRenderContext;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -143,11 +141,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(1280,643));
-        //scrollPane.setSize(1280,643);
-        //scrollPane.setBorder(BorderFactory.createEmptyBorder());
 
-
-        //parentpanel.add(scrollPane, BorderLayout.CENTER);
         info();
         panel.add(Box.createRigidArea((new Dimension(5,15))));
         vitalSigns();
@@ -168,7 +162,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         panel.add(confirm);
         setAllUneditable();
 
-
         scrollPane = new JScrollPane(panel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -176,19 +169,13 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         scrollPane.setBounds(0, 100, 1280, 620);
 
         add(scrollPane);
-
-
-
     }
     public void vitalSigns(){
-        // pwede mo ito i edit para may varibles na sila
-        // ako na lang mag concatinate
-        // VARIABLES FOR VITAL SIGNS//
+        //Variables for Vital Signs
         String bp = bloodpressure;
         String temp = bt;
         String pulse = pulserate + " " + "bpm";
         String pain = lop;
-        //////////////////////////////
         panel.add(vitalsigns = new RoundedPanel(50,new Color(0x4d5579)));
         vitalsigns.setOpaque(false);
         vitalsigns.setLayout(new GridBagLayout());
@@ -221,8 +208,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridy = 1;
         vitalsigns.add(bpLabel, c);
 
-
-
         //Body Temperature
         JLabel tempLabel = new JLabel("Body Temperature: " + temp);
         tempLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -232,8 +217,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 2;
         vitalsigns.add(tempLabel, c);
-
-
 
         //Pulse Rate
         JLabel pulseLabel = new JLabel("Pulse Rate: " + pulse);
@@ -245,8 +228,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridy = 3;
         vitalsigns.add(pulseLabel, c);
 
-
-
         //Level of Pain:
         JLabel painLabel = new JLabel("Level of Pain: " + pain);
         painLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -256,14 +237,10 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 4;
         vitalsigns.add(painLabel, c);
-
-
     }
 
     public void info() {
-        // pwede mo ito i edit para may varibles na sila
-        // ako na lang mag concatinate
-        // VARIABLES FOR BASIC DETAILS//
+        //Basic Details
         String name = lastname +", " + firstname + " " + midname;
         String sex = gend;
         String address = addrress;
@@ -274,7 +251,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         String weight = weigh;
         String no = SearchFormDoctor.value;
         String date = SearchFormDoctor.date;
-        //////////////////////////////
+
         panel.add(body_panel = new RoundedPanel(50,new Color(0x4d5579)));
         body_panel.setOpaque(false);
         body_panel.setBorder(BorderFactory.createEmptyBorder());
@@ -297,7 +274,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         body_panel.add(basicDetails, c);
         c.weightx = 1.0;
 
-
         //Name
         JLabel nameLabel = new JLabel("Name: " + name);
         nameLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -307,8 +283,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 1;
         body_panel.add(nameLabel, c);
-
-
 
         //Sex
         JLabel sexLabel = new JLabel("Sex: " + sex);
@@ -320,8 +294,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridy = 2;
         body_panel.add(sexLabel, c);
 
-
-
         //Address
         JLabel addressLabel = new JLabel("Address: " + address);
         addressLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -331,7 +303,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 3;
         body_panel.add(addressLabel, c);
-
 
         //Date of Birth:
         JLabel birthLabel = new JLabel("Date of Birth: " + birth);
@@ -343,7 +314,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridy = 4;
         body_panel.add(birthLabel, c);
 
-
         //Blood Type:
         JLabel bloodTypeLabel = new JLabel("Blood Type: " + bloodtype);
         bloodTypeLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -353,7 +323,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 5;
         body_panel.add(bloodTypeLabel, c);
-
 
         //Age:
         JLabel ageLabel = new JLabel("Age: " + age);
@@ -365,7 +334,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridy = 6;
         body_panel.add(ageLabel, c);
 
-
         //Height
         JLabel heightLabel = new JLabel("Height: " + height + " cm");
         heightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -375,7 +343,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 7;
         body_panel.add(heightLabel, c);
-
 
         //Weight
         JLabel weightLabel = new JLabel("Weight: " + weight + " kg");
@@ -387,8 +354,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridy = 8;
         body_panel.add(weightLabel, c);
 
-
-
         //Patient No.:
         JLabel patientNoLabel = new JLabel("Patient No.: " + no);
         patientNoLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -399,7 +364,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridy = 1;
         body_panel.add(patientNoLabel, c);
 
-
         //Date:
         JLabel DateLabel = new JLabel("Date: " + date);
         DateLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -409,10 +373,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridx = 2;
         c.gridy = 2;
         body_panel.add(DateLabel, c);
-
-
-
-
     }
     public void form() {
         panel.add(spacer = new JPanel());
@@ -448,7 +408,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridx = 2;
         c.gridy = 0;
         spacer.add(edit, c);
-
     }
 
     public void symptoms() {
@@ -474,7 +433,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         symptoms_panel.add(symptoms_label, c);
         c.weightx = 1.0;
 
-
         symptoms_content = new JTextArea();
         symptoms_content.setColumns(50);
         symptoms_content.setRows(1);
@@ -490,11 +448,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 1;
         symptoms_panel.add(symptoms_content, c);
-
         symptoms_content.setText(symptoms_info);
-
-
-
     }
     public void diagnosis() {
         panel.add(diagnosis_panel = new RoundedPanel(50,new Color(0x4d5579)));
@@ -519,8 +473,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         diagnosis_panel.add(diagnosis_label, c);
         c.weightx = 1.0;
 
-
-
         diagnosis_content = new JTextArea();
         diagnosis_content.setColumns(50);
         diagnosis_content.setRows(1);
@@ -536,9 +488,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 1;
         diagnosis_panel.add(diagnosis_content, c);
-
         diagnosis_content.setText(diagnosis_info);
-
     }
     public void medication(){
         panel.add(medication_panel = new RoundedPanel(50,new Color(0x4d5579)));
@@ -563,8 +513,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         medication_panel.add(medication_label, c);
         c.weightx = 1.0;
 
-
-
         medication_content = new JTextArea();
         medication_content.setColumns(50);
         medication_content.setRows(1);
@@ -580,10 +528,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 1;
         medication_panel.add(medication_content, c);
-
-
         medication_content.setText(medication_info);
-
     }
 
     public void setAllUneditable(){
@@ -599,9 +544,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         diagnosis_content.setEditable(true);
         medication_content.setEditable(true);
         confirm.setVisible(true);
-
-
-
     }
 
     @Override

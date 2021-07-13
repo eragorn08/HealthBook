@@ -247,13 +247,6 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
             }
         }
 
-    private JTextField surnameField,givenField,middleField,codeField,IDField,verifyField;
-    private JComboBox<String> dept;
-    private String surname,firstname,middlename,deptcode,department,Position,EmpID,Verification;
-    private JRadioButton doctorRadio,nurseRadio;
-    private JButton confirmButton;
-    private final String[] empty = {"","All"};
-
     public void Test(){
         if (dept.getSelectedItem().equals("Cardiology")){
             codeField.setText("Cardiology123");
@@ -287,6 +280,7 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
         }
     }
 
+    //Automation of Department Insertion
     @Override
     public void mouseClicked(MouseEvent e) {
         Test();
@@ -311,4 +305,11 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
     public void mouseExited(MouseEvent e) {
         Test();
     }
+
+    private JTextField surnameField,givenField,middleField,codeField,IDField,verifyField;
+    private JComboBox<String> dept;
+    private String surname,firstname,middlename,deptcode,department,Position,EmpID,Verification;
+    private JRadioButton doctorRadio,nurseRadio;
+    private JButton confirmButton;
+    private final String[] empty = {"","All"};
 }

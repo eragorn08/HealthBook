@@ -3,20 +3,12 @@ package GUI;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Calendar;
-import java.util.Locale;
-
-//import javax.swing.JFrame;
 
 public class AddForm extends JPanel implements ActionListener {
 
@@ -169,106 +161,6 @@ public class AddForm extends JPanel implements ActionListener {
         birthField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         birthField.setDateFormatString("dd/MM/yyyy");
         addFormPanel.add(birthField);
-/*
-
-        JLabel mmLabel = new JLabel("MM");
-        mmLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        mmLabel.setForeground(Color.WHITE);
-        mmLabel.setBounds(550,244, 88,25);
-        addFormPanel.add(mmLabel);
-
-        JLabel ddLabel = new JLabel("DD");
-        ddLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        ddLabel.setForeground(Color.WHITE);
-        ddLabel.setBounds(690,244, 88,25);
-        addFormPanel.add(ddLabel);
-
-        JLabel yyLabel = new JLabel("YYYY");
-        yyLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        yyLabel.setForeground(Color.WHITE);
-        yyLabel.setBounds(814,244, 88,25);
-        addFormPanel.add(yyLabel);
-
-        slashLabel0.setBounds(640, 215, 13, 20);
-        addFormPanel.add(slashLabel0);
-        slashLabel1.setBounds(779, 215, 13, 20);
-        addFormPanel.add(slashLabel1);
-
-
-        monthField = new JTextField();
-        monthField.setBounds(513, 215, 120, 28);
-        monthField.setBorder(BorderFactory.createEmptyBorder());
-        monthField.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        monthField.setHorizontalAlignment(JTextField.CENTER);
-        monthField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                String value = monthField.getText();
-                int l = value.length();
-                if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
-                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE){
-                    if (l != 2)
-                        monthField.setEditable(true);
-                    else
-                        monthField.setEditable(ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
-                }
-                else {
-                    monthField.setEditable(false);
-                }
-            }
-
-        });
-
-        addFormPanel.add(monthField);
-
-        dayField = new JTextField();
-        dayField.setBounds(652, 215, 120, 28);
-        dayField.setBorder(BorderFactory.createEmptyBorder());
-        dayField.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        dayField.setHorizontalAlignment(JTextField.CENTER);
-        dayField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                String value = dayField.getText();
-                int l = value.length();
-                if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
-                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE){
-                    if (l != 2)
-                        dayField.setEditable(true);
-                    else
-                        dayField.setEditable(ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
-                }
-                else {
-                    dayField.setEditable(false);
-                }
-            }
-        });
-        addFormPanel.add(dayField);
-
-        yearField = new JTextField();
-        yearField.setBounds(791, 215, 120, 28);
-        yearField.setBorder(BorderFactory.createEmptyBorder());
-        yearField.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        yearField.setHorizontalAlignment(JTextField.CENTER);
-        yearField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                String value = yearField.getText();
-                int l = value.length();
-                if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
-                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE){
-                    if (l != 4)
-                        yearField.setEditable(true);
-                    else
-                        yearField.setEditable(ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
-                }
-                else {
-                    yearField.setEditable(false);
-                }
-            }
-        });
-        addFormPanel.add(yearField);
-*/
 
         //WEIGHT AND HEIGHT LABEL
         JLabel weightLabel = new JLabel("Weight:");
@@ -463,6 +355,8 @@ public class AddForm extends JPanel implements ActionListener {
 
         add(addFormPanel);
     }
+
+    //Patient Input Action
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirm) {
@@ -533,6 +427,7 @@ public class AddForm extends JPanel implements ActionListener {
             e.getCause();
         }
     }
+
     public void clearinput(){
         surnameField.setText("");
         firstnameField.setText("");
@@ -547,6 +442,7 @@ public class AddForm extends JPanel implements ActionListener {
         pulseField.setText("");
         bloodtypeField.setSelectedIndex(0);
     }
+
     private JTextField surnameField,firstnameField,middlenameField,monthField,dayField,yearField,
             weightField,heightField,bloodPressureField1,bloodPressureField2,bodyTempField,levelofpainField,
             pulseField;

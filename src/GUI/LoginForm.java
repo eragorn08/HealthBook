@@ -2,13 +2,11 @@ package GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +26,6 @@ public class LoginForm extends JFrame implements ActionListener{
 
         SetDisplayPanel();
         SetDisplayContainer();
-
         setUndecorated(true);
         setVisible(true);
         getContentPane().requestFocusInWindow();
@@ -60,8 +57,6 @@ public class LoginForm extends JFrame implements ActionListener{
         DisplayTitle.setBounds(174,81,480,50);
         DisplayTitle.setFont(new Font("Bebas Neue",Font.PLAIN,45));
 
-
-
         //Text Fields
         DeptCode = new JTextField("Dept Code");
         DeptCode.setBounds(59,177,330,40);
@@ -84,7 +79,6 @@ public class LoginForm extends JFrame implements ActionListener{
                 }
             }
         });
-
 
         EmpID = new JPasswordField("Employee ID");
         EmpID.setEchoChar((char) 0);
@@ -112,19 +106,16 @@ public class LoginForm extends JFrame implements ActionListener{
         });
 
 
-        //Submit Button
-        DisplayPanel.add(Login = new JButton(new ImageIcon("signin.png")));
+
 
         Login.setBounds(59,431,330,53);
         Login.setBorder(BorderFactory.createEmptyBorder());
         Login.setFocusPainted(false);
         Login.setFont(new Font("Arial",Font.PLAIN,40));
-
-
         Login.addActionListener(this);
 
-
-
+        //Submit Button
+        DisplayPanel.add(Login = new JButton(new ImageIcon("signin.png")));
         DisplayPanel.setBounds(416,54,448,510);
         DisplayPanel.setVisible(true);
         DisplayPanel.add(DeptCode);
@@ -136,10 +127,7 @@ public class LoginForm extends JFrame implements ActionListener{
         DisplayContainer = new JPanel();
         DisplayContainer.setLayout(null);
         DisplayContainer.setBackground(new Color(0x283469));
-
         DisplayContainer.setBounds(0,0,320, 180);
-
-
 
         //POWER_OFF
         power = new JButton(new ImageIcon("power_button.png"));
@@ -163,7 +151,6 @@ public class LoginForm extends JFrame implements ActionListener{
     }
 
     public void GetPosition() throws SQLException {
-
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connect = connectNow.getConnection();
 

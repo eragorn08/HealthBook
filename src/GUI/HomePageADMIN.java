@@ -3,7 +3,6 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-
 public class HomePageADMIN extends JPanel{
     public HomePageADMIN(){
         setLayout(null);

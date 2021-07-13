@@ -140,7 +140,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         title_panel.add(edit);
         edit.addActionListener(this);
 
-
         //add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(new EmptyBorder(new Insets(23, 40, 100, 40)));
@@ -154,16 +153,11 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setPreferredSize(new Dimension(1280,643));
 
+        //Functions
         GetData();
         info();
+
         panel.add(Box.createRigidArea((new Dimension(5,15))));
-
-
-
-
-
-
-
 
         scrollPane = new JScrollPane(panel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -172,8 +166,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         scrollPane.setBounds(0, 169, 1280, 551);
 
         add(scrollPane);
-
-
     }
 
     public void disableAllTextField(){
@@ -224,9 +216,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         body_panel.add(nameLabel, c);
         c.weightx = 1.0;
 
-
-
-
         //Surname
         JLabel surnameLabel = new JLabel("Surname ");
         surnameLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -263,7 +252,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         c.gridy = 0;
         body_panel.add(givenNameTextField, c);
 
-
         //Middle Name
         JLabel middleNameLabel = new JLabel("Middle Name");
         middleNameLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -292,10 +280,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         c.gridx = 4;
         c.gridy = 0;
         body_panel.add(Empty, c);
-
-
-
-
 
         //Department
         JLabel deptLabel = new JLabel("Department: ");
@@ -330,9 +314,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         c.gridy = 2;
         body_panel.add(depts, c);
 
-
-
-
         //Role
         JLabel roleLabel = new JLabel("Role: ");
         roleLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -342,9 +323,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         c.gridx = 0;
         c.gridy = 3;
         body_panel.add(roleLabel, c);
-
-
-
 
         //Code:
         JLabel codeLabel = new JLabel("<html>Department<br>Code</html>");
@@ -363,7 +341,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         c.gridy = 4;
         body_panel.add(codeTextField, c);
 
-
         //ID:
         JLabel EmpIDLabel = new JLabel("<html>Employee<br>ID:</html>");
         EmpIDLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -380,7 +357,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         c.gridx = 1;
         c.gridy = 5;
         body_panel.add(IDTextField, c);
-
 
         confirm = new JButton(new ImageIcon("confirm_logo.png"));
         confirm.setFocusPainted(false);
@@ -416,7 +392,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         c.gridy = 3;
         body_panel.add(doctorRadio, c);
 
-
         nurseRadio.setFont(new Font("Helvetica", Font.PLAIN, 20));
         nurseRadio.setBackground(new Color(0x4d5579));
         nurseRadio.setForeground(Color.white);
@@ -430,10 +405,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         Roles.add(doctorRadio);
         Roles.add(nurseRadio);
 
-
-
-        disableAllTextField();
-
         delete = new JButton(new ImageIcon("deletebutton.png"));
         delete.setContentAreaFilled(false);
         delete.setFocusPainted(false);
@@ -441,6 +412,9 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         delete.addActionListener(this);
         delete.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(delete);
+
+        //Functions
+        disableAllTextField();
     }
 
     public void showConfirmation(){
@@ -450,12 +424,8 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
 
         smallFrame.setLayout(new FlowLayout());
         smallFrame.setVisible(true);
-        //smallFrame.setBackground(new Color(0x212C58));
-
-        //smallFrame.setSize(new Dimension(500,300));
         smallFrame.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(smallFrame);
-
 
         //logos and titles
         JLabel x = new JLabel(new ImageIcon("x_logo.png"));
@@ -465,33 +435,27 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
 
         JLabel AreYouSure = new JLabel("Are you sure?");
         AreYouSure.setFont(new Font("Helvetica", Font.PLAIN, 40));
-        //AreYouSure.setBounds(120,112,290,45);
         AreYouSure.setForeground(Color.white);
         smallFrame.add(AreYouSure);
         JLabel message = new JLabel("<html><div style = 'text-align: center;'>Do you really want to delete" +
                 " this account?<br>This process cannot be undone.</div></html>");
         message.setForeground(new Color(0x8891a6));
         message.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        //message.setBounds(64, 158, 371, 47);
         smallFrame.add(message);
 
         cancel = new JButton(new ImageIcon("cancel.png"));
-        //.setBounds(61, 222, 161, 41);
         cancel.setBorder(BorderFactory.createEmptyBorder());
         cancel.setContentAreaFilled(false);
         cancel.setFocusPainted(false);
         cancel.addActionListener(this);
         smallFrame.add(cancel);
 
-
         confirmdelete = new JButton(new ImageIcon("confirm_logo.png"));
-
         confirmdelete.setBorder(BorderFactory.createEmptyBorder());
         confirmdelete.setContentAreaFilled(false);
         confirmdelete.setFocusPainted(false);
         confirmdelete.addActionListener(this);
         smallFrame.add(confirmdelete);
-
     }
 
     public void deleterec(){
@@ -585,6 +549,8 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
             codeTextField.setText("Urology123");
         }
     }
+
+    //Mouse Event
     @Override
     public void mouseClicked(MouseEvent e) {
         DeptAssign();
@@ -655,7 +621,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
             graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
         }
     }
-
 }
 
 

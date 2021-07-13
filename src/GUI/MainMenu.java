@@ -1,13 +1,9 @@
 package GUI;
 
-
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.SQLException;
-
 
 public class MainMenu extends JFrame implements ActionListener{
 
@@ -30,8 +26,6 @@ public class MainMenu extends JFrame implements ActionListener{
         setUndecorated(true);
         setVisible(true);
     }
-
-
 
     public void setHeader() {
         Border noborder = BorderFactory.createEmptyBorder();
@@ -72,9 +66,7 @@ public class MainMenu extends JFrame implements ActionListener{
         log_out.setContentAreaFilled(false);
         log_out.setFocusPainted(false);
         log_out.setBorder(noborder);
-
         log_out.addActionListener(this);
-
 
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.0;
@@ -165,7 +157,6 @@ public class MainMenu extends JFrame implements ActionListener{
         add(NavPanel);
     }
 
-
     public void setDisplayPanel(){
         cardPanel.setLayout(cl);
         cardPanel.add("Home",new HomePage());
@@ -210,9 +201,7 @@ public class MainMenu extends JFrame implements ActionListener{
 
     }
 
-
     public final CardLayout cl = new CardLayout();
     public JButton addButton, searchButton, homeButton, log_out, power;
     public final JPanel cardPanel = new JPanel();
-    //public JFrame frame;
 }

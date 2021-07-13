@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
 public class HomePageDoctor extends JPanel{
     public HomePageDoctor(){
         setLayout(null);

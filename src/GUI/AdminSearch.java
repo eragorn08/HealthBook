@@ -152,13 +152,9 @@ public class AdminSearch extends JPanel implements ActionListener{
         //center.setBorder(new EmptyBorder(8,22,0,22));
         add(north, BorderLayout.CENTER);
 
-
-
-
+        //Functions
         createTable();
         gettableData(empty);
-
-
     }
 
     public static void gettableData(String[] text){
@@ -204,9 +200,6 @@ public class AdminSearch extends JPanel implements ActionListener{
 
 
     public void createTable(){
-
-
-
 
         table = new JTable(new DefaultTableModel());
         table.clearSelection();
@@ -264,8 +257,6 @@ public class AdminSearch extends JPanel implements ActionListener{
             view.setEnabled(false);
 
         }
-
-
         view.setContentAreaFilled(false);
         view.setFocusPainted(false);
         view.setBorder(BorderFactory.createEmptyBorder());
@@ -308,9 +299,6 @@ public class AdminSearch extends JPanel implements ActionListener{
 
         center.add(view,c);
     }
-
-
-
 
     @Override
     public void actionPerformed(ActionEvent e){

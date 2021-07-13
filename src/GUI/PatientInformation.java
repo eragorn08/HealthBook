@@ -1,12 +1,10 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.font.FontRenderContext;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -83,8 +81,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 1;
         adminAuthentication.add(AdminLabel, c);
 
-
-
         adminPass = new JTextField(10);
         adminPass.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -93,7 +89,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 2;
         c.insets = new Insets(0, 0, 20, 0);
         adminAuthentication.add(adminPass, c);
-
 
         confirm_edit = new JButton(new ImageIcon("confirmedit.png"));
         confirm_edit.setContentAreaFilled(false);
@@ -170,7 +165,6 @@ public class PatientInformation extends JFrame implements ActionListener {
                 lop = rs.getString("levelofpain");
                 pulse = rs.getString("pulserate");
                 department = rs.getString("department");
-
             }}
         catch(Exception e){
             e.getCause();
@@ -181,7 +175,6 @@ public class PatientInformation extends JFrame implements ActionListener {
     public PatientInformation() {
         super("Patient Information");
         setSize(1280, 720);
-
         setUndecorated(true);
         setResizable(false);
         setVisible(true);
@@ -244,7 +237,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         panel.setVisible(true);
         panel.setBounds(0, 100, 1280, 620);
 
-
         scrollPane.setVisible(true);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -255,7 +247,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         vitalSigns();
         panel.add(Box.createRigidArea((new Dimension(5,20))));
 
-
         editPatient = new JButton(new ImageIcon("edit.png"));
         editPatient.setContentAreaFilled(false);
         editPatient.setVisible(true);
@@ -264,7 +255,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         editPatient.setAlignmentX(Component.CENTER_ALIGNMENT);
         editPatient.addActionListener(this);
         panel.add(editPatient);
-
 
         scrollPane = new JScrollPane(panel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
                 ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -293,9 +283,8 @@ public class PatientInformation extends JFrame implements ActionListener {
         tempeField.setText(btp);
         pulField.setText(pulse);
         plevelField.setText(lop);
-
-
     }
+
     public void vitalSigns(){
 
         panel.add(vitalsigns = new RoundedPanel(50,new Color(0x4d5579)));
@@ -336,10 +325,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 1;
         vitalsigns.add(blpField0, c);
 
-
-
-
-
         //Body Temperature
         JLabel tempLabel = new JLabel("Body Temperature:");
         tempLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -366,9 +351,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 2;
         vitalsigns.add(degreeLabel, c);
 
-
-
-
         //Pulse Rate
         JLabel pulseLabel = new JLabel("Pulse Rate:");
         pulseLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -394,9 +376,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridx = 2;
         c.gridy = 3;
         vitalsigns.add(bpmLabel, c);
-
-
-
 
         //Level of Pain:
         JLabel painLabel = new JLabel("Level of Pain:");
@@ -433,18 +412,13 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 4;
         vitalsigns.add(uwuu, c);
 
-
-
-
     }
 
     public void info() {
-        // pwede mo ito i edit para may varibles na sila
-        // ako na lang mag concatinate
-        // VARIABLES FOR BASIC DETAILS//
+        //Basic Info Variables
         String no = SearchForm.value;
         String date = SearchForm.date;
-        //////////////////////////////
+
         panel.add(body_panel = new RoundedPanel(50,new Color(0x4d5579)));
         body_panel.setOpaque(false);
         body_panel.setBorder(BorderFactory.createEmptyBorder());
@@ -465,7 +439,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 0;
         body_panel.add(basicDetails, c);
 
-
         //Name
         JLabel nameLabel = new JLabel("Name:");
         nameLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -482,7 +455,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridx = 1;
         c.gridy = 1;
         body_panel.add(surnameField, c);
-
 
         middlenameFIeld = new JTextField(10);
         middlenameFIeld.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -542,10 +514,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 3;
         body_panel.add(genderField, c);
 
-
-
-
-
         //Address
         JLabel addressLabel = new JLabel("Address:");
         addressLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -555,8 +523,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridx = 0;
         c.gridy = 4;
         body_panel.add(addressLabel, c);
-
-
 
         addressField = new JTextArea();
         addressField.setColumns(20);
@@ -571,9 +537,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 4;
         body_panel.add(addressField, c);
         c.gridwidth = 1;
-
-
-
 
         //Date of Birth:
         JLabel birthLabel = new JLabel("Date of Birth:");
@@ -636,9 +599,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 6;
         body_panel.add(ddLabel, c);
 
-
-
-
         //Blood Type:
         JLabel bloodTypeLabel = new JLabel("Blood Type:");
         bloodTypeLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -656,7 +616,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 7;
         body_panel.add(btypeField, c);
 
-
         //Age:
         JLabel ageLabel = new JLabel("Age:");
         ageLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -673,7 +632,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridx = 1;
         c.gridy = 8;
         body_panel.add(ageField, c);
-
 
         //Height
         JLabel heightLabel = new JLabel("Height:");
@@ -701,7 +659,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 9;
         body_panel.add(cmLabel, c);
 
-
         //Weight
         JLabel weightLabel = new JLabel("Weight:");
         weightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -728,10 +685,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 10;
         body_panel.add(kgLabel, c);
 
-
-
-
-
         //Patient No.:
         JLabel patientNoLabel = new JLabel("Patient No.: " + no);
         patientNoLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -741,7 +694,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridx = 5;
         c.gridy = 1;
         body_panel.add(patientNoLabel, c);
-
 
         //Date:
         JLabel DateLabel = new JLabel("Date: " + date);
@@ -762,8 +714,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridx = 5;
         c.gridy = 3;
         body_panel.add(DeptLabel, c);
-
-
 
     }
 
@@ -862,8 +812,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 1;
         addOldPatient.add(space, c);
 
-
-
         //Body Temperature
         JLabel tempLabel = new JLabel("Body Temperature:");
         tempLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -900,8 +848,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(celsius, c);
         c.weightx = 1;
 
-
-
         //Pulse Rate
         JLabel pulseLabel = new JLabel("Pulse Rate:");
         pulseLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -925,7 +871,6 @@ public class PatientInformation extends JFrame implements ActionListener {
             }
         });
         addOldPatient.add(pulseEntry, c);
-
 
         JLabel bpm = new JLabel("bpm");
         bpm.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -960,7 +905,6 @@ public class PatientInformation extends JFrame implements ActionListener {
             }
         });
         addOldPatient.add(painEntry, c);
-
 
         //Height:
         JLabel heightLabel = new JLabel("Height:");
@@ -1031,7 +975,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         addOldPatient.add(kg, c);
         panel.add(Box.createRigidArea((new Dimension(5,20))));
 
-
         confirm_add_old = new JButton(new ImageIcon("confirm_logo.png"));
         confirm_add_old.setContentAreaFilled(false);
         confirm_add_old.setVisible(true);
@@ -1041,7 +984,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         confirm_add_old.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(confirm_add_old);
         panel.add(Box.createRigidArea((new Dimension(5,20))));
-
 
     }
 
@@ -1056,11 +998,11 @@ public class PatientInformation extends JFrame implements ActionListener {
         ohei = heightEntry.getText();
         owei = weightEntry.getText();
 
+        //Date Parsing
         LocalDate selectedDate = LocalDate.of(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
         LocalDate currentDate = LocalDate.now();
         int result = Period.between(selectedDate,currentDate).getYears();
         String age = Integer.toString(result);
-
 
         String insertFields = "INSERT INTO patientinfo(surname,givenname,middlename,gender,address,age,month," +
                 "day,year,weight,height,bloodtype,bloodpressure,bodytemp,levelofpain,pulserate,department) VALUES ('";
@@ -1231,5 +1173,3 @@ public class PatientInformation extends JFrame implements ActionListener {
     }
 
 }
-
-

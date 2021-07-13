@@ -1,31 +1,19 @@
 package GUI;
 
-import com.mysql.cj.protocol.Resultset;
-import com.sun.tools.javac.Main;
-import jdk.jfr.Enabled;
-
 import javax.swing.*;
-
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.RescaleOp;
 import java.sql.*;
-import java.util.Arrays;
-import java.util.Objects;
-
 
 public class SearchForm extends JPanel implements ActionListener{
     public String[] empty = {"","Name"};
@@ -66,9 +54,6 @@ public class SearchForm extends JPanel implements ActionListener{
         north.setVisible(true);
 
         add(center, BorderLayout.SOUTH);
-
-
-
 
         //search label
         JLabel search_label = new JLabel("Search:");
@@ -156,13 +141,9 @@ public class SearchForm extends JPanel implements ActionListener{
         //center.setBorder(new EmptyBorder(8,22,0,22));
         add(north, BorderLayout.CENTER);
 
-
-
-
+        //Functions
         createTable();
         gettableData(empty);
-
-
     }
 
     public static void gettableData(String[] text) {
@@ -181,7 +162,6 @@ public class SearchForm extends JPanel implements ActionListener{
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(patientinfo);
 
-
             while(queryResult.next()){
                 int id = queryResult.getInt("patientID");
                 String firstname = queryResult.getString("givenname");
@@ -197,12 +177,10 @@ public class SearchForm extends JPanel implements ActionListener{
             e.getCause();
             e.printStackTrace();
         }
-
     }
 
 
     public void createTable(){
-
 
         table = new JTable(new DefaultTableModel());
         table.clearSelection();
@@ -211,7 +189,6 @@ public class SearchForm extends JPanel implements ActionListener{
         model.addColumn("Name");
         model.addColumn("Date of Checkup");
 
-
         table.setFont(new Font("Helvetica", Font.PLAIN, 20));
         table.setBackground(new Color(0x4b5576));
         table.setForeground(Color.white);
@@ -219,9 +196,7 @@ public class SearchForm extends JPanel implements ActionListener{
         table.setBorder(BorderFactory.createEmptyBorder());
         table.setGridColor(new Color(0x212C58));
 
-
         table.setFillsViewportHeight(true);
-
 
         Dimension dim = new Dimension(97,6);
         table.setIntercellSpacing(new Dimension(dim));
@@ -255,9 +230,7 @@ public class SearchForm extends JPanel implements ActionListener{
 
         if(table.getSelectionModel().isSelectionEmpty()){
             view.setEnabled(false);
-
         }
-
 
         view.setContentAreaFilled(false);
         view.setFocusPainted(false);
@@ -303,10 +276,7 @@ public class SearchForm extends JPanel implements ActionListener{
 
         center.add(view,c);
     }
-
-
-
-
+    //Get Value
     @Override
     public void actionPerformed(ActionEvent e){
 

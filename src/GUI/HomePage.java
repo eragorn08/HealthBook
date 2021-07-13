@@ -3,7 +3,6 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
-
 public class HomePage extends JPanel{
     public HomePage(){
         setLayout(null);

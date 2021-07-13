@@ -7,14 +7,10 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
-
-
 public class ADMINMENU extends JFrame implements ActionListener{
 
     public int posX = 0;
     public int posY = 0;
-
-
 
     public ADMINMENU() {
         super("HealthBook");
@@ -30,8 +26,6 @@ public class ADMINMENU extends JFrame implements ActionListener{
         setUndecorated(true);
         setVisible(true);
     }
-
-
 
     public void setHeader() {
         Border noborder = BorderFactory.createEmptyBorder();
@@ -219,12 +213,10 @@ public class ADMINMENU extends JFrame implements ActionListener{
 
     }
 
-
     private final CardLayout cl = new CardLayout();
     public JButton addUser, ChangePass, searchUser, log_out, power;
     private final JPanel cardPanel = new JPanel();
     public JLabel usersLabel, adminLabel;
-    //public JFrame frame;
 }
 
 
