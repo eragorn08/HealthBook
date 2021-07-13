@@ -1,5 +1,7 @@
 package GUI;
 
+import com.toedter.calendar.JDateChooser;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -9,7 +11,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
+import java.util.Locale;
 
 //import javax.swing.JFrame;
 
@@ -151,34 +156,20 @@ public class AddForm extends JPanel implements ActionListener {
         addFormPanel.add(addressField);
 
 
-        //AGE FORM
-        JLabel ageLabel = new JLabel("Age:");
-        ageLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        ageLabel.setForeground(Color.WHITE);
-        ageLabel.setBounds(25,213, 59,25);
-        addFormPanel.add(ageLabel);
-
-        ageField = new JTextField();
-        ageField.setBounds(136, 213, 100, 28);
-        ageField.setBorder(BorderFactory.createEmptyBorder());
-        ageField.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        ageField.setHorizontalAlignment(JTextField.CENTER);
-        ageField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                ageField.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
-                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
-            }
-        });
-        addFormPanel.add(ageField);
-
-
         //BIRTHDAY FORM
-        JLabel birthLabel = new JLabel("Date of Birth:");
+        JLabel birthLabel = new JLabel("<html>Date of<br>Birth:</html>");
         birthLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         birthLabel.setForeground(Color.WHITE);
-        birthLabel.setBounds(349,215, 151,25);
+        birthLabel.setBounds(25,213, 151,62);
         addFormPanel.add(birthLabel);
+
+        birthField = new JDateChooser();
+        birthField.setBounds(136, 213, 200, 28);
+        birthField.setBorder(BorderFactory.createEmptyBorder());
+        birthField.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        birthField.setDateFormatString("dd/MM/yyyy");
+        addFormPanel.add(birthField);
+/*
 
         JLabel mmLabel = new JLabel("MM");
         mmLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -277,7 +268,7 @@ public class AddForm extends JPanel implements ActionListener {
             }
         });
         addFormPanel.add(yearField);
-
+*/
 
         //WEIGHT AND HEIGHT LABEL
         JLabel weightLabel = new JLabel("Weight:");
@@ -490,10 +481,23 @@ public class AddForm extends JPanel implements ActionListener {
         String surname = surnameField.getText();
         String firstname = firstnameField.getText();
         String middlename = middlenameField.getText();
-        String age = ageField.getText();
-        String month = monthField.getText();
-        String day = dayField.getText();
-        String year = yearField.getText();
+        //String age = ageField.getText();
+
+        //getting the age from dateChooser
+        String dateofBirth = ((JTextField)birthField.getDateEditor().getUiComponent()).getText();
+
+        String[] dob = dateofBirth.split("/");
+        int day = Integer.parseInt(dob[0]);
+        int month = Integer.parseInt(dob[1]);
+        int year = Integer.parseInt(dob[2]);
+
+
+        LocalDate selectedDate = LocalDate.of(year,month,day);
+        LocalDate currentDate = LocalDate.now();
+
+        int result = Period.between(selectedDate,currentDate).getYears();
+        String age = Integer.toString(result);
+
         String weight = weightField.getText();
         String height = heightField.getText();
         String bloodpressure = bloodPressureField1.getText() + '/' + bloodPressureField2.getText();
@@ -533,7 +537,7 @@ public class AddForm extends JPanel implements ActionListener {
         surnameField.setText("");
         firstnameField.setText("");
         middlenameField.setText("");
-        ageField.setText("");
+        //ageField.setText("");
         monthField.setText("");
         dayField.setText("");
         yearField.setText("");
@@ -547,9 +551,10 @@ public class AddForm extends JPanel implements ActionListener {
         pulseField.setText("");
         bloodtypeField.setSelectedIndex(0);
     }
-    private JTextField surnameField,firstnameField,middlenameField,ageField,monthField,dayField,yearField,
+    private JTextField surnameField,firstnameField,middlenameField,monthField,dayField,yearField,
             weightField,heightField,bloodPressureField1,bloodPressureField2,bodyTempField,levelofpainField,
             pulseField;
+    public JDateChooser birthField;
     private JComboBox<String> bloodtypeField;
     private JRadioButton maleRadioButton,femaleRadioButton;
     private JTextArea addressField;

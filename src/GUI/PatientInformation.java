@@ -10,6 +10,8 @@ import java.awt.font.FontRenderContext;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
 
 public class PatientInformation extends JFrame implements ActionListener {
     public JPanel panel = new JPanel();
@@ -17,6 +19,7 @@ public class PatientInformation extends JFrame implements ActionListener {
     public RoundedPanel body_panel, vitalsigns, addOldPatient, adminAuthentication;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
             lop, department,pulse,obp,obt,opr,olop,ohei,owei,ebp;
+    private final String[] empty = {"",""};
     public JButton back_button, addrecord,editPatient,confirm_add_old, confirm_edit, cancel_edit;
     public JTextField surnameField, givennameField, middlenameFIeld, genderField, monthField,
             dayField, yearField, btypeField, ageField, heightField ,weightField,
@@ -1053,16 +1056,24 @@ public class PatientInformation extends JFrame implements ActionListener {
         ohei = heightEntry.getText();
         owei = weightEntry.getText();
 
+        LocalDate selectedDate = LocalDate.of(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
+        LocalDate currentDate = LocalDate.now();
+        int result = Period.between(selectedDate,currentDate).getYears();
+        String age = Integer.toString(result);
+
+
         String insertFields = "INSERT INTO patientinfo(surname,givenname,middlename,gender,address,age,month," +
                 "day,year,weight,height,bloodtype,bloodpressure,bodytemp,levelofpain,pulserate,department) VALUES ('";
         String insertValue = lastname + "','" + firstname + "','" + midname + "','" + gend + "','" + addrress + "','" +
-                ag + "','" + month + "','" + day + "','" + year + "','" + owei + "','" + ohei + "','" + btp + "','" +
+                age + "','" + month + "','" + day + "','" + year + "','" + owei + "','" + ohei + "','" + btp + "','" +
                 obp + "','" + obt + "','" + olop + "','" + opr + "','"+LoginForm.dept+"')";
         String insertPatient = insertFields + insertValue;
 
         try{
             Statement statement = connectDB.createStatement();
             statement.executeUpdate(insertPatient);
+            JOptionPane.showMessageDialog(null, "Patient Record Added!");
+            SearchForm.gettableData(empty);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -1123,6 +1134,7 @@ public class PatientInformation extends JFrame implements ActionListener {
                 if (queryResult.getInt(1) == 1) {
                     editinsert();
                     JOptionPane.showMessageDialog(null, "Account has Been Edited");
+                    SearchForm.gettableData(empty);
                 }else{
                     JOptionPane.showMessageDialog(null, "Wrong Username for Admin.");
                 }

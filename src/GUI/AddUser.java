@@ -236,6 +236,7 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
             Transfer();
             if(EmpID.equals(Verification)){
                 InputUser();
+                AdminSearch.gettableData(empty);
                 JOptionPane.showMessageDialog(null, "User Created Successfully.");
                 clearinputuser();
             }
@@ -251,6 +252,7 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
     private String surname,firstname,middlename,deptcode,department,Position,EmpID,Verification;
     private JRadioButton doctorRadio,nurseRadio;
     private JButton confirmButton;
+    private final String[] empty = {"","All"};
 
     public void Test(){
         if (dept.getSelectedItem().equals("Cardiology")){

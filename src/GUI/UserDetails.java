@@ -19,6 +19,7 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel, smallFrame;
     public String lastname,firstname,midname,dep,cod,id,pos,upsurname,upgivenname,upmiddlename,uppos,updept,upcode,upid;
+    public String[] empty = {"","All"};
     public JComboBox<String> depts;
     public JButton back_button, edit, confirm, delete, confirmdelete, cancel;
     public JTextField surnameTextField, givenNameTextField, middleNameTextField, deptTextField, codeTextField, IDTextField;
@@ -444,19 +445,9 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
 
     public void showConfirmation(){
         smallFrame = new RoundedPanel(30,new Color(0x212C58));
-        //smallFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        //smallFrame.putClientProperty("JInternalFrame.isPalette",Boolean.TRUE);
-        //smallFrame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         smallFrame.setSize(500,300);
         smallFrame.setOpaque(false);
-        //mallFrame.setUndecorated(true);
-/*
-        Dimension desktopSize = getSize();
-        Dimension jInternalFrameSize = smallFrame.getSize();
-        int width = (desktopSize.width - jInternalFrameSize.width) / 2;
-        int height = (desktopSize.height - jInternalFrameSize.height) / 2;
-        smallFrame.setLocation(width,height);
-*/
+
         smallFrame.setLayout(new FlowLayout());
         smallFrame.setVisible(true);
         //smallFrame.setBackground(new Color(0x212C58));
@@ -529,11 +520,15 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
             setAllEditable();
         }
         if(e.getSource() == confirm){
+            AdminSearch.gettableData(empty);
             delete.setVisible(true);
             edit.setVisible(true);
             TransData();
             UpdateData();
+            AdminSearch.gettableData(empty);
+            JOptionPane.showMessageDialog(null, "User Information has been updated.");
             disableAllTextField();
+
         }
 
         if(e.getSource() == delete){
@@ -552,6 +547,9 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
             smallFrame.setVisible(false);
             delete.setVisible(true);
             edit.setVisible(true);
+            AdminSearch.gettableData(empty);
+            JOptionPane.showMessageDialog(null, "User Information has been deleted!");
+            dispose();
         }
     }
 

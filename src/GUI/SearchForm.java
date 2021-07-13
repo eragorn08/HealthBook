@@ -20,22 +20,24 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.image.RescaleOp;
 import java.sql.*;
 import java.util.Arrays;
+import java.util.Objects;
 
 
 public class SearchForm extends JPanel implements ActionListener{
+    public String[] empty = {"","Name"};
+    private int row;
+    public static String sort;
+    private static DefaultTableModel model;
     public GridBagConstraints c = new GridBagConstraints();
-    public DefaultTableModel model;
     public JPanel center = new JPanel();
     public JPanel north = new JPanel();
     public JTable table;
     public JComboBox<String> sort_by;
+    public static JTextField search_field;
     public JLabel searchPatientTitle;
     public JButton view;
     public static String value,date;
@@ -76,13 +78,14 @@ public class SearchForm extends JPanel implements ActionListener{
         north.add(search_label, BorderLayout.WEST);
 
         //search field
-        JTextField search_field = new JTextField(27);
+        search_field = new JTextField(27);
         //search_field.setBounds(105,8, 561, 40);
         search_field.setBackground(new Color(0x4b5576));
         search_field.setForeground(Color.white);
         search_field.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         search_field.setFont(new Font("Helvetica", Font.PLAIN, 25));
         north.add(search_field, BorderLayout.WEST);
+
         search_field.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -157,15 +160,13 @@ public class SearchForm extends JPanel implements ActionListener{
 
 
         createTable();
-        String[] empty = {"","Name"};
         gettableData(empty);
 
 
     }
 
-    public String[] gettableData(String[] text) {
+    public static void gettableData(String[] text) {
         String patientinfo;
-
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
@@ -196,7 +197,6 @@ public class SearchForm extends JPanel implements ActionListener{
             e.getCause();
             e.printStackTrace();
         }
-        return text;
 
     }
 
@@ -277,7 +277,9 @@ public class SearchForm extends JPanel implements ActionListener{
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
+
                 view.setEnabled(true);
+
 
             }
         });

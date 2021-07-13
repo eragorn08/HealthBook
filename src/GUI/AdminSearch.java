@@ -1,43 +1,34 @@
 package GUI;
 
-import com.mysql.cj.protocol.Resultset;
-import com.sun.tools.javac.Main;
-import jdk.jfr.Enabled;
-
 import javax.swing.*;
 
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.basic.BasicArrowButton;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.RescaleOp;
 import java.sql.*;
-import java.util.Arrays;
 
 
 public class AdminSearch extends JPanel implements ActionListener{
+    private static DefaultTableModel model;
     public GridBagConstraints c = new GridBagConstraints();
-    public DefaultTableModel model;
+    //public DefaultTableModel model;
     public JPanel center = new JPanel();
     public JPanel north = new JPanel();
     public JTable table;
     public JComboBox<String> sort_by;
     public JLabel searchPatientTitle;
     public JButton view;
+    public String[] empty = {"","All"};
     public static String value,date;
 
     public AdminSearch(){
@@ -165,32 +156,29 @@ public class AdminSearch extends JPanel implements ActionListener{
 
 
         createTable();
-        String[] empty = {"","All"};
         gettableData(empty);
 
 
     }
 
-    public String[] gettableData(String[] text) {
+    public static void gettableData(String[] text){
         String patientinfo;
-
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
-        if (text[1].equals("All")){
-            if(text[0].equals(""))
-                patientinfo = "SELECT * FROM accounts WHERE position != 'Admin'";
-            else
-                patientinfo = "SELECT * FROM accounts WHERE position != 'Admin' AND Lastname LIKE '" + text[0] + "%'";
-        }else {
-            if(text[0].equals(""))
-                patientinfo = "SELECT * FROM accounts WHERE position != 'Admin' AND Department = '" + text[1] + "'";
-            else
-                patientinfo = "SELECT * FROM accounts WHERE position != 'Admin' AND Department = '" + text[1] + "' " +
-                        "AND Lastname LIKE '" + text[0] + "%'";
-        }
-
+        model.setRowCount(0);
         try {
-            model.setRowCount(0);
+            DatabaseConnection connectNow = new DatabaseConnection();
+            Connection connectDB = connectNow.getConnection();
+            if (text[1].equals("All")){
+                if(text[0].equals(""))
+                    patientinfo = "SELECT * FROM accounts WHERE position != 'Admin'";
+                else
+                    patientinfo = "SELECT * FROM accounts WHERE position != 'Admin' AND Lastname LIKE '" + text[0] + "%'";
+            }else {
+                if(text[0].equals(""))
+                    patientinfo = "SELECT * FROM accounts WHERE position != 'Admin' AND Department = '" + text[1] + "'";
+                else
+                    patientinfo = "SELECT * FROM accounts WHERE position != 'Admin' AND Department = '" + text[1] + "' " +
+                            "AND Lastname LIKE '" + text[0] + "%'";
+            }
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(patientinfo);
 
@@ -211,7 +199,6 @@ public class AdminSearch extends JPanel implements ActionListener{
             e.getCause();
             e.printStackTrace();
         }
-        return text;
 
     }
 
@@ -331,7 +318,6 @@ public class AdminSearch extends JPanel implements ActionListener{
         if(e.getSource() == view){
             int row = table.getSelectedRow();
             value = table.getModel().getValueAt(row, 0).toString();
-            table.clearSelection();
             new UserDetails();
         }
     }
