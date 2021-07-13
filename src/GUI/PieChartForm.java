@@ -8,6 +8,9 @@ import org.jfree.data.general.PieDataset;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class PieChartForm extends JFrame{
     private JButton drawPieChartButton;
@@ -28,22 +31,49 @@ public class PieChartForm extends JFrame{
         graphPanel.revalidate();
     }
 
+    public int getValue(int j){
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connect = connectNow.getConnection();
+
+        String Cardio = "SELECT COUNT(*) FROM patientinfo WHERE department = '"+deptset[j]+"'";
+        try {
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery(Cardio);
+            if(rs.next()) {
+                count = rs.getInt("COUNT(*)");
+                System.out.println(count);
+            }
+        }
+        catch(Exception e){
+            e.getCause();
+            e.printStackTrace();
+        }
+        return count;
+    }
 
 
     @SuppressWarnings("removal")
-    private static PieDataset createDataSet(){
+    private PieDataset createDataSet(){
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue( "Cardiology", new Double(10));
-        dataset.setValue( "Gastroenterology", new Double(10));
-        dataset.setValue( "Gynecology", new Double(10));
-        dataset.setValue( "Nephrology", new Double(10));
-        dataset.setValue( "Neurology", new Double(10));
-        dataset.setValue( "Oncology", new Double(10));
-        dataset.setValue( "Ophthalmology", new Double(10));
-        dataset.setValue( "Orthopaedics", new Double(10));
-        dataset.setValue( "Otolaryngology", new Double(10));
-        dataset.setValue( "Urology", new Double(10));
+        for(i=0;i>10;i++){
+            dataset.setValue(deptset[i], new Double(getValue(i)));
+        }
         return dataset;
     }
+    public int i;
+    public int count;
+    public String[] deptset = {
+            "Cardiology",
+            "Gastroenterology",
+            "Gynecology",
+            "Nephrology",
+            "Neurology",
+            "Oncology",
+            "Ophthalmology",
+            "Orthopaedics",
+            "Otolaryngology",
+            "Urology"
+    };
 
 }

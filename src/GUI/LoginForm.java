@@ -106,7 +106,8 @@ public class LoginForm extends JFrame implements ActionListener{
         });
 
 
-
+        //Submit Button
+        DisplayPanel.add(Login = new JButton(new ImageIcon("signin.png")));
         DisplayPanel.add(Login = new JButton(new ImageIcon("signin.png")));
         Login.setBounds(59,431,330,53);
         Login.setBorder(BorderFactory.createEmptyBorder());
