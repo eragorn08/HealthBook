@@ -16,13 +16,14 @@ public class PatientInformation extends JFrame implements ActionListener {
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel, vitalsigns, addOldPatient, adminAuthentication;
     public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop, department,pulse,obp,obt,opr,olop,ohei,owei,ebp;
+            lop, department,pulse,obp,obt,opr,olop,ohei,owei,ebp,doctor;
     private final String[] empty = {"","Name"};
     public JButton back_button, addrecord,editPatient,confirm_add_old, confirm_edit, cancel_edit;
     public JTextField surnameField, givennameField, middlenameFIeld, genderField, monthField,
             dayField, yearField, btypeField, ageField, heightField ,weightField,
             blpField0, tempeField,pulField,plevelField,bpEntry0,bpEntry1,tempEntry,pulseEntry,painEntry,
-            heightEntry,weightEntry,adminPass;
+            heightEntry,weightEntry;
+    private JPasswordField adminPass;
     public JTextArea addressField;
 
     public int X = 0;
@@ -81,7 +82,8 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 1;
         adminAuthentication.add(AdminLabel, c);
 
-        adminPass = new JTextField(10);
+        adminPass = new JPasswordField(10);
+        adminPass.setEchoChar('•');
         adminPass.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridwidth = 2;
@@ -165,6 +167,7 @@ public class PatientInformation extends JFrame implements ActionListener {
                 lop = rs.getString("levelofpain");
                 pulse = rs.getString("pulserate");
                 department = rs.getString("department");
+                doctor = rs.getString("doctor");
             }}
         catch(Exception e){
             e.getCause();
@@ -714,6 +717,16 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridx = 5;
         c.gridy = 3;
         body_panel.add(DeptLabel, c);
+
+        //Date:
+        JLabel docLabel = new JLabel("Doctor ID: " + doctor);
+        docLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        docLabel.setForeground(Color.white);
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(15, 33, 5, 0);
+        c.gridx = 5;
+        c.gridy = 4;
+        body_panel.add(docLabel, c);
 
     }
 

@@ -151,11 +151,11 @@ public class SearchFormDoctor extends JPanel implements ActionListener{
         Connection connectDB = connectNow.getConnection();
 
         if (text[0].equals(""))
-            patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo";
+            patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo WHERE department = '" + LoginForm.dept+ "'";
         else if (text[1].equals("Name"))
-            patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo WHERE surname LIKE '" +text[0]+ "%'";
+            patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo WHERE department = '" + LoginForm.dept+ "' AND surname LIKE '" +text[0]+ "%'";
         else
-            patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo WHERE datetime LIKE '" +text[0]+ "%'";
+            patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo WHERE datetime LIKE '" +text[0]+ "%' AND department '"+ LoginForm.dept+ "'";
         try {
             model.setRowCount(0);
             Statement statement = connectDB.createStatement();

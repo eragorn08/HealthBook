@@ -129,7 +129,7 @@ public class AddForm extends JPanel implements ActionListener {
         addFormPanel.add(femaleRadioButton);
 
         //RADIO BUTTON GROUP
-        ButtonGroup Gender = new ButtonGroup();
+        Gender = new ButtonGroup();
         Gender.add(maleRadioButton);
         Gender.add(femaleRadioButton);
 
@@ -355,15 +355,47 @@ public class AddForm extends JPanel implements ActionListener {
 
         add(addFormPanel);
     }
+    /*
+    birthField.setDate(null);
+        Gender.clearSelection();
+        surnameField.setText("");
+        firstnameField.setText("");
+        middlenameField.setText("");
+        weightField.setText("");
+        heightField.setText("");
+        bloodPressureField1.setText("");
+        bloodPressureField2.setText("");
+        bodyTempField.setText("");
+        levelofpainField.setText("");
+        addressField.setText("");
+        pulseField.setText("");
+        bloodtypeField.setSelectedIndex(0); */
 
     //Patient Input Action
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == confirm) {
-            InputPatient();
-            JOptionPane.showMessageDialog(null, "Patient Information has Been Added!");
-            clearinput();
-            SearchForm.gettableData(empty);
+            if(surnameField.getText().equals("")||
+                firstnameField.getText().equals("")||
+                middlenameField.getText().equals("")||
+                weightField.getText().equals("")||
+                heightField.getText().equals("")||
+                bloodPressureField1.getText().equals("")||
+                bloodPressureField2.getText().equals("")||
+                bodyTempField.getText().equals("")||
+                levelofpainField.getText().equals("")||
+                addressField.getText().equals("")||
+                pulseField.getText().equals("")||
+                bloodtypeField.getSelectedIndex() == 0 ||
+                Gender.getSelection()==null ||
+                birthField.getDate()==null){
+                JOptionPane.showMessageDialog(null, "Please complete all required fields!");
+            }else{
+                InputPatient();
+                JOptionPane.showMessageDialog(null, "Patient Information has Been Added!");
+                clearinput();
+                SearchForm.gettableData(empty);
+            }
         }
     }
 
@@ -429,6 +461,8 @@ public class AddForm extends JPanel implements ActionListener {
     }
 
     public void clearinput(){
+        birthField.setDate(null);
+        Gender.clearSelection();
         surnameField.setText("");
         firstnameField.setText("");
         middlenameField.setText("");
@@ -446,6 +480,7 @@ public class AddForm extends JPanel implements ActionListener {
     private JTextField surnameField,firstnameField,middlenameField,monthField,dayField,yearField,
             weightField,heightField,bloodPressureField1,bloodPressureField2,bodyTempField,levelofpainField,
             pulseField;
+    private ButtonGroup Gender;
     public JDateChooser birthField;
     private JComboBox<String> bloodtypeField;
     private JRadioButton maleRadioButton,femaleRadioButton;

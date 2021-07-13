@@ -107,7 +107,7 @@ public class LoginForm extends JFrame implements ActionListener{
 
 
 
-
+        DisplayPanel.add(Login = new JButton(new ImageIcon("signin.png")));
         Login.setBounds(59,431,330,53);
         Login.setBorder(BorderFactory.createEmptyBorder());
         Login.setFocusPainted(false);
@@ -115,7 +115,7 @@ public class LoginForm extends JFrame implements ActionListener{
         Login.addActionListener(this);
 
         //Submit Button
-        DisplayPanel.add(Login = new JButton(new ImageIcon("signin.png")));
+
         DisplayPanel.setBounds(416,54,448,510);
         DisplayPanel.setVisible(true);
         DisplayPanel.add(DeptCode);
@@ -128,7 +128,20 @@ public class LoginForm extends JFrame implements ActionListener{
         DisplayContainer.setLayout(null);
         DisplayContainer.setBackground(new Color(0x283469));
         DisplayContainer.setBounds(0,0,320, 180);
+        DisplayContainer.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent ev) {
+                posX = ev.getX();
+                posY = ev.getY();
+            }
+        });
+        DisplayContainer.addMouseMotionListener(new MouseAdapter() {
 
+            @Override
+            public void mouseDragged(MouseEvent evt) {
+                setLocation(evt.getXOnScreen()-posX,evt.getYOnScreen()-posY);
+            }
+        });
         //POWER_OFF
         power = new JButton(new ImageIcon("power_button.png"));
         power.setFocusPainted(false);
@@ -163,6 +176,7 @@ public class LoginForm extends JFrame implements ActionListener{
             ida = rs.getString("idaccounts");
             dept= rs.getString("Department");
             doc = rs.getString("LastName");
+            nurse = rs.getString("GivenName");
             emid = rs.getString("Username");
         }
         id = Integer.parseInt(ida);
@@ -210,9 +224,11 @@ public class LoginForm extends JFrame implements ActionListener{
     public JTextField DeptCode;
     public static JPasswordField EmpID;
     public static int id;
-    public static String dept,doc,emid;
+    public static String dept,doc,emid, ida, nurse;
     public JLabel DisplayTitle;
     public JButton Login,power;
-    private String position,ida;
+    private String position;
+    public int posX = 0;
+    public int posY = 0;
 }
 

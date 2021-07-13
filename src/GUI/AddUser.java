@@ -128,7 +128,7 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
         add(nurseRadio);
 
         //RADIO BUTTON GROUP
-        ButtonGroup Roles = new ButtonGroup();
+        Roles = new ButtonGroup();
         Roles.add(doctorRadio);
         Roles.add(nurseRadio);
 
@@ -154,7 +154,8 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
         IDLabel.setBounds(64, 361, 138, 58);
         add(IDLabel);
 
-        IDField = new JTextField();
+        IDField = new JPasswordField();
+        IDField.setEchoChar('•');
         IDField.setBounds(229, 376, 230, 28);
         IDField.setBorder(BorderFactory.createEmptyBorder());
         IDField.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -168,7 +169,8 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
         verifyLabel.setBounds(64, 434, 155, 62);
         add(verifyLabel);
 
-        verifyField = new JTextField();
+        verifyField = new JPasswordField();
+        verifyField.setEchoChar('•');
         verifyField.setBounds(229, 448, 230, 28);
         verifyField.setBorder(BorderFactory.createEmptyBorder());
         verifyField.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -223,6 +225,7 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
             }
         }
         public void clearinputuser(){
+            Roles.clearSelection();
             surnameField.setText("");
             givenField.setText("");
             middleField.setText("");
@@ -306,10 +309,12 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
         Test();
     }
 
-    private JTextField surnameField,givenField,middleField,codeField,IDField,verifyField;
+    private JTextField surnameField,givenField,middleField,codeField;
+    private JPasswordField IDField, verifyField;
     private JComboBox<String> dept;
     private String surname,firstname,middlename,deptcode,department,Position,EmpID,Verification;
     private JRadioButton doctorRadio,nurseRadio;
     private JButton confirmButton;
+    private ButtonGroup Roles;
     private final String[] empty = {"","All"};
 }
