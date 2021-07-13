@@ -176,6 +176,7 @@ public class LoginForm extends JFrame implements ActionListener{
             ida = rs.getString("idaccounts");
             dept= rs.getString("Department");
             doc = rs.getString("LastName");
+            emid = rs.getString("Username");
         }
         id = Integer.parseInt(ida);
     }
@@ -222,7 +223,7 @@ public class LoginForm extends JFrame implements ActionListener{
     public JTextField DeptCode;
     public static JPasswordField EmpID;
     public static int id;
-    public static String dept,doc;
+    public static String dept,doc,emid;
     public JLabel DisplayTitle;
     public JButton Login,power;
     private String position,ida;

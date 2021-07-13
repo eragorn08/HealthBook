@@ -16,7 +16,7 @@ public class HomePageDoctor extends JPanel{
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connect = connectNow.getConnection();
 
-        String Identify = "SELECT LastName FROM accounts WHERE username = '" +LoginForm.EmpID.getText()+ "'";
+        String Identify = "SELECT LastName FROM accounts WHERE username = '" +LoginForm.emid+ "'";
         try{
             Statement st = connect.createStatement();
             ResultSet rs = st.executeQuery(Identify);

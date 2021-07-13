@@ -31,9 +31,11 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connect = connectNow.getConnection();
 
+        System.out.println(LoginForm.EmpID);
+
         String Identify = "UPDATE patientinfo SET symptoms='"+symptoms_content.getText()+"' , " +
                 "diagnosis='"+diagnosis_content.getText()+"',medication='"+medication_content.getText()+"'" +
-                ",doctor='"+LoginForm.EmpID+"' WHERE patientID = '"+SearchFormDoctor.value+"'";
+                ",doctor='"+LoginForm.emid+"' WHERE patientID = '"+SearchFormDoctor.value+"'";
         try{
             Statement st = connect.createStatement();
             st.executeUpdate(Identify);
