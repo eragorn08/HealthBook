@@ -56,7 +56,7 @@ public class PieChartForm extends JFrame{
     @SuppressWarnings("removal")
     private PieDataset createDataSet(){
         DefaultPieDataset dataset = new DefaultPieDataset();
-        for(i=0;i>10;i++){
+        for(i=0;i<10;i++){
             dataset.setValue(deptset[i], new Double(getValue(i)));
         }
         return dataset;
