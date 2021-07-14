@@ -26,7 +26,6 @@ public class Healthbook extends JFrame{
 
             for (int i = 0; i <= 100; i++){
                 Thread.sleep(100);
-                System.out.println(i);
                 if(i == 0)
                     circle.setText("Opening Application");
                 if(i == 26)
@@ -65,7 +64,7 @@ public class Healthbook extends JFrame{
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 4;
-        c.insets = new Insets(0, 0, 45, 0);
+        c.insets = new Insets(40, 0, 45, 0);
         Head.add(icon,c);
         c.gridwidth = 1;
         c.insets = new Insets(0, 0, 0, 0);
