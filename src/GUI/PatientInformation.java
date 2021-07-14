@@ -143,8 +143,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connect = connectNow.getConnection();
 
-        System.out.println(SearchForm.value);
-
         String Identify = "SELECT * FROM patientinfo WHERE patientID = '" +SearchForm.value+ "'";
         try{
             Statement st = connect.createStatement();
@@ -1056,8 +1054,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         bt = tempeField.getText();
         lop = plevelField.getText();
         pulse = pulField.getText();
-
-        System.out.println(LoginForm.dept);
 
         String insertFields = "UPDATE patientinfo SET surname = '"+lastname+"',givenname = '"+firstname+"',middlename = " +
                 "'"+midname+"',gender = '"+gend+"',address='"+addrress+"',age='"+ag+"',month='"+month+"',day='"+day+"'," +

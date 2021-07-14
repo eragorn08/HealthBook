@@ -120,9 +120,15 @@ public class ChangePassword extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(null, "EmpID has Been Changed.");
                 clearField();
             }
+            else {
+                JOptionPane.showMessageDialog(null, "New Emp ID not the Same with Verification.");
+                newField.setText("");
+                verifyField.setText("");
+            }
         }
-        else{
-            JOptionPane.showMessageDialog(null, "New Emp ID not the Same with Verification.");
+        else if(!curEmpID.equals(check)){
+            JOptionPane.showMessageDialog(null, "Current EmpID is Incorrect.");
+            currentField.setText("");
             newField.setText("");
             verifyField.setText("");
         }

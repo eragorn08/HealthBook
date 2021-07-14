@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class AddUser extends JPanel implements ActionListener, MouseListener {
@@ -234,20 +235,47 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
             verifyField.setText("");
             dept.setSelectedIndex(0);
         }
+        public void getEmpID(){
+            Transfer();
+            DatabaseConnection connectNow = new DatabaseConnection();
+            Connection connect = connectNow.getConnection();
+
+            String verify = IDField.getText();
+
+            String Identify = "SELECT username FROM accounts WHERE username = '" +verify+ "'";
+
+            try{
+                Statement st = connect.createStatement();
+                ResultSet rs = st.executeQuery(Identify);
+                if(rs.next()) {
+                    checker = rs.getString("username");
+                }
+                if (checker.equals(verify)) {
+                    JOptionPane.showMessageDialog(null, "EmpID is already in use please change.");
+                    IDField.setText("");
+                    verifyField.setText("");
+                } else {
+                    if (EmpID.equals(Verification)) {
+                        InputUser();
+                        AdminSearch.gettableData(empty);
+                        JOptionPane.showMessageDialog(null, "User Created Successfully.");
+                        clearinputuser();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Emp ID not the Same with Verification.");
+                        IDField.setText("");
+                        verifyField.setText("");
+                    }
+                }
+            }
+
+            catch(Exception e){
+                e.getCause();
+                e.printStackTrace();
+            }
+        }
         @Override
         public void actionPerformed(ActionEvent e){
-            Transfer();
-            if(EmpID.equals(Verification)){
-                InputUser();
-                AdminSearch.gettableData(empty);
-                JOptionPane.showMessageDialog(null, "User Created Successfully.");
-                clearinputuser();
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Emp ID not the Same with Verification.");
-                IDField.setText("");
-                verifyField.setText("");
-            }
+            getEmpID();
         }
 
     public void Test(){
@@ -312,7 +340,7 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
     private JTextField surnameField,givenField,middleField,codeField;
     private JPasswordField IDField, verifyField;
     private JComboBox<String> dept;
-    private String surname,firstname,middlename,deptcode,department,Position,EmpID,Verification;
+    private String surname,firstname,middlename,deptcode,department,Position,EmpID,Verification,checker;
     private JRadioButton doctorRadio,nurseRadio;
     private JButton confirmButton;
     private ButtonGroup Roles;

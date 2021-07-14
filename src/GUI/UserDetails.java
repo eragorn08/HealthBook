@@ -62,8 +62,6 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connect = connectNow.getConnection();
 
-        System.out.println(AdminSearch.value);
-
         String Identify = "SELECT * FROM accounts WHERE idaccounts = '" +AdminSearch.value+ "'";
         try{
             Statement st = connect.createStatement();

@@ -30,8 +30,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connect = connectNow.getConnection();
 
-        System.out.println(LoginForm.EmpID);
-
         String Identify = "UPDATE patientinfo SET symptoms='"+symptoms_content.getText()+"' , " +
                 "diagnosis='"+diagnosis_content.getText()+"',medication='"+medication_content.getText()+"'" +
                 ",doctor='"+LoginForm.ida+"' WHERE patientID = '"+SearchFormDoctor.value+"'";
@@ -48,8 +46,6 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
     public void GetData() {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connect = connectNow.getConnection();
-
-        System.out.println(SearchForm.value);
 
         String Identify = "SELECT * FROM patientinfo WHERE patientID = '" +SearchFormDoctor.value+ "'";
         try{

@@ -97,7 +97,6 @@ public class PieChartForm extends JFrame{
             ResultSet rs = st.executeQuery(Cardio);
             if(rs.next()) {
                 count = rs.getInt("COUNT(*)");
-                System.out.println(count);
             }
         }
         catch(Exception e){
