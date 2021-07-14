@@ -37,14 +37,14 @@ public class AboutWindow extends JFrame{
             }
         });
 
-        back_button = new JButton(new ImageIcon("back.png"));
-        back_button.setContentAreaFilled(false);
-        back_button.setVisible(true);
-        back_button.setFocusPainted(false);
-        back_button.setBorder(BorderFactory.createEmptyBorder());
-        back_button.setBounds(22, 26, 86, 63);
-        back_button.addActionListener(e -> dispose());
-        title_panel.add(back_button);
+        back = new JButton(new ImageIcon("back.png"));
+        back.setContentAreaFilled(false);
+        back.setVisible(true);
+        back.setFocusPainted(false);
+        back.setBorder(BorderFactory.createEmptyBorder());
+        back.setBounds(22, 26, 86, 63);
+        back.addActionListener(e -> dispose());
+        title_panel.add(back);
 
         JLabel about_title = new JLabel("About This Software");
         about_title.setForeground(Color.white);
@@ -61,16 +61,31 @@ public class AboutWindow extends JFrame{
         panel.setBounds(0, 104, 854, 376);
         add(panel);
 
-        panel.add(roundedpanel = new PatientInformation.RoundedPanel(50,new Color(0x4d5579)));
+        panel.add(roundedpanel = new RoundedPanel(50,new Color(0x4d5579)));
+        roundedpanel.setBounds(23,0,808,345);
         roundedpanel.setOpaque(false);
-        roundedpanel.setBorder(BorderFactory.createEmptyBorder());
         roundedpanel.setLayout(null);
 
         roundedpanel.add(logo = new JLabel(new ImageIcon("aboutsymbol.png")));
-        logo.setBounds(309, 14, 90, 123);
+        logo.setBounds(309, 14, 190, 123);
 
-        roundedpanel.add(healthbook =new JLabel(new ImageIcon("aboutlabel.png")));
+        healthbook = new JLabel(new ImageIcon("aboutlabel.png"));
         healthbook.setBounds(195, 153, 418, 45);
+        roundedpanel.add(healthbook);
+
+
+        JLabel message = new JLabel(
+                "<html><div style='text-align: center;'>The <b>HealthBook</b> aims to help our Clinics to have a software-based records<br>" +
+                "for patients and their medical records using database. It has features that stores,<br>" +
+                "manipulates and insert patient infortmation and store them based on what<br>storage " +
+                "location it's placed on. It is made as a requirement for the developers subject<br>" +
+                "in their Object Oriented Programming.</div></html>");
+        message.setFont(new Font("Roboto", Font.PLAIN, 19));
+        message.setForeground(Color.white);
+        message.setBounds(42, 206, 724, 126);
+        roundedpanel.add(message);
+
+
 
     }
 
@@ -79,8 +94,57 @@ public class AboutWindow extends JFrame{
 
 
 
-    public JButton back_button;
-    public PatientInformation.RoundedPanel roundedpanel;
+    public JButton back;
+    public RoundedPanel roundedpanel;
     public JLabel logo, healthbook;
     public int X,Y;
+
+    static class RoundedPanel extends JPanel {
+        private Color backgroundColor;
+        private int cornerRadius = 15;
+
+        public RoundedPanel(LayoutManager layout, int radius) {
+            super(layout);
+            cornerRadius = radius;
+        }
+
+        public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
+            super(layout);
+            cornerRadius = radius;
+            backgroundColor = bgColor;
+        }
+
+        public RoundedPanel(int radius) {
+            super();
+            cornerRadius = radius;
+        }
+
+        public RoundedPanel(int radius, Color bgColor) {
+            super();
+            cornerRadius = radius;
+            backgroundColor = bgColor;
+        }
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Dimension arcs = new Dimension(cornerRadius, cornerRadius);
+            int width = getWidth();
+            int height = getHeight();
+            Graphics2D graphics = (Graphics2D) g;
+            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            //Draws the rounded panel with borders.
+            if (backgroundColor != null) {
+                graphics.setColor(backgroundColor);
+            } else {
+                graphics.setColor(getBackground());
+            }
+            graphics.fillRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint background
+            graphics.setColor(getForeground());
+            graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
+        }
+    }
+
+
 }
+

@@ -114,7 +114,7 @@ public class MainMenu extends JFrame implements ActionListener{
         help.setIconTextGap(25);
         help.setHorizontalAlignment(SwingConstants.LEFT);
         help.setBorder(BorderFactory.createEmptyBorder(0, 31, 0, 0));
-        help.addActionListener(this);
+        help.addActionListener(e -> new HelpWindow());
         help.setBackground(new Color(0x283469));
         help.setForeground(Color.WHITE);
         help.setFont(new Font("Helvetica",Font.PLAIN,20));

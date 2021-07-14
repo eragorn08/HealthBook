@@ -1,9 +1,7 @@
 package GUI;
 
-import com.mysql.cj.log.Log;
-
 public class main {
-    public static void main(String[] args){
-       new MainMenu();
+    public static void main(String[] args) throws Exception {
+       new Healthbook();
     }
 }

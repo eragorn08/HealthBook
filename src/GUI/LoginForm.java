@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class LoginForm extends JFrame implements ActionListener{
+public class LoginForm extends JFrame{
 
     public LoginForm() {
         super("Health Book");
@@ -108,12 +108,12 @@ public class LoginForm extends JFrame implements ActionListener{
 
         //Submit Button
         DisplayPanel.add(Login = new JButton(new ImageIcon("signin.png")));
-        DisplayPanel.add(Login = new JButton(new ImageIcon("signin.png")));
+        //DisplayPanel.add(Login = new JButton(new ImageIcon("signin.png")));
         Login.setBounds(59,431,330,53);
         Login.setBorder(BorderFactory.createEmptyBorder());
         Login.setFocusPainted(false);
         Login.setFont(new Font("Arial",Font.PLAIN,40));
-        Login.addActionListener(this);
+        Login.addActionListener(e -> validateLogin());
 
         //Submit Button
 
@@ -121,6 +121,11 @@ public class LoginForm extends JFrame implements ActionListener{
         DisplayPanel.setVisible(true);
         DisplayPanel.add(DeptCode);
         DisplayPanel.add(EmpID);
+
+
+
+
+
         getContentPane().add(DisplayPanel);
     }
 
@@ -149,20 +154,36 @@ public class LoginForm extends JFrame implements ActionListener{
         power.setBackground(new Color(0x283469));
         power.setBorder(BorderFactory.createEmptyBorder());
         power.setBounds(1227,21,25,27);
-        power.addActionListener(this);
+        power.addActionListener(e -> System.exit(0));
         DisplayContainer.add(power);
+        getContentPane().add(DisplayContainer);
+
+        help = new JButton(new ImageIcon("help.png"));
+        help.setFocusPainted(false);
+        help.setBackground(new Color(0x283469));
+        help.setBorder(BorderFactory.createEmptyBorder());
+        help.setBounds(1217,73,45,39);
+        help.addActionListener(e -> new HelpWindow());
+        DisplayContainer.add(help);
+        getContentPane().add(DisplayContainer);
+
+        about = new JButton(new ImageIcon("about.png"));
+        about.setFocusPainted(false);
+        about.setBackground(new Color(0x283469));
+        about.setBorder(BorderFactory.createEmptyBorder());
+        about.setBounds(1223,132,33,33);
+        about.addActionListener(e -> new AboutWindow());
+        DisplayContainer.add(about);
+
+        JLabel message = new JLabel("<html><div style='text-align: center;'>Don’t have an Account?<br>Contact an <b>Administrator</b>.</div></html>");
+        message.setFont(new Font("Roboto", Font.PLAIN, 20));
+        message.setForeground(Color.white);
+        message.setBounds(524, 607, 240, 46);
+        DisplayContainer.add(message);
         getContentPane().add(DisplayContainer);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == Login) {
-            validateLogin();
-        }
-        if (e.getSource() == power){
-            System.exit(0);
-        }
-    }
+
 
     public void GetPosition() throws SQLException {
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -227,7 +248,7 @@ public class LoginForm extends JFrame implements ActionListener{
     public static int id;
     public static String dept,doc,emid, ida, nurse;
     public JLabel DisplayTitle;
-    public JButton Login,power;
+    public JButton Login,power,help,about;
     private String position;
     public int posX = 0;
     public int posY = 0;
