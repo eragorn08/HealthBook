@@ -59,6 +59,7 @@ public class MainMenu extends JFrame implements ActionListener{
         power = new JButton(new ImageIcon("header_space.png"));
         log_out = new JButton(new ImageIcon("log_out.png"));
 
+
         power.setContentAreaFilled(false);
         power.setFocusPainted(false);
         power.setBorder(noborder);
@@ -108,45 +109,63 @@ public class MainMenu extends JFrame implements ActionListener{
         NavPanel.add(homeButton = new JButton(new ImageIcon("home.png")));
         NavPanel.add(addButton = new JButton(new ImageIcon("add.png")));
         NavPanel.add(searchButton = new JButton(new ImageIcon("search.png")));
+        NavPanel.add(help = new JButton(new ImageIcon("help.png")));
+        NavPanel.add(about = new JButton(new ImageIcon("about.png")));
+
+        help.setText("Help");
+        help.setIconTextGap(25);
+        help.setHorizontalAlignment(SwingConstants.LEFT);
+        help.setBorder(BorderFactory.createEmptyBorder(0, 31, 0, 0));
+        help.addActionListener(this);
+        help.setBackground(new Color(0x283469));
+        help.setForeground(Color.WHITE);
+        help.setFont(new Font("Helvetica",Font.PLAIN,20));
+        help.setFocusPainted(false);
+        help.setBounds(0,508, 286,56);
+
+        about.setText("About this Software");
+        about.setIconTextGap(25);
+        about.setHorizontalAlignment(SwingConstants.LEFT);
+        about.setBorder(BorderFactory.createEmptyBorder(0, 36, 0, 0));
+        about.addActionListener(this);
+        about.setBackground(new Color(0x283469));
+        about.setForeground(Color.WHITE);
+        about.setFont(new Font("Helvetica",Font.PLAIN,20));
+        about.setFocusPainted(false);
+        about.setBounds(0,564, 286,56);
 
         homeButton.setText("Home");
         homeButton.setIconTextGap(25);
         homeButton.setHorizontalAlignment(SwingConstants.LEFT);
-
         homeButton.setBorder(BorderFactory.createEmptyBorder(0, 31, 0, 0));
-        addButton.setBorder(BorderFactory.createEmptyBorder(0, 21, 0, 0));
-        searchButton.setBorder(BorderFactory.createEmptyBorder(0, 29, 0, 0));
-
-        addButton.setText("Add Patient");
-        addButton.setIconTextGap(15);
-        addButton.setHorizontalAlignment(SwingConstants.LEFT);
-
-        searchButton.setText("Search Patient");
-        searchButton.setIconTextGap(23);
-        searchButton.setHorizontalAlignment(SwingConstants.LEFT);
-
-        addButton.addActionListener(this);
-        searchButton.addActionListener(this);
         homeButton.addActionListener(this);
-
         homeButton.setBackground(new Color(0x525c86));
         homeButton.setForeground(Color.WHITE);
         homeButton.setFont(new Font("Helvetica",Font.PLAIN,20));
-
         homeButton.setFocusPainted(false);
+        homeButton.setBounds(0,0, 286,56);
+
+
+        addButton.setText("Add Patient");
+        addButton.addActionListener(this);
+        addButton.setIconTextGap(15);
+        addButton.setHorizontalAlignment(SwingConstants.LEFT);
+        addButton.setBorder(BorderFactory.createEmptyBorder(0, 21, 0, 0));
         addButton.setContentAreaFilled(false);
         addButton.setForeground(Color.white);
         addButton.setFont(new Font("Helvetica",Font.PLAIN,20));
-
         addButton.setFocusPainted(false);
+        addButton.setBounds(0, 57, 286, 56);
+
+        searchButton.setBorder(BorderFactory.createEmptyBorder(0, 29, 0, 0));
+        searchButton.setText("Search Patient");
+        searchButton.setIconTextGap(23);
+        searchButton.setHorizontalAlignment(SwingConstants.LEFT);
+        searchButton.addActionListener(this);
         searchButton.setContentAreaFilled(false);
         searchButton.setForeground(Color.white);
         searchButton.setFont(new Font("Helvetica",Font.PLAIN,20));
-
         searchButton.setFocusPainted(false);
-
-        homeButton.setBounds(0,0, 286,56);
-        addButton.setBounds(0, 57, 286, 56);
         searchButton.setBounds(0, 114, 286, 56);
 
         Spacer.setBounds(0, 65, 286, 24);
@@ -202,6 +221,6 @@ public class MainMenu extends JFrame implements ActionListener{
     }
 
     public final CardLayout cl = new CardLayout();
-    public JButton addButton, searchButton, homeButton, log_out, power;
+    public JButton addButton, searchButton, homeButton, log_out, power, help, about;
     public final JPanel cardPanel = new JPanel();
 }

@@ -285,6 +285,8 @@ public class SearchForm extends JPanel implements ActionListener{
             value = table.getModel().getValueAt(row, 0).toString();
             date = table.getModel().getValueAt(row,2).toString();
             table.clearSelection();
+            search_field.setText("");
+            sort_by.setSelectedIndex(0);
             new PatientInformation();
         }
     }

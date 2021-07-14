@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class PatientInformationDoctor extends JFrame implements ActionListener {
+    private final String[] empty = {"","Name"};
     public JPanel spacer;
     public JPanel panel = new JPanel();
     public JScrollPane scrollPane = new JScrollPane(panel);
@@ -549,6 +550,7 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == back_button) {
+            SearchFormDoctor.gettableData(empty);
             setVisible(false);
         }
 

@@ -1105,6 +1105,7 @@ public class PatientInformation extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == back_button) {
+            SearchForm.gettableData(empty);
             setVisible(false);
         }
 

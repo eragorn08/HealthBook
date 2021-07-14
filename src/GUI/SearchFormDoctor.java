@@ -19,12 +19,13 @@ import java.awt.event.MouseEvent;
 import java.sql.*;
 
 public class SearchFormDoctor extends JPanel implements ActionListener{
+    private static DefaultTableModel model;
     public GridBagConstraints c = new GridBagConstraints();
-    public DefaultTableModel model;
     public JPanel center = new JPanel();
     public JPanel north = new JPanel();
     public JTable table;
     public JComboBox<String> sort_by;
+    public JTextField search_field;
     public JLabel searchPatientTitle;
     public JButton view;
     public static String value,date;
@@ -62,7 +63,7 @@ public class SearchFormDoctor extends JPanel implements ActionListener{
         north.add(search_label, BorderLayout.WEST);
 
         //search field
-        JTextField search_field = new JTextField(27);
+        search_field = new JTextField(27);
         //search_field.setBounds(105,8, 561, 40);
         search_field.setBackground(new Color(0x4b5576));
         search_field.setForeground(Color.white);
@@ -144,7 +145,7 @@ public class SearchFormDoctor extends JPanel implements ActionListener{
         gettableData(empty);
     }
 
-    public String[] gettableData(String[] text) {
+    public static void gettableData(String[] text) {
         String patientinfo;
 
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -175,7 +176,6 @@ public class SearchFormDoctor extends JPanel implements ActionListener{
             e.getCause();
             e.printStackTrace();
         }
-        return text;
     }
 
 
@@ -281,6 +281,8 @@ public class SearchFormDoctor extends JPanel implements ActionListener{
             value = table.getModel().getValueAt(row, 0).toString();
             date = table.getModel().getValueAt(row,2).toString();
             table.clearSelection();
+            search_field.setText("");
+            sort_by.setSelectedIndex(0);
             new PatientInformationDoctor();
         }
     }
