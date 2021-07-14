@@ -254,6 +254,11 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
                     JOptionPane.showMessageDialog(null, "EmpID is already in use please change.");
                     IDField.setText("");
                     verifyField.setText("");
+                    if(!EmpID.equals(Verification)){
+                        JOptionPane.showMessageDialog(null, "Emp ID not the Same with Verification.");
+                        IDField.setText("");
+                        verifyField.setText("");
+                    }
                 } else {
                     if (EmpID.equals(Verification)) {
                         InputUser();
