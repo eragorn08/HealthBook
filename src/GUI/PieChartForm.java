@@ -21,11 +21,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class PieChartForm extends JFrame{
-    private JPanel graphPanel;
-    private JPanel rootPanel;
-    private JButton button1;
-    private JScrollPane ff;
-    private int posX, posY;
 
     public PieChartForm(){
         this.setUndecorated(true);
@@ -106,7 +101,6 @@ public class PieChartForm extends JFrame{
         return count;
     }
 
-
     @SuppressWarnings("removal")
     private PieDataset createDataSet(){
         DefaultPieDataset dataset = new DefaultPieDataset();
@@ -130,5 +124,9 @@ public class PieChartForm extends JFrame{
             "Urology"
     };
     public int[] palette = {0x145DA0,0x0C2D48,0x2E8BC0,0xB1D4E0,0x2B5876, 0x808080, 0x55829B,0x00C0DA,0x272A2C,0x3C416F};
-
+    private JPanel graphPanel;
+    private JPanel rootPanel;
+    private JButton button1;
+    private JScrollPane ff;
+    private int posX, posY;
 }

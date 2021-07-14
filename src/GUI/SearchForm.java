@@ -16,19 +16,7 @@ import java.awt.event.*;
 import java.sql.*;
 
 public class SearchForm extends JPanel implements ActionListener{
-    public String[] empty = {"","Name"};
-    private int row;
-    public static String sort;
-    private static DefaultTableModel model;
-    public GridBagConstraints c = new GridBagConstraints();
-    public JPanel center = new JPanel();
-    public JPanel north = new JPanel();
-    public JTable table;
-    public JComboBox<String> sort_by;
-    public static JTextField search_field;
-    public JLabel searchPatientTitle;
-    public JButton view;
-    public static String value,date;
+
     public SearchForm(){
         setBackground(new Color(0x212C58));
         setLayout(new BorderLayout());
@@ -290,6 +278,17 @@ public class SearchForm extends JPanel implements ActionListener{
             new PatientInformation();
         }
     }
+    public String[] empty = {"","Name"};
+    private static DefaultTableModel model;
+    public GridBagConstraints c = new GridBagConstraints();
+    public JPanel center = new JPanel();
+    public JPanel north = new JPanel();
+    public JTable table;
+    public JComboBox<String> sort_by;
+    public static JTextField search_field;
+    public JLabel searchPatientTitle;
+    public JButton view;
+    public static String value,date;
 }
 class MyComboBoxUI extends BasicComboBoxUI {
     @Override

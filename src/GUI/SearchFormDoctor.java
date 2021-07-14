@@ -19,16 +19,7 @@ import java.awt.event.MouseEvent;
 import java.sql.*;
 
 public class SearchFormDoctor extends JPanel implements ActionListener{
-    private static DefaultTableModel model;
-    public GridBagConstraints c = new GridBagConstraints();
-    public JPanel center = new JPanel();
-    public JPanel north = new JPanel();
-    public JTable table;
-    public JComboBox<String> sort_by;
-    public JTextField search_field;
-    public JLabel searchPatientTitle;
-    public JButton view;
-    public static String value,date;
+
     public SearchFormDoctor(){
         setBackground(new Color(0x212C58));
         setLayout(new BorderLayout());
@@ -286,6 +277,16 @@ public class SearchFormDoctor extends JPanel implements ActionListener{
             new PatientInformationDoctor();
         }
     }
+    private static DefaultTableModel model;
+    public GridBagConstraints c = new GridBagConstraints();
+    public JPanel center = new JPanel();
+    public JPanel north = new JPanel();
+    public JTable table;
+    public JComboBox<String> sort_by;
+    public JTextField search_field;
+    public JLabel searchPatientTitle;
+    public JButton view;
+    public static String value,date;
 }
 class MyComboBoxUIDoctor extends BasicComboBoxUI {
     @Override
@@ -305,4 +306,5 @@ class MyComboBoxUIDoctor extends BasicComboBoxUI {
         button.setName("ComboBox.arrowButton"); //Mandatory, as per BasicComboBoxUI#createArrowButton().
         return button;
     }
+
 }

@@ -19,17 +19,6 @@ import java.sql.*;
 
 
 public class AdminSearch extends JPanel implements ActionListener{
-    private static DefaultTableModel model;
-    public GridBagConstraints c = new GridBagConstraints();
-    //public DefaultTableModel model;
-    public JPanel center = new JPanel();
-    public JPanel north = new JPanel();
-    public JTable table;
-    public JComboBox<String> sort_by;
-    public JLabel searchPatientTitle;
-    public JButton view;
-    public String[] empty = {"","All"};
-    public static String value,date;
 
     public AdminSearch(){
         setBackground(new Color(0x212C58));
@@ -37,7 +26,6 @@ public class AdminSearch extends JPanel implements ActionListener{
         setVisible(true);
         searchtitle();
         searchform();
-
     }
 
     public void searchtitle(){
@@ -198,7 +186,6 @@ public class AdminSearch extends JPanel implements ActionListener{
 
     }
 
-
     public void createTable(){
 
         table = new JTable(new DefaultTableModel());
@@ -217,9 +204,7 @@ public class AdminSearch extends JPanel implements ActionListener{
         table.setBorder(BorderFactory.createEmptyBorder());
         table.setGridColor(new Color(0x212C58));
 
-
         table.setFillsViewportHeight(true);
-
 
         Dimension dim = new Dimension(97,6);
         table.setIntercellSpacing(new Dimension(dim));
@@ -309,4 +294,14 @@ public class AdminSearch extends JPanel implements ActionListener{
             new UserDetails();
         }
     }
+    private static DefaultTableModel model;
+    public GridBagConstraints c = new GridBagConstraints();
+    public JPanel center = new JPanel();
+    public JPanel north = new JPanel();
+    public JTable table;
+    public JComboBox<String> sort_by;
+    public JLabel searchPatientTitle;
+    public JButton view;
+    public String[] empty = {"","All"};
+    public static String value,date;
 }

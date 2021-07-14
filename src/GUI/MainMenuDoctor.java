@@ -199,7 +199,6 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
             dispose();
             new LoginForm();
         }
-
     }
     private final CardLayout cl = new CardLayout();
     public JButton addButton, searchButton, homeButton, log_out, power, help, about;

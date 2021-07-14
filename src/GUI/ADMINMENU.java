@@ -209,8 +209,6 @@ public class ADMINMENU extends JFrame implements ActionListener{
             dispose();
             new LoginForm();
         }
-
-
     }
 
     private final CardLayout cl = new CardLayout();

@@ -1,31 +1,14 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.font.FontRenderContext;
-import java.beans.PropertyVetoException;
-import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class UserDetails extends JFrame implements ActionListener, MouseListener {
-    public GridBagConstraints c;
-    public ButtonGroup Roles;
-    public JPanel panel = new JPanel();
-    public JScrollPane scrollPane = new JScrollPane(panel);
-    public RoundedPanel body_panel, smallFrame;
-    public String lastname,firstname,midname,dep,cod,id,pos,upsurname,upgivenname,upmiddlename,uppos,updept,upcode,upid;
-    public String[] empty = {"","All"};
-    public JComboBox<String> depts;
-    public JButton back_button, edit, confirm, delete, confirmdelete, cancel;
-    public JTextField surnameTextField, givenNameTextField, middleNameTextField, deptTextField, codeTextField, IDTextField;
-    public JRadioButton doctorRadio, nurseRadio;
-    public int X = 0;
-    public int Y = 0;
 
     public void TransData(){
         upsurname  =  surnameTextField.getText();
@@ -46,12 +29,29 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connect = connectNow.getConnection();
 
+        String Identify = "SELECT Username FROM accounts WHERE Username = '" +upid+ "'";
+
         String Source = "UPDATE accounts SET LastName = '" +upsurname+ "', GivenName = '"+upgivenname+"',MiddleName = " +
                 "'"+upmiddlename+"',Position = '"+uppos+"',Username= '"+upid+"',DepartmentCode = '"+upcode+"', " +
                 "Department = '"+updept+"' WHERE idaccounts = '"+AdminSearch.value+"'";
         try{
-            Statement statement = connect.createStatement();
-            statement.executeUpdate(Source);
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery(Identify);
+            if(rs.next()) {
+                checker = rs.getString("Username");
+            }
+            if(upid.equals(checker)) {
+                JOptionPane.showMessageDialog(null, "EmpID is already in use please change.");
+                IDTextField.setText("");
+            }
+            else{
+                Statement statement = connect.createStatement();
+                statement.executeUpdate(Source);
+                JOptionPane.showMessageDialog(null, "User Information has been updated.");
+                delete.setVisible(true);
+                edit.setVisible(true);
+                disableAllTextField();
+            }
         }catch (Exception e){
             e.printStackTrace();
             e.getCause();
@@ -483,14 +483,9 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         }
         if(e.getSource() == confirm){
             AdminSearch.gettableData(empty);
-            delete.setVisible(true);
-            edit.setVisible(true);
             TransData();
             UpdateData();
             AdminSearch.gettableData(empty);
-            JOptionPane.showMessageDialog(null, "User Information has been updated.");
-            disableAllTextField();
-
         }
 
         if(e.getSource() == delete){
@@ -546,6 +541,7 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
         else if (depts.getSelectedItem().equals("Urology")){
             codeTextField.setText("Urology123");
         }
+
     }
 
     //Mouse Event
@@ -619,6 +615,19 @@ public class UserDetails extends JFrame implements ActionListener, MouseListener
             graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
         }
     }
+    public GridBagConstraints c;
+    public ButtonGroup Roles;
+    public JPanel panel = new JPanel();
+    public JScrollPane scrollPane = new JScrollPane(panel);
+    public RoundedPanel body_panel, smallFrame;
+    public String checker,lastname,firstname,midname,dep,cod,id,pos,upsurname,upgivenname,upmiddlename,uppos,updept,upcode,upid;
+    public String[] empty = {"","All"};
+    public JComboBox<String> depts;
+    public JButton back_button, edit, confirm, delete, confirmdelete, cancel;
+    public JTextField surnameTextField, givenNameTextField, middleNameTextField, deptTextField, codeTextField, IDTextField;
+    public JRadioButton doctorRadio, nurseRadio;
+    public int X = 0;
+    public int Y = 0;
 }
 
 

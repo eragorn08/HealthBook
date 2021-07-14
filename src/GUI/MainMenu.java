@@ -10,8 +10,6 @@ public class MainMenu extends JFrame implements ActionListener{
     public int posX = 0;
     public int posY = 0;
 
-
-
     public MainMenu()  {
         super("HealthBook");
         setNavPanel();
@@ -217,7 +215,6 @@ public class MainMenu extends JFrame implements ActionListener{
             dispose();
             new LoginForm();
         }
-
     }
 
     public final CardLayout cl = new CardLayout();

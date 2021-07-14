@@ -12,24 +12,6 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class PatientInformation extends JFrame implements ActionListener {
-    private String[] level = {"--","1","2","3","4","5","6","7","8","9","10",};
-    public JPanel panel = new JPanel();
-    public JScrollPane scrollPane = new JScrollPane(panel);
-    public RoundedPanel body_panel, vitalsigns, addOldPatient, adminAuthentication;
-    public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop, department,pulse,obp,obt,opr,olop,ohei,owei,ebp,doctor;
-    private final String[] empty = {"","Name"};
-    public JButton back_button, addrecord,editPatient,confirm_add_old, confirm_edit, cancel_edit;
-    private JComboBox<String> painEntry;
-    public JTextField surnameField, givennameField, middlenameFIeld, genderField, monthField,
-            dayField, yearField, btypeField, ageField, heightField ,weightField,
-            blpField0, tempeField,pulField,plevelField,bpEntry0,bpEntry1,tempEntry,pulseEntry,
-            heightEntry,weightEntry;
-    private JPasswordField adminPass;
-    public JTextArea addressField;
-
-    public int X = 0;
-    public int Y = 0;
 
     public void setEditable(){
         surnameField.setEditable(true);
@@ -936,19 +918,6 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 4;
         addOldPatient.add(painEntry, c);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         //Height:
         JLabel heightLabel = new JLabel("Height:");
         heightLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
@@ -1213,5 +1182,23 @@ public class PatientInformation extends JFrame implements ActionListener {
             graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
         }
     }
+    private String[] level = {"--","1","2","3","4","5","6","7","8","9","10",};
+    public JPanel panel = new JPanel();
+    public JScrollPane scrollPane = new JScrollPane(panel);
+    public RoundedPanel body_panel, vitalsigns, addOldPatient, adminAuthentication;
+    public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
+            lop, department,pulse,obp,obt,opr,olop,ohei,owei,ebp,doctor;
+    private final String[] empty = {"","Name"};
+    public JButton back_button, addrecord,editPatient,confirm_add_old, confirm_edit, cancel_edit;
+    private JComboBox<String> painEntry;
+    public JTextField surnameField, givennameField, middlenameFIeld, genderField, monthField,
+            dayField, yearField, btypeField, ageField, heightField ,weightField,
+            blpField0, tempeField,pulField,plevelField,bpEntry0,bpEntry1,tempEntry,pulseEntry,
+            heightEntry,weightEntry;
+    private JPasswordField adminPass;
+    public JTextArea addressField;
+
+    public int X = 0;
+    public int Y = 0;
 
 }

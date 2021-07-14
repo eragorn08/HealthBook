@@ -13,18 +13,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class PatientInformationDoctor extends JFrame implements ActionListener {
-    private final String[] empty = {"","Name"};
-    public JPanel spacer;
-    public JPanel panel = new JPanel();
-    public JScrollPane scrollPane = new JScrollPane(panel);
-    public RoundedPanel body_panel, vitalsigns,symptoms_panel, diagnosis_panel, medication_panel;
-    public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
-            lop, symptoms_info,diagnosis_info,medication_info,pulserate,doctor;
-    public JButton back_button, edit, confirm;
-    public JTextArea symptoms_content, diagnosis_content, medication_content;
-
-    public int X = 0;
-    public int Y = 0;
 
     public void InputDoc(){
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -605,6 +593,18 @@ public class PatientInformationDoctor extends JFrame implements ActionListener {
             graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
         }
     }
+    private final String[] empty = {"","Name"};
+    public JPanel spacer;
+    public JPanel panel = new JPanel();
+    public JScrollPane scrollPane = new JScrollPane(panel);
+    public RoundedPanel body_panel, vitalsigns,symptoms_panel, diagnosis_panel, medication_panel;
+    public String lastname,firstname,midname,gend,addrress,ag,month,day,year,weigh,heigh,bt,bloodpressure,btp,
+            lop, symptoms_info,diagnosis_info,medication_info,pulserate,doctor;
+    public JButton back_button, edit, confirm;
+    public JTextArea symptoms_content, diagnosis_content, medication_content;
+
+    public int X = 0;
+    public int Y = 0;
 
 }
 
