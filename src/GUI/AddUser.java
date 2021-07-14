@@ -2,10 +2,7 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -32,22 +29,22 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
         nameLabel.setBounds(64, 133, 151, 29);
         add(nameLabel);
 
-        JLabel surnameLabel = new JLabel("Surname");
+        JLabel surnameLabel = new JLabel(" Surname");
         surnameLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
         surnameLabel.setForeground(Color.white);
-        surnameLabel.setBounds(276, 168, 107, 29);
+        surnameLabel.setBounds(277, 168, 110, 29);
         add(surnameLabel);
 
         JLabel givennameLabel = new JLabel("Given Name");
         givennameLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
         givennameLabel.setForeground(Color.white);
-        givennameLabel.setBounds(483, 168, 143, 29);
+        givennameLabel.setBounds(488, 168, 150, 29);
         add(givennameLabel);
 
         JLabel middlenameLabel = new JLabel("Middle Name");
         middlenameLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
         middlenameLabel.setForeground(Color.white);
-        middlenameLabel.setBounds(705, 168, 153, 29);
+        middlenameLabel.setBounds(710, 168, 160, 29);
         add(middlenameLabel);
 
         surnameField = new JTextField();
@@ -55,13 +52,26 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
         surnameField.setBorder(BorderFactory.createEmptyBorder());
         surnameField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         surnameField.setHorizontalAlignment(JTextField.CENTER);
+        surnameField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                surnameField.setEditable(!(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'));
+            }
+        });
         add(surnameField);
+
 
         givenField = new JTextField();
         givenField.setBounds(455, 132, 200, 28);
         givenField.setBorder(BorderFactory.createEmptyBorder());
         givenField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         givenField.setHorizontalAlignment(JTextField.CENTER);
+        givenField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                givenField.setEditable(!(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'));
+            }
+        });
         add(givenField);
 
         middleField = new JTextField();
@@ -69,6 +79,12 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
         middleField.setBorder(BorderFactory.createEmptyBorder());
         middleField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         middleField.setHorizontalAlignment(JTextField.CENTER);
+        middleField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                middleField.setEditable(!(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'));
+            }
+        });
         add(middleField);
 
         //Dept FORM
@@ -242,15 +258,15 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
 
             String verify = IDField.getText();
 
-            String Identify = "SELECT username FROM accounts WHERE username = '" +verify+ "'";
+            String Identify = "SELECT Username FROM accounts WHERE Username = '" +verify+ "'";
 
             try{
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(Identify);
                 if(rs.next()) {
-                    checker = rs.getString("username");
+                    checker = rs.getString("Username");
                 }
-                if (checker.equals(verify)) {
+                if (verify.equals(checker)) {
                     JOptionPane.showMessageDialog(null, "EmpID is already in use please change.");
                     IDField.setText("");
                     verifyField.setText("");
@@ -280,7 +296,16 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
         }
         @Override
         public void actionPerformed(ActionEvent e){
-            getEmpID();
+            if(surnameField.getText().equals("") ||
+                middleField.getText().equals("") ||
+                givenField.getText().equals("")||
+                dept.getSelectedIndex() == 0 ||
+                Roles.getSelection() == null||
+                IDField.getText().equals("")||
+                verifyField.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Please complete all required fields!");
+            }else{getEmpID();}
+
         }
 
     public void Test(){

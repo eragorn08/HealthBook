@@ -122,7 +122,7 @@ public class MainMenuDoctor extends JFrame implements ActionListener{
         about.setIconTextGap(25);
         about.setHorizontalAlignment(SwingConstants.LEFT);
         about.setBorder(BorderFactory.createEmptyBorder(0, 36, 0, 0));
-        about.addActionListener(this);
+        about.addActionListener(e -> new AboutWindow());
         about.setBackground(new Color(0x283469));
         about.setForeground(Color.WHITE);
         about.setFont(new Font("Helvetica",Font.PLAIN,20));

@@ -60,6 +60,18 @@ public class AboutWindow extends JFrame{
         panel.setVisible(true);
         panel.setBounds(0, 104, 854, 376);
         add(panel);
+
+        panel.add(roundedpanel = new PatientInformation.RoundedPanel(50,new Color(0x4d5579)));
+        roundedpanel.setOpaque(false);
+        roundedpanel.setBorder(BorderFactory.createEmptyBorder());
+        roundedpanel.setLayout(null);
+
+        roundedpanel.add(logo = new JLabel(new ImageIcon("aboutsymbol.png")));
+        logo.setBounds(309, 14, 90, 123);
+
+        roundedpanel.add(healthbook =new JLabel(new ImageIcon("aboutlabel.png")));
+        healthbook.setBounds(195, 153, 418, 45);
+
     }
 
 
@@ -68,5 +80,7 @@ public class AboutWindow extends JFrame{
 
 
     public JButton back_button;
+    public PatientInformation.RoundedPanel roundedpanel;
+    public JLabel logo, healthbook;
     public int X,Y;
 }

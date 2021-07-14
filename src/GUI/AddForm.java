@@ -29,6 +29,7 @@ public class AddForm extends JPanel implements ActionListener {
     public void addForm(){
 
         String[] bloodTypes = {"--", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"};
+        String[] level = {"--","1","2","3","4","5","6","7","8","9","10",};
        //Border border = new LineBorder(new Color(0x374169),1,false);
         JPanel addFormPanel = new JPanel();
         addFormPanel.setLayout(null);
@@ -59,22 +60,22 @@ public class AddForm extends JPanel implements ActionListener {
         nameLabel.setBounds(25,22, 74,25);
         addFormPanel.add(nameLabel);
 
-        JLabel surnameLabel = new JLabel("Surname");
+        JLabel surnameLabel = new JLabel("  Surname");
         surnameLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         surnameLabel.setForeground(Color.white);
-        surnameLabel.setBounds(183,57, 107,25);
+        surnameLabel.setBounds(186,57, 107,25);
         addFormPanel.add(surnameLabel);
 
-        JLabel firstLabel = new JLabel("Given Name");
+        JLabel firstLabel = new JLabel("  Given Name");
         firstLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         firstLabel.setForeground(Color.WHITE);
-        firstLabel.setBounds(390,57, 142,25);
+        firstLabel.setBounds(395,57, 142,25);
         addFormPanel.add(firstLabel);
 
-        JLabel middleLabel = new JLabel("Middle Name");
+        JLabel middleLabel = new JLabel("  Middle Name");
         middleLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         middleLabel.setForeground(Color.WHITE);
-        middleLabel.setBounds(613,57, 150,25);
+        middleLabel.setBounds(617,57, 150,25);
         addFormPanel.add(middleLabel);
 
         surnameField = new JTextField();
@@ -82,6 +83,12 @@ public class AddForm extends JPanel implements ActionListener {
         surnameField.setBorder(BorderFactory.createEmptyBorder());
         surnameField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         surnameField.setHorizontalAlignment(JTextField.CENTER);
+        surnameField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                surnameField.setEditable(!(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'));
+            }
+        });
         addFormPanel.add(surnameField);
 
         firstnameField = new JTextField();
@@ -89,6 +96,12 @@ public class AddForm extends JPanel implements ActionListener {
         firstnameField.setBorder(BorderFactory.createEmptyBorder());
         firstnameField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         firstnameField.setHorizontalAlignment(JTextField.CENTER);
+        firstnameField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                firstnameField.setEditable(!(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'));
+            }
+        });
         addFormPanel.add(firstnameField);
 
         middlenameField = new JTextField();
@@ -96,6 +109,12 @@ public class AddForm extends JPanel implements ActionListener {
         middlenameField.setBorder(BorderFactory.createEmptyBorder());
         middlenameField.setFont(new Font("Helvetica", Font.PLAIN, 20));
         middlenameField.setHorizontalAlignment(JTextField.CENTER);
+        middlenameField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                middlenameField.setEditable(!(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'));
+            }
+        });
         addFormPanel.add(middlenameField);
 
 
@@ -328,19 +347,16 @@ public class AddForm extends JPanel implements ActionListener {
         levelofpainLabel.setBounds(22,463, 109,58);
         addFormPanel.add(levelofpainLabel);
 
-        levelofpainField = new JTextField();
+
+
+
+
+        levelofpainField = new JComboBox<>(level);
         levelofpainField.setBounds(136,478,100,28);
         levelofpainField.setFont(new Font("Helvetica", Font.PLAIN, 20));
-        levelofpainField.setHorizontalAlignment(JTextField.CENTER);
-        levelofpainField.setBorder(BorderFactory.createEmptyBorder());
-        levelofpainField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                levelofpainField.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
-                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE);
-            }
-        });
         addFormPanel.add(levelofpainField);
+
+
 
 
 
@@ -355,21 +371,6 @@ public class AddForm extends JPanel implements ActionListener {
 
         add(addFormPanel);
     }
-    /*
-    birthField.setDate(null);
-        Gender.clearSelection();
-        surnameField.setText("");
-        firstnameField.setText("");
-        middlenameField.setText("");
-        weightField.setText("");
-        heightField.setText("");
-        bloodPressureField1.setText("");
-        bloodPressureField2.setText("");
-        bodyTempField.setText("");
-        levelofpainField.setText("");
-        addressField.setText("");
-        pulseField.setText("");
-        bloodtypeField.setSelectedIndex(0); */
 
     //Patient Input Action
     @Override
@@ -383,7 +384,7 @@ public class AddForm extends JPanel implements ActionListener {
                 bloodPressureField1.getText().equals("")||
                 bloodPressureField2.getText().equals("")||
                 bodyTempField.getText().equals("")||
-                levelofpainField.getText().equals("")||
+                levelofpainField.getSelectedIndex() ==0||
                 addressField.getText().equals("")||
                 pulseField.getText().equals("")||
                 bloodtypeField.getSelectedIndex() == 0 ||
@@ -428,7 +429,7 @@ public class AddForm extends JPanel implements ActionListener {
         String height = heightField.getText();
         String bloodpressure = bloodPressureField1.getText() + '/' + bloodPressureField2.getText();
         String bodyTemp = bodyTempField.getText();
-        String painlevel = levelofpainField.getText();
+        String painlevel = (String)levelofpainField.getSelectedItem();
         String pulse = pulseField.getText();
 
         if(maleRadioButton.isSelected()){
@@ -469,18 +470,18 @@ public class AddForm extends JPanel implements ActionListener {
         bloodPressureField1.setText("");
         bloodPressureField2.setText("");
         bodyTempField.setText("");
-        levelofpainField.setText("");
+        levelofpainField.setSelectedIndex(0);
         addressField.setText("");
         pulseField.setText("");
         bloodtypeField.setSelectedIndex(0);
     }
 
-    private JTextField surnameField,firstnameField,middlenameField,monthField,dayField,yearField,
-            weightField,heightField,bloodPressureField1,bloodPressureField2,bodyTempField,levelofpainField,
+    private JTextField surnameField,firstnameField,middlenameField,
+            weightField,heightField,bloodPressureField1,bloodPressureField2,bodyTempField,
             pulseField;
     private ButtonGroup Gender;
     public JDateChooser birthField;
-    private JComboBox<String> bloodtypeField;
+    private JComboBox<String> bloodtypeField, levelofpainField;
     private JRadioButton maleRadioButton,femaleRadioButton;
     private JTextArea addressField;
     private JButton confirm;

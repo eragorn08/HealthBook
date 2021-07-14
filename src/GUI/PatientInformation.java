@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class PatientInformation extends JFrame implements ActionListener {
+    private String[] level = {"--","1","2","3","4","5","6","7","8","9","10",};
     public JPanel panel = new JPanel();
     public JScrollPane scrollPane = new JScrollPane(panel);
     public RoundedPanel body_panel, vitalsigns, addOldPatient, adminAuthentication;
@@ -19,9 +20,10 @@ public class PatientInformation extends JFrame implements ActionListener {
             lop, department,pulse,obp,obt,opr,olop,ohei,owei,ebp,doctor;
     private final String[] empty = {"","Name"};
     public JButton back_button, addrecord,editPatient,confirm_add_old, confirm_edit, cancel_edit;
+    private JComboBox<String> painEntry;
     public JTextField surnameField, givennameField, middlenameFIeld, genderField, monthField,
             dayField, yearField, btypeField, ageField, heightField ,weightField,
-            blpField0, tempeField,pulField,plevelField,bpEntry0,bpEntry1,tempEntry,pulseEntry,painEntry,
+            blpField0, tempeField,pulField,plevelField,bpEntry0,bpEntry1,tempEntry,pulseEntry,
             heightEntry,weightEntry;
     private JPasswordField adminPass;
     public JTextArea addressField;
@@ -303,18 +305,18 @@ public class PatientInformation extends JFrame implements ActionListener {
         vitalSignsLabel.setFont(new Font("Helvetica", Font.BOLD, 25));
         vitalSignsLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
-        c.weightx = 0;
         c.gridx = 0;
         c.gridy = 0;
-        c.insets = new Insets(13, 40, 2, 0);
+        c.insets = new Insets(40, 41, 2, 0);
         vitalsigns.add(vitalSignsLabel, c);
+        c.weightx = 0;
 
         //Blood Pressure
         JLabel bpLabel = new JLabel("Blood Pressure:");
         bpLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         bpLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(15, 33, 2, 0);
+        c.insets = new Insets(15, 41, 2, 0);
         c.gridx = 0;
         c.gridy = 1;
         vitalsigns.add(bpLabel, c);
@@ -331,7 +333,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         tempLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         tempLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(15, 33, 2, 0);
+        c.insets = new Insets(15, 41, 2, 0);
         c.gridx = 0;
         c.gridy = 2;
         vitalsigns.add(tempLabel, c);
@@ -347,7 +349,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         degreeLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         degreeLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(15, 33, 2, 0);
+        c.insets = new Insets(15, 41, 2, 0);
         c.gridx = 2;
         c.gridy = 2;
         vitalsigns.add(degreeLabel, c);
@@ -357,7 +359,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         pulseLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         pulseLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(15, 33, 2, 0);
+        c.insets = new Insets(15, 41, 2, 0);
         c.gridx = 0;
         c.gridy = 3;
         vitalsigns.add(pulseLabel, c);
@@ -373,7 +375,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         bpmLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         bpmLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(15, 33, 2, 0);
+        c.insets = new Insets(15, 41, 2, 0);
         c.gridx = 2;
         c.gridy = 3;
         vitalsigns.add(bpmLabel, c);
@@ -383,7 +385,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         painLabel.setFont(new Font("Helvetica", Font.PLAIN, 20));
         painLabel.setForeground(Color.white);
         c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(15, 33, 14, 0);
+        c.insets = new Insets(15, 41, 14, 0);
         c.gridx = 0;
         c.gridy = 4;
         vitalsigns.add(painLabel, c);
@@ -395,12 +397,23 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 4;
         vitalsigns.add(plevelField, c);
 
+
+        JLabel uwuut = new JLabel("asddsfdsfsdfhjjhhhasdfas");
+        uwuut.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        uwuut.setForeground(new Color(0x4d5579));
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(0, 0, 0, 40);
+        c.gridx = 3;
+        c.gridy = 4;
+        vitalsigns.add(uwuut, c);
+
+
         JLabel uwu = new JLabel("sdfasdfasdfasdf");
         uwu.setFont(new Font("Helvetica", Font.PLAIN, 20));
         uwu.setForeground(new Color(0x4d5579));
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(15, 33, 14, 0);
-        c.gridx = 3;
+        c.insets = new Insets(15, 0, 14, 0);
+        c.gridx = 4;
         c.gridy = 4;
         vitalsigns.add(uwu, c);
 
@@ -409,9 +422,22 @@ public class PatientInformation extends JFrame implements ActionListener {
         uwuu.setForeground(new Color(0x4d5579));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(0, 0, 0, 40);
-        c.gridx = 4;
+        c.gridx = 5;
         c.gridy = 4;
         vitalsigns.add(uwuu, c);
+
+
+        JLabel uwuutt = new JLabel("asddsfdsfsdf");
+        uwuutt.setForeground(new Color(0x4d5579));
+        uwuutt.setFont(new Font("Helvetica", Font.PLAIN, 20));
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridwidth = 2;
+        c.gridx = 1;
+        c.gridy = 5;
+        vitalsigns.add(uwuutt, c);
+        c.gridwidth = 1;
+
+
 
     }
 
@@ -561,7 +587,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         yyyyLabel.setForeground(Color.white);
         yyyyLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         c.fill = GridBagConstraints.BOTH;
-        //c.insets = new Insets(15, 33, 2, 0);
+        c.insets = new Insets(15, 33, 2, 0);
         c.gridx = 1;
         c.gridy = 6;
         body_panel.add(yyyyLabel, c);
@@ -578,7 +604,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         mmLabel.setForeground(Color.white);
         mmLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         c.fill = GridBagConstraints.BOTH;
-        //c.insets = new Insets(15, 33, 2, 0);
+        c.insets = new Insets(15, 33, 2, 0);
         c.gridx = 2;
         c.gridy = 6;
         body_panel.add(mmLabel, c);
@@ -595,7 +621,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         ddLabel.setForeground(Color.white);
         ddLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         c.fill = GridBagConstraints.BOTH;
-        //c.insets = new Insets(15, 33, 2, 0);
+        c.insets = new Insets(15, 33, 2, 0);
         c.gridx = 3;
         c.gridy = 6;
         body_panel.add(ddLabel, c);
@@ -903,19 +929,25 @@ public class PatientInformation extends JFrame implements ActionListener {
         c.gridy = 4;
         addOldPatient.add(painLabel, c);
 
-        painEntry = new JTextField(5);
+        painEntry = new JComboBox<>(level);
         painEntry.setFont(new Font("Helvetica", Font.PLAIN, 20));
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 1;
         c.gridy = 4;
-        painEntry.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent ke) {
-                painEntry.setEditable(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9'
-                        || ke.getKeyChar() == KeyEvent.VK_BACK_SPACE|| ke.getKeyChar() == '.');
-            }
-        });
         addOldPatient.add(painEntry, c);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //Height:
         JLabel heightLabel = new JLabel("Height:");
@@ -1005,7 +1037,7 @@ public class PatientInformation extends JFrame implements ActionListener {
         obp = bpEntry0.getText() + "/" + bpEntry1.getText();
         obt = tempEntry.getText();
         opr = pulseEntry.getText();
-        olop = painEntry.getText();
+        olop = (String) painEntry.getSelectedItem();
         ohei = heightEntry.getText();
         owei = weightEntry.getText();
 

@@ -156,7 +156,7 @@ public class SearchFormDoctor extends JPanel implements ActionListener{
         else if (text[1].equals("Name"))
             patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo WHERE department = '" + LoginForm.dept+ "' AND surname LIKE '" +text[0]+ "%'";
         else
-            patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo WHERE datetime LIKE '" +text[0]+ "%' AND department '"+ LoginForm.dept+ "'";
+            patientinfo = "SELECT patientID, surname, givenname, middlename, datetime FROM patientinfo WHERE datetime LIKE '" +text[0]+ "%' AND department = '"+ LoginForm.dept+ "'";
         try {
             model.setRowCount(0);
             Statement statement = connectDB.createStatement();
