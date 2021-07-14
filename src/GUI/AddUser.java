@@ -74,7 +74,7 @@ public class AddUser extends JPanel implements ActionListener, MouseListener {
         JLabel deptLabel = new JLabel("Department:");
         deptLabel.setFont(new Font("Helvetica", Font.PLAIN, 25));
         deptLabel.setForeground(Color.white);
-        deptLabel.setBounds(64, 200, 138, 29);
+        deptLabel.setBounds(64, 200, 141, 29);
         add(deptLabel);
 
         String[] department_list = {
