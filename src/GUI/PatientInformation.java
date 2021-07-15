@@ -1118,9 +1118,20 @@ public class PatientInformation extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == confirm_add_old){
-            editPatient.setVisible(true);
-            InsertOldPatient();
-            dispose();
+            if (bpEntry0.getText().equals("")||
+                    bpEntry1.getText().equals("")||
+                    tempEntry.getText().equals("")||
+                    pulseEntry.getText().equals("")||
+                    painEntry.getSelectedIndex() ==0 ||
+                    heightEntry.getText().equals("")||
+                    weightEntry.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Please complete all fields.");
+            }else{
+                editPatient.setVisible(true);
+                InsertOldPatient();
+                dispose();
+            }
+
         }
         if (e.getSource() == confirm_edit){
             addrecord.setVisible(true);
