@@ -13,9 +13,8 @@ public class HelpWindow extends JFrame{
         setUndecorated(true);
 
         setVisible(true);
-
-
-
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
         JPanel title_panel = new JPanel();
         title_panel.setLayout(null);
@@ -65,8 +64,6 @@ public class HelpWindow extends JFrame{
         roundedpanel.setBounds(31,0,793,310);
         roundedpanel.setOpaque(false);
         roundedpanel.setLayout(null);
-
-
 
         JLabel message = new JLabel(
                 "<html><div style='text-align: center;'>" +
@@ -164,15 +161,7 @@ public class HelpWindow extends JFrame{
         roundedpanel.add(logo5 = new JLabel(new ImageIcon("arrow.png")));
         logo5.setBounds(444, 192, 22, 22);
 
-
-
-
     }
-
-
-
-
-
 
     public JButton back;
     public RoundedPanel roundedpanel;

@@ -11,11 +11,9 @@ public class AboutWindow extends JFrame{
         setLayout(null);
         setSize(854,480);
         setUndecorated(true);
-
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setVisible(true);
-
-
-
 
         JPanel title_panel = new JPanel();
         title_panel.setLayout(null);
@@ -85,14 +83,7 @@ public class AboutWindow extends JFrame{
         message.setBounds(42, 206, 724, 126);
         roundedpanel.add(message);
 
-
-
     }
-
-
-
-
-
 
     public JButton back;
     public RoundedPanel roundedpanel;
