@@ -1,7 +1,7 @@
 package GUI;
 
 public class main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
        new Healthbook();
     }
 }
